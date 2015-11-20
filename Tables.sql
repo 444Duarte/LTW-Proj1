@@ -1,0 +1,48 @@
+DROP TABLE IF EXISTS User;
+DROP TABLE IF EXISTS Event; 
+DROP TABLE IF EXISTS EventType;
+DROP TABLE IF EXISTS Comment;
+DROP TABLE IF EXISTS AdminEvent;
+DROP TABLE IF EXISTS GoToEvent;
+
+
+CREATE TABLE User(
+idUser INTEGER PRIMARY KEY,
+user VARCHAR(20) NOT NULL,
+password VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE Event(
+idEvent INTEGER PRIMARY KEY,
+datadoEvento DATE,
+descricao VARCHAR(20) NOT NULL,
+image VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE EventType(
+idEventType INTEGER PRIMARY KEY,
+idEvent INTEGER REFERENCES Event(idEvent),
+type VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE AdminEvent(
+ idUser INTEGER REFERENCES User(idUser),
+ idEvent INTEGER REFERENCES Event(idEvent),
+ PRIMARY KEY(idUser,idEvent)
+);
+
+CREATE TABLE GoToEvent(
+ idUser INTEGER REFERENCES User(idUser),
+ idEvent INTEGER REFERENCES Event(idEvent),
+ PRIMARY KEY(idUser,idEvent)
+);
+
+CREATE TABLE Comment(
+	idComment INTEGER PRIMARY KEY,
+	idUser INTEGER REFERENCES User(idUser),
+	idEvent INTEGER REFERENCES Event(idEvent),
+	comentario VARCHAR(20) NOT NULL
+);
+
+
+
