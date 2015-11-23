@@ -1,15 +1,36 @@
-.top-bar{
-	width: 100%;
-	height: 31px;
-
-	background-color: blue;
+html{
+	overflow: scroll;
 }
 
-#search{
-	padding-top: 5px;
-	padding-left: 10px;
+html,body{
+	width: 100%;
+	margin: 0;
+	height: 100%;
+	background-color: #eeeeee;
+}
+
+.top-bar{
+	height: 2em;
+	background-color: #0066CC;
+	padding: 0.1em 0.25em;
+	vertical-align: middle;
+	border-bottom: groove 1px #eeeeee;
+}
+
+.top-bar form{
+	height: 100%;
+	padding: 0.3em 0em;
 }
 
 #search-bar{
-	width: 300px;
+	width: 25em;
+}
+
+.left-bar{
+	width: 20%;
+	height: 100%;
+	margin: 0.5em;
+	float: left;
+	background-color: #cccccc;
+    border: groove 1px #eeeeee;
 }
