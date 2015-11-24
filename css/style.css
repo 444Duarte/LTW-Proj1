@@ -7,13 +7,26 @@ html, body
 	background-color: #333333;
 }
 
-.font-effect-fire{
+
+
+.text{
 	text-align: center;
-	font-size :50px;
+	font-weight: bold;
+	font-size :180px;
+	position: relative;
+    left: 10px;
+    top: 25px;
+}
+.subtext{
+	text-align: center;
+	font-size :40px;
+	position: relative;
+	left: 35px;
+    top: 15px;
 }
 body{
 
-	background-image: url("./ev.jpg");
+	background-image: url("./e.jpg");
 	background-size: 100% 100%;
 	 background-repeat: no-repeat;
 }
@@ -27,18 +40,29 @@ body{
 
 .img1,img{
      position: absolute;
-    top:0%; bottom:65%; left:30%; right:0%;
+    top:9.7%; bottom:36%; left:35%; right:0%;
     margin: auto;
-	width:50px; /* you can use % */
+	width: 50px; /* you can use % */
     height: auto;
 }
 
 .img2,img{
      position: absolute;
-    top:0%; bottom:67%; left:0%; right:27%;
+    top:0%; bottom:67%; left:0%; right:57%;
     margin: auto;
-	width:50px; /* you can use % */
+	width: 50px; /* you can use % */
     height: auto;
+}
+
+.about,img{
+
+position: relative;
+    top:40%; bottom:37%; left:0%; right:57%;
+    margin: auto;
+	width: 50px;
+	 /* you can use % */
+    height: auto;
+
 }
 
 #loginButton{
@@ -50,5 +74,38 @@ body{
 .center
 {
 	text-align: center;
+}
+
+
+
+.loginButton {
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Montserrat;
+  color: #ffe8de;
+  font-size: 30px;
+  position: absolute;
+   bottom:40%; 
+   left:43%;
+    width: 7em;  height: 2em;
+  text-decoration: none;
+  border: solid #000000 2px;
+}
+
+.loginButton:hover {
+  background: #fa3c98;
+  background-image: -webkit-linear-gradient(top, #fa3c98, #fa0519);
+  background-image: -moz-linear-gradient(top, #fa3c98, #fa0519);
+  background-image: -ms-linear-gradient(top, #fa3c98, #fa0519);
+  background-image: -o-linear-gradient(top, #fa3c98, #fa0519);
+  background-image: linear-gradient(to bottom, #fa3c98, #fa0519);
+  text-decoration: none;
 }
 
