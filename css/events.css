@@ -52,9 +52,9 @@ html,body{
 	text-align: center;
 }
 
-.left-bar div a{
+.link-events a{
 	margin-top: 1em;
-	padding: 0.2em 30%;
+	padding: 0.2em 15%;
 	border-bottom: solid 1px #eeeeee;
 	text-decoration: none;
 	color: #000000;
