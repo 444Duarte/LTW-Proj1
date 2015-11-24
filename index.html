@@ -24,25 +24,52 @@
 <div class="subtext">We Plan your life</div>
 
 
-	<div class="img1">
+	<div id="img1">
 		<img src="./manager_2.png" alt="PENIS">
 	</div>
 
 </header>
 		
-<div class="img2">
+<div id="img2">
 		<img src="./ta.png" alt="PENIS">
 	</div>
 	<div class="center">
 		<button class="loginButton" onclick="login()">Login</button>
 	</div>
-<div class="about">
-<img src="./cutmypic.png" alt="PENIS">
+	<div class="reg">
+		<button class="registerButton" onclick="register()">Register</button>
+	</div>
+<div id="about">
+<img id="pedro" src="./cutmypic.png" alt="PENIS">
+<img id="cc" src="./cc.png" alt="PENIS">
+<img id="kengas" src="./eu_cego.png" alt="PENIS">
+
+  <div id="name">Pedro</div>
+  <div id="name2">Duarte</div>
+  <div id="name3">Miguel</div>
 </div>	
 	<script>
 		function login()
 		{
 			swal({   title: "Login!",   
+			text: "",   
+			type: "input",   
+			showCancelButton: true,   
+			closeOnConfirm: false,   animation: "slide-from-top",   
+			inputPlaceholder: "Username" }, 
+			function(inputValue){   
+				if (inputValue === false) 
+					return false;      
+				if (inputValue === "") {     
+					swal.showInputError("You need to write something!");
+					return false   
+				}      
+				swal("Nice!", "You wrote: " + inputValue, "success"); });
+
+		}
+		function register()
+		{
+			swal({   title: "Register!",   
 			text: "",   
 			type: "input",   
 			showCancelButton: true,   

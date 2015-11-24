@@ -26,7 +26,7 @@ html, body
 }
 body{
 
-	background-image: url("./e.jpg");
+	background-image: url("./z.jpg");
 	background-size: 100% 100%;
 	 background-repeat: no-repeat;
 }
@@ -38,31 +38,80 @@ body{
    
 }
 
-.img1,img{
+#img1 img{
      position: absolute;
-    top:9.7%; bottom:36%; left:35%; right:0%;
+    top:9.7%; bottom:81.9%; left:35%; right:0%;
     margin: auto;
-	width: 50px; /* you can use % */
+	width: 3.5%; /* you can use % */
     height: auto;
 }
 
-.img2,img{
+#img2 img{
      position: absolute;
-    top:0%; bottom:67%; left:0%; right:57%;
+    top:0%; bottom:67%; left:0%; right:25%;
     margin: auto;
-	width: 50px; /* you can use % */
+	width: 17%; /* you can use % */
     height: auto;
 }
 
-.about,img{
+#about #pedro{
 
-position: relative;
-    top:40%; bottom:37%; left:0%; right:57%;
+position: absolute;
+    top:69%; bottom:0%; left:0%; right:0%;
     margin: auto;
-	width: 50px;
+	width: 6%;
 	 /* you can use % */
     height: auto;
 
+}
+
+#about #cc{
+
+position: absolute;
+    top:69%; bottom:0%; left:20%; right:0%;
+    margin: auto;
+	width: 6%;
+	 /* you can use % */
+    height: auto;
+
+}
+
+#about #kengas{
+
+position: absolute;
+    top:69%; bottom:0%; left:-20%; right:0%;
+    margin: auto;
+	width: 6%;
+	 /* you can use % */
+    height: auto;
+
+}
+
+#about #name{
+	position: absolute;
+    top:92%; bottom:0%; left:0%; right:5%;
+    margin: auto;
+	width: 2%;
+	 /* you can use % */
+    height: auto;
+}
+
+#about #name2{
+	position: absolute;
+    top:92%; bottom:0%; left:0%; right:-15%;
+    margin: auto;
+	width: 2%;
+	 /* you can use % */
+    height: auto;
+}
+
+#about #name3{
+	position: absolute;
+    top:92%; bottom:0%; left:0%; right:28%;
+    margin: auto;
+	width: 2%;
+	 /* you can use % */
+    height: auto;
 }
 
 #loginButton{
@@ -92,7 +141,7 @@ position: relative;
   color: #ffe8de;
   font-size: 30px;
   position: absolute;
-   bottom:40%; 
+   bottom:45%; 
    left:43%;
     width: 7em;  height: 2em;
   text-decoration: none;
@@ -100,6 +149,37 @@ position: relative;
 }
 
 .loginButton:hover {
+  background: #fa3c98;
+  background-image: -webkit-linear-gradient(top, #fa3c98, #fa0519);
+  background-image: -moz-linear-gradient(top, #fa3c98, #fa0519);
+  background-image: -ms-linear-gradient(top, #fa3c98, #fa0519);
+  background-image: -o-linear-gradient(top, #fa3c98, #fa0519);
+  background-image: linear-gradient(to bottom, #fa3c98, #fa0519);
+  text-decoration: none;
+}
+
+.registerButton {
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Montserrat;
+  color: #ffe8de;
+  font-size: 30px;
+  position: absolute;
+   bottom:32%; 
+   left:43%;
+    width: 7em;  height: 2em;
+  text-decoration: none;
+  border: solid #000000 2px;
+}
+
+.registerButton:hover {
   background: #fa3c98;
   background-image: -webkit-linear-gradient(top, #fa3c98, #fa0519);
   background-image: -moz-linear-gradient(top, #fa3c98, #fa0519);
