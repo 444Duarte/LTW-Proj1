@@ -5,6 +5,7 @@
 	LifeGest</title>
 	<meta charset='UTF-8'>
 	<script src="dist/sweetalert.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
 	<style>
@@ -32,10 +33,10 @@
 
 
 <div id="login">
-  <form name ="Registo">
+  <form name ="Registo" id="Reg" >
     <input type="email" name="email" placeholder="Email"/>
     <input type="password" name="password" placeholder="Password"/>
-    <input type="submit" onsubmit="validateForm()" value="Submit"/>
+    <input type="submit" value="Submit"/>
   </form>
 </div>
 		
@@ -73,19 +74,22 @@
 				swal("Nice!", "You wrote: " + inputValue, "success"); });
 
 		};
-		
-		function validateForm()
-		{
-               var email = document.forms["Registo"]["email"].value;
-               console.log(email);
-               var password = document.forms["Registo"]["password"].value;
 
-               if(email==null || email=="")
-               {
-               	swal("Oops...", "Something went wrong!", "error");
-               }
-		};
-	
+		$('#Reg').submit(function(ev) {
+		    ev.preventDefault(); // to stop the form from submitting
+		    /* Validations go here */
+		    var email = document.forms["Registo"]["email"].value;
+           console.log(email);
+           var password = document.forms["Registo"]["password"].value;
+
+           if(email==null || email=="")
+           {
+           	swal("Oops...", "Something went wrong!", "error");
+           }
+		    this.submit(); // If all the validations succeeded
+		});
 	</script>
+
+
 </body>
 </html>
