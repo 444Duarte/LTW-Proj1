@@ -29,15 +29,21 @@
 	</div>
 
 </header>
+
+
+<div id="login">
+  <form>
+    <input type="email" placeholder="Email" />
+    <input type="password" placeholder="Password" />
+    <input type="submit" value="Register" />
+  </form>
+</div>
 		
 <div id="img2">
 		<img src="./ta.png" alt="PENIS">
 	</div>
 	<div class="center">
 		<button class="loginButton" onclick="login()">Login</button>
-	</div>
-	<div class="reg">
-		<button class="registerButton" onclick="register()">Register</button>
 	</div>
 <div id="about">
 <img id="pedro" src="./cutmypic.png" alt="PENIS">
@@ -67,24 +73,7 @@
 				swal("Nice!", "You wrote: " + inputValue, "success"); });
 
 		}
-		function register()
-		{
-			swal({   title: "Register!",   
-			text: "",   
-			type: "input",   
-			showCancelButton: true,   
-			closeOnConfirm: false,   animation: "slide-from-top",   
-			inputPlaceholder: "Username" }, 
-			function(inputValue){   
-				if (inputValue === false) 
-					return false;      
-				if (inputValue === "") {     
-					swal.showInputError("You need to write something!");
-					return false   
-				}      
-				swal("Nice!", "You wrote: " + inputValue, "success"); });
-
-		}
+	
 	</script>
 </body>
 </html>
