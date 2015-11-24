@@ -72,11 +72,10 @@ html,body{
 }
 
 .display-event{
-	height: 100%;
 	margin: 0.5rem;
 	background-color: #dddddd;
     border: groove 1px #eeeeee;
-    overflow: auto;
+    overflow: hidden;
 }
 
 #header{
@@ -85,7 +84,25 @@ html,body{
 	width: 100%;
 	padding: 1rem;
 	box-sizing: border-box;
-	border-bottom: groove 2px #cccccc
+	border-bottom: groove 2px #cccccc;
+	position: relative;
+	background-image: url('../images/events/1.jpg');
+	background-size: 100% 100%;
+    background-repeat: no-repeat;
+    color: #ffffff;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+#header:hover{
+	cursor: pointer;
+}
+
+#header *:hover{
+	cursor: initial;
 }
 
 #header div:first-child{
@@ -98,14 +115,40 @@ html,body{
 	-webkit-margin-before: 0em;
     -webkit-margin-after: 0em;
 }
-#name{
-
-}
 
 #date{
 	float: right;
 }
-#type{
+
+#option{
+	margin: 0.5rem;
+	position: absolute; 
+	bottom: 0;
+	right: 0;
+}
+
+#description{
+	width: 80%;
+	float: left;
+	padding: 1rem;
+	box-sizing: border-box;
+}
+
+#description *{
 	-webkit-margin-before: 0em;
     -webkit-margin-after: 0em;
+}
+
+.users{
+	font-size: small;
+	margin-left: 1rem;
+	display: inline-block; 
+}
+
+.users div h1:first-child{
+	text-align: left;
+}
+
+.users div{
+	text-align: center;
 }
