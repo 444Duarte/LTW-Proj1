@@ -18,17 +18,19 @@
 	
 	<div class="left-bar">
 		<div>
-			My Events
-			<br> 
-			<a href="">Event</a>
+			<h5>My Events</h5>
+			<br>
+			<div class="link-events"> 
+				<a href="">Event</a>
+			</div>
 		</div>
 		<div>
-			Other Events
+			<h5>Other Events</h5>
 			<br>
-			<a href="">Event</a>
+			<div class="link-events">
+				<a href="">Event</a>
+			</div>
 		</div>
-		
 	</div>
-	
 </body>
 </html>

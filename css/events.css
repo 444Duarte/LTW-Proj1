@@ -27,10 +27,46 @@ html,body{
 }
 
 .left-bar{
-	width: 20%;
+	width: 15%;
 	height: 100%;
 	margin: 0.5em;
 	float: left;
 	background-color: #cccccc;
     border: groove 1px #eeeeee;
+    font-size: x-large;
+    overflow: hidden;
+}
+
+.left-bar > div{
+	border-bottom: groove 2px #999999;
+	padding: 0.5em;
+	padding-bottom: 20%;
+
+}
+
+.left-bar > div:last-of-type{
+	border-bottom: none;
+}
+
+.link-events{
+	text-align: center;
+}
+
+.left-bar div a{
+	margin-top: 1em;
+	padding: 0.2em 30%;
+	border-bottom: solid 1px #eeeeee;
+	text-decoration: none;
+	color: #000000;
+}
+
+.left-bar div a:hover{
+	background-color: orange;
+	color: #ffffff;
+}
+
+.left-bar div h5{
+	color: #444444;
+	-webkit-margin-before: 0em;
+    -webkit-margin-after: 0.2em;
 }
