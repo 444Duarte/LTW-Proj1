@@ -7,121 +7,122 @@ html, body
 	background-color: #333333;
 }
 
-
+header {
+  padding-right: 40rem;
+}
 
 .text{
 	text-align: center;
 	font-weight: bold;
 	font-size :180px;
 	position: relative;
-    left: 10px;
-    top: 25px;
+  left: 10px;
+  top: 25px;
 }
 .subtext{
 	text-align: center;
 	font-size :40px;
 	position: relative;
 	left: 35px;
-    top: 15px;
+  top: 15px;
 }
 body{
 
 	background-image: url("./z.jpg");
 	background-size: 100% 100%;
-	 background-repeat: no-repeat;
+	background-repeat: no-repeat;
 }
 
-#intro
-{
+#intro {
 	text-align: center;
-   color: black;
-   
+  color: black;
 }
 
 #img1 img{
-     position: absolute;
-    top:9.7%; bottom:81.9%; left:35%; right:0%;
-    margin: auto;
+  position: absolute;
+  padding-right: 40rem;
+  top:9.7%; bottom:81.9%; left:35%; right:0%;
+  margin: auto;
 	width: 3.5%; /* you can use % */
-    height: auto;
+  height: auto;
 }
 
 #img2 img{
-     position: absolute;
-    top:0%; bottom:67%; left:0%; right:25%;
-    margin: auto;
+  position: absolute;
+  padding-right: 40rem;
+  top:0%; bottom:67%; left:0%; right:25%;
+  margin: auto;
 	width: 17%; /* you can use % */
-    height: auto;
+  height: auto;
 }
 
 #about #pedro{
 
-position: absolute;
-    top:69%; bottom:0%; left:0%; right:0%;
-    margin: auto;
+  position: absolute;
+  top:69%; bottom:0%; left:0%; right:0%;
+  margin: auto;
 	width: 6%;
-	 /* you can use % */
-    height: auto;
+	/* you can use % */
+  height: auto;
 
 }
 
 #about #cc{
 
 position: absolute;
-    top:69%; bottom:0%; left:20%; right:0%;
-    margin: auto;
+  top:69%; bottom:0%; left:20%; right:0%;
+  margin: auto;
 	width: 6%;
-	 /* you can use % */
-    height: auto;
+	/* you can use % */
+  height: auto;
 
 }
 
 #about #kengas{
 
 position: absolute;
-    top:69%; bottom:0%; left:-20%; right:0%;
-    margin: auto;
+  top:69%; bottom:0%; left:-20%; right:0%;
+  margin: auto;
 	width: 6%;
-	 /* you can use % */
-    height: auto;
+	/* you can use % */
+  height: auto;
 
 }
 
 #about #name{
 	position: absolute;
-    top:92%; bottom:0%; left:0%; right:5%;
-    margin: auto;
+  top:92%; bottom:0%; left:0%; right:5%;
+  margin: auto;
 	width: 2%;
-	 /* you can use % */
-    height: auto;
+	/* you can use % */
+  height: auto;
 }
 
 #about #name2{
 	position: absolute;
-    top:92%; bottom:0%; left:0%; right:-15%;
-    margin: auto;
+  top:92%; bottom:0%; left:0%; right:-15%;
+  margin: auto;
 	width: 2%;
-	 /* you can use % */
-    height: auto;
+	/* you can use % */
+  height: auto;
 }
 
 #about #name3{
 	position: absolute;
-    top:92%; bottom:0%; left:0%; right:28%;
-    margin: auto;
+  top:92%; bottom:0%; left:0%; right:28%;
+  margin: auto;
 	width: 2%;
-	 /* you can use % */
-    height: auto;
+	/* you can use % */
+  height: auto;
 }
 
 #loginButton{
 	margin: auto;
-    width: 30%;
-    padding: 10px;	
+  width: 30%;
+  padding: 10px;	
 }
 
-.center
-{
+.center {
 	text-align: center;
 }
 
@@ -141,9 +142,9 @@ position: absolute;
   color: #ffe8de;
   font-size: 30px;
   position: absolute;
-   bottom:45%; 
-   left:43%;
-    width: 7em;  height: 2em;
+  bottom:60%; 
+  left:43%;
+  width: 7em;  height: 2em;
   text-decoration: none;
   border: solid #000000 2px;
 }
@@ -199,11 +200,11 @@ position: absolute;
 form{
   padding:6% 4%;
   position: relative;
-   bottom:105%; 
-   left:120%;
-   resize:both;
-   width:60%;
-   height:60%;
+  bottom:105%; 
+  left:160%;
+  resize:both;
+  width:60%;
+  height:60%;
 }
 
 input[type="email"],input[type="password"]{
