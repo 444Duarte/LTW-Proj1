@@ -32,5 +32,19 @@
 			</div>
 		</div>
 	</div>
+
+
+	<div class="display-event">
+		<div id="header">
+			<div>
+				<h1 id="name">Event_name</h1>
+				<br>
+				<h2 id="type">Event_type</h2>
+			</div>
+			<h3 id="date">24/11/2015</h3>
+			
+		</div>
+
+	</div>
 </body>
 </html>

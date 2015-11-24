@@ -10,26 +10,26 @@ html,body{
 }
 
 .top-bar{
-	height: 2em;
+	height: 2rem;
 	background-color: #0066CC;
-	padding: 0.1em 0.25em;
+	padding: 0.1rem 0.25rem;
 	vertical-align: middle;
 	border-bottom: groove 1px #eeeeee;
 }
 
 .top-bar form{
 	height: 100%;
-	padding: 0.3em 0em;
+	padding: 0.3rem 0rem;
 }
 
 #search-bar{
-	width: 25em;
+	width: 25rem;
 }
 
 .left-bar{
 	width: 15%;
-	height: 100%;
-	margin: 0.5em;
+	/*height: 100%;*/
+	margin: 0.5rem;
 	float: left;
 	background-color: #cccccc;
     border: groove 1px #eeeeee;
@@ -39,7 +39,7 @@ html,body{
 
 .left-bar > div{
 	border-bottom: groove 2px #999999;
-	padding: 0.5em;
+	padding: 0.5rem;
 	padding-bottom: 20%;
 
 }
@@ -53,8 +53,8 @@ html,body{
 }
 
 .link-events a{
-	margin-top: 1em;
-	padding: 0.2em 15%;
+	margin-top: 1rem;
+	padding: 0.2rem 15%;
 	border-bottom: solid 1px #eeeeee;
 	text-decoration: none;
 	color: #000000;
@@ -67,6 +67,45 @@ html,body{
 
 .left-bar div h5{
 	color: #444444;
+	-webkit-margin-before: 0rem;
+    -webkit-margin-after: 0.2rem;
+}
+
+.display-event{
+	height: 100%;
+	margin: 0.5rem;
+	background-color: #dddddd;
+    border: groove 1px #eeeeee;
+    overflow: auto;
+}
+
+#header{
+	display: inline-block;
+	min-height: 10%;
+	width: 100%;
+	padding: 1rem;
+	box-sizing: border-box;
+	border-bottom: groove 2px #cccccc
+}
+
+#header div:first-child{
+	float: left;
+	height: 100%;
+	width: auto;
+}
+
+#header *{
 	-webkit-margin-before: 0em;
-    -webkit-margin-after: 0.2em;
+    -webkit-margin-after: 0em;
+}
+#name{
+
+}
+
+#date{
+	float: right;
+}
+#type{
+	-webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
 }
