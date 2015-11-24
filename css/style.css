@@ -142,7 +142,7 @@ position: absolute;
   color: #ffe8de;
   font-size: 30px;
   position: absolute;
-  bottom:60%; 
+  bottom:40%; 
   left:43%;
   width: 7em;  height: 2em;
   text-decoration: none;
@@ -199,9 +199,10 @@ position: absolute;
 
 form{
   padding:6% 4%;
+  background:#fff;
   position: relative;
-  bottom:105%; 
-  left:160%;
+ top:55%; 
+  left:130%;
   resize:both;
   width:60%;
   height:60%;
