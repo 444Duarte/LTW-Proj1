@@ -214,5 +214,29 @@
 
 		return true;
 	}
-	// 	
+
+	function registerEvent($user_given, %titleEvent) {
+		global $db;
+		$stmt = $db->prepare('SELECT idEvent FROM Event WHERE titleEvent = :titleEvent;');
+		$stmt->bindParam(:titleEvent, $titleEvent, PDO::PARAM_INT);
+		$stmt->execute();
+		
+		$result = $stmt->fetch();
+
+		if (count($result) === 0) {
+			echo 'Error fetching idEvent.\n';
+			return false;
+		}
+
+		$idEvent = $stmt['idEvent'];
+
+	}
+
+	function deleteEvent() {
+
+	}
+
+	function editEvent() {
+
+	}
 ?>
