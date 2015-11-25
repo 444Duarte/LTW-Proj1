@@ -75,6 +75,8 @@
 
 		echo 'The password was updated.\n';
 		return true;
-		
 	}
+
+	// criar eventos
+	// 	
 ?>
