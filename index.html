@@ -44,7 +44,7 @@
 		<img src="./ta.png" alt="PENIS">
 	</div>
 	<div class="center">
-		<button class="loginButton" onclick="login()">Login</button>
+		<button class="loginButton" id="Log">Login</button>
 	</div>
 <div id="about">
 <img id="pedro" src="./cutmypic.png" alt="PENIS">
@@ -70,11 +70,49 @@
 				if (inputValue === "") {     
 					swal.showInputError("You need to write something!");
 					return false   
-				}      
+				}
 				swal("Nice!", "You wrote: " + inputValue, "success"); });
-
 		};
+        $("#Log").click(function(){
+            swal({   
+                title: "Login",   
+                text: "",   
+                type: "input",
+                showCancelButton: true,   
+                closeOnConfirm: false,   
+                animation: "slide-from-top",   
+                inputPlaceholder: "Username" },
+                function(inputValue){ if (inputValue === false) return false;      
+                        if (inputValue === "") {     
+                        swal.showInputError("You need to write something!");     
+                        return false   
+                        }      
+                // verificar se o username existe na base de dados
+                // se existir, correr isto a seguir
+                swal({   
+                    title: "Login",   
+                    text: "",   
+                    type: "input",
+                    showCancelButton: true,   
+                    closeOnConfirm: false,   
+                    animation: "slide-from-top",   
+                    inputPlaceholder: "Password" },
+                    function(inputValue) {
+                    	if (inputValue === false)
+                    			return false;      
+                            		if (inputValue === "") {     
+		                        	    swal.showInputError("You need to write something!");     
+		                            	return false   
+                            		}
+                    //verificar se a password coincide com a password do username na base de dados
+                    // se coincidir, entrar
+                    swal("Nice!", "Password: " + inputValue, "success");
 
+                    // se nao coincidir, mostrar inputError 
+                });
+                // se nao existir, mostrar inputError
+            });                 
+        });
 		$('#Reg').submit(function(ev) {
 		    ev.preventDefault(); // to stop the form from submitting
 		    /* Validations go here */
