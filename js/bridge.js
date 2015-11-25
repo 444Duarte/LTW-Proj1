@@ -25,7 +25,7 @@ $('#Reg').submit(function(ev) {
                         swal("Login successfull.", "success")
                         break;
                     default:
-                        displayError("Error while processing the login...");
+                        //displayError("Error while processing the login...");
                         break;
                 }
 
@@ -75,5 +75,28 @@ $("#Log").click(function(){
             // se nao coincidir, mostrar inputError 
         });
         // se nao existir, mostrar inputError
+        })
+
+    $.post(
+            '../php/register.php',
+            {
+                'username' : username,
+                'password' : password
+            },
+            function(data) {
+                var response = data['register'];
+                switch(response) {
+                    case 'user_exists':
+                        swal("Login failed, the username already exists.", "Try again.", "insuccess")
+                        break;
+                    case 'success':
+                        swal("Login successfull.", "success")
+                        break;
+                    default:
+                        //displayError("Error while processing the login...");
+                        break;
+                }
+
+
         });                 
 });

@@ -3,7 +3,7 @@
 	include_once('users.php');
 
 	function printResponse($value) {
-	    $data = ["login" => $value];
+	    $data = ["register" => $value];
 	    //header('Content-Type: application/json');
 	    echo json_encode($data);
 	}
@@ -15,8 +15,8 @@
 			continue;
 		}
 	}
-	if (!(compareLogin($params['username'], $params['password']))) {
-		printResponse("wrong_login");
+	if (!(register($params['username'], $params['password']))) {
+		printResponse("user_exists");
 	}
 
 	printResponse("success");

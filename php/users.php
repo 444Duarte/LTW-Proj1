@@ -96,7 +96,7 @@
 			echo 'Error fetching idEvent.\n';
 			return false;
 		}
-		$idEvent = $stmt['idEvent'];
+		$idEvent = $result['idEvent'];
 
 		$stmt = $db->prepare('INSERT INTO EventType VALUES(:idEvent, :type);');
 		$stmt->bindParam(:type, $type, PDO::PARAM_STR);
@@ -117,7 +117,7 @@
 			echo 'Error fetching idUser.\n';
 			return false;
 		}
-		$idUser = $stmt['idUser'];
+		$idUser = $result['idUser'];
 
 		$stmt = $db->prepare('INSERT INTO AdminEvent VALUES(:idUser, :idEvent);');
 		$stmt->bindParam(:idEvent, $idEvent, PDO::PARAM_INT);
@@ -147,7 +147,7 @@
 			return false;
 		}
 
-		$idUser = $stmt['idUser'];
+		$idUser = $result['idUser'];
 
 		$stmt = $db->prepare('SELECT idEvent FROM Event WHERE titleEvent = :titleEvent');
 		$stmt->bindParam(:titleEvent, $titleEvent, PDO::PARAM_STR);
@@ -220,7 +220,7 @@
 		$stmt = $db->prepare('SELECT idEvent FROM Event WHERE titleEvent = :titleEvent;');
 		$stmt->bindParam(:titleEvent, $titleEvent, PDO::PARAM_INT);
 		$stmt->execute();
-		
+
 		$result = $stmt->fetch();
 
 		if (count($result) === 0) {
@@ -228,15 +228,98 @@
 			return false;
 		}
 
-		$idEvent = $stmt['idEvent'];
+		$idEvent = $result['idEvent'];
 
+		$stmt = $db->prepare('SELECT idUser FROM User WHERE user_given = :user_given;');
+		$stmt->bindParam(:user_given, $user_given, PDO::PARAM_STR);
+		$stmt->execute();
+
+		$result = $stmt->fetch();
+
+		if (count($result) === 0) {
+			echo 'Error fetching idUser.\n';
+			return false;
+		}
+
+		$idUser = $result['idUser'];
+
+		$stmt = $db->prepare('INSERT INTO GoToEvent VALUES(:idUser, :idEvent);');
+		$stmt->bindParam(:idUser, $idUser, PDO::PARAM_INT);
+		$stmt->bindParam(:idEvent, $idEvent, PDO::PARAM_INT);
+		$stmt->execute();
+
+		return true;
 	}
 
-	function deleteEvent() {
+	function deleteEvent($user_given, $titleEvent) {
+		global $db;
+		$stmt = $db->prepare('SELECT idEvent FROM Event WHERE titleEvent = :titleEvent;');
+		$stmt->bindParam(:titleEvent, $titleEvent, PDO::PARAM_INT);
+		$stmt->execute();
 
+		$result = $stmt->fetch();
+
+		if (count($result) === 0) {
+			echo 'Error fetching idEvent.\n';
+			return false;
+		}
+
+		$idEvent = $result['idEvent'];
+
+		$stmt = $db->prepare('SELECT idUser FROM User WHERE user_given = :user_given;');
+		$stmt->bindParam(:user_given, $user_given, PDO::PARAM_STR);
+		$stmt->execute();
+
+		$result = $stmt->fetch();
+
+		if (count($result) === 0) {
+			echo 'Error fetching idUser.\n';
+			return false;
+		}
+
+		$idUser = $result['idUser'];
+
+		$stmt = $db->prepare('DELETE FROM Comment WHERE idEvent = :idEvent;');
+		$stmt->bindParam(:idEvent, $idEvent, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$result = $stmt->fetch();
+
+
+		$stmt = $db->prepare('DELETE FROM GoToEvent WHERE idUser = :idUser AND idEvent = :idEvent;');
+		$stmt->bindParam(:idUser, $idUser, PDO::PARAM_INT);
+		$stmt->bindParam(:idEvent, $idEvent, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$stmt = $db->prepare('DELETE FROM AdminEvent WHERE idUser = :idUser AND idEvent = :idEvent;');
+		$stmt->bindParam(:idUser, $idUser, PDO::PARAM_INT);
+		$stmt->bindParam(:idEvent, $idEvent, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$stmt = $db->prepare('DELETE FROM EventType WHERE idEvent = :idEvent;');
+		$stmt->bindParam(:idEvent, $idEvent, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$stmt = $db->prepare('DELETE FROM Event WHERE idEvent = :idEvent;');
+		$stmt->bindParam(:idEvent, $idEvent, PDO::PARAM_INT);
+		$stmt->execute();
+
+		return true;
 	}
 
-	function editEvent() {
+	function editEvent($titleEvent, $date, $description, $img, $type, $user_given) {
 
+		if (!(deleteEvent($user_given, $titleEvent))) {
+			echo 'Cannot edit event.\n';
+			return false;
+		}
+
+		if (!(createEvent($user_given, $titleEvent, $date, $description, $img, $type))) {
+			echo 'Cannot edit event.\n';
+			return false;
+		}
+
+		return true;
 	}
+	
 ?>
