@@ -32,8 +32,8 @@
 
 		$result = $stmt->fetch();
 
-		if (count($result) === 0) {
-			echo 'The username does not exit.\n';
+		if (count($result) !=== 0) {
+			echo 'The username already exists.\n';
 			return false;
 		}
 
@@ -77,6 +77,142 @@
 		return true;
 	}
 
-	// criar eventos
+	function createEvent($user_given, $titleEvent, $date, $description, $img, $type) {
+		global $db;
+		$stmt = $db->prepare('INSERT INTO Event VALUES(:titleEvent, :date, :description, :img);');
+		$stmt->bindParam(:titleEvent, $titleEvent, PDO::PARAM_STR);
+		$stmt->bindParam(:date, $date, PDO::PARAM_STR);
+		$stmt->bindParam(:description, $description, PDO::PARAM_STR);
+		$stmt->bindParam(:img, $img, PDO::PARAM_STR);
+		$stmt->execute();
+
+		$stmt = $db->prepare('SELECT idEvent FROM Event WHERE titleEvent = :titleEvents;');
+		$stmt->bindParam(:titleEvent, $titleEvent, PDO::PARAM_STR);
+		$stmt->execute();
+
+		$result = $stmt->fetch();
+
+		if (count($result) === 0) {
+			echo 'Error fetching idEvent.\n';
+			return false;
+		}
+		$idEvent = $stmt['idEvent'];
+
+		$stmt = $db->prepare('INSERT INTO EventType VALUES(:idEvent, :type);');
+		$stmt->bindParam(:type, $type, PDO::PARAM_STR);
+		$stmt->bindParam(:idEvent, $idEvent, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$stmt = $db->prepare('INSERT INTO AdminEvent VALUES(:idEvent);');
+		$stmt->bindParam(:idEvent, $idEvent, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$stmt = $db->prepare('SELECT idUser FROM User WHERE user = :user_given;');
+		$stmt->bindParam(:user_given, $user_given, PDO::PARAM_STR);
+		$stmt->execute();
+
+		$result = $stmt->fetch();
+
+		if (count($result) === 0) {
+			echo 'Error fetching idUser.\n';
+			return false;
+		}
+		$idUser = $stmt['idUser'];
+
+		$stmt = $db->prepare('INSERT INTO AdminEvent VALUES(:idUser, :idEvent);');
+		$stmt->bindParam(:idEvent, $idEvent, PDO::PARAM_INT);
+		$stmt->bindParam(:idUser, $idUser, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$stmt = $db->prepare('INSERT INTO GoToEvent VALUES(:idUser, :idEvent);');
+		$stmt->bindParam(:idEvent, $idEvent, PDO::PARAM_INT);
+		$stmt->bindParam(:idUser, $idUser, PDO::PARAM_INT);
+		$stmt->execute();
+
+		echo 'The event was created.\n';
+		return true;
+
+	}
+
+	function commentEvent($user_given, $titleEvent, $comm) {
+		global $db;
+		$stmt = $db->prepare('SELECT idUser FROM User WHERE user = :user_given');
+		$stmt->bindParam(:user_given, $user_given, PDO::PARAM_STR);
+		$stmt->execute();
+
+		$result = $stmt->fetch();
+
+		if (count($result) === 0) {
+			echo 'Error fetching idUser.\n';
+			return false;
+		}
+
+		$idUser = $stmt['idUser'];
+
+		$stmt = $db->prepare('SELECT idEvent FROM Event WHERE titleEvent = :titleEvent');
+		$stmt->bindParam(:titleEvent, $titleEvent, PDO::PARAM_STR);
+		$stmt->execute();
+
+		$result = $stmt->fetch();
+
+		if (count($result) === 0) {
+			echo 'Error fetching idEvent.\n';
+			return false;
+		}
+
+		$idEvent = $stmt['idEvent'];
+
+		$stmt = $db->prepare('SELECT idUser FROM GoToEvent WHERE idEvent = :idEvent');
+		$stmt->bindParam(:idEvent, $idEvent, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$GoEvent = false; //se vai
+
+		if (count($result) === 0) {
+			echo 'No user has selected that event.\n';
+			return false;
+		}
+
+		foreach($result as $row) {
+			if ($row['idUser'] === $idUser) {
+				$GoEvent = true;
+			}
+		}
+
+		if ($GoEvent === false) {
+			echo 'The user is not going to the event.\n';
+			return false;
+		}
+
+		$stmt = $db->prepare('SELECT idUser FROM AdminEvent WHERE idEvent = :idEvent');
+		$stmt->bindParam(:idEvent, $idEvent, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$adEvent = false; //se e admin
+
+		if (count($result) === 0) {
+			echo 'No user has selected that event.\n';
+			return false;
+		}
+
+		foreach($result as $row) {
+			if ($row['idUser'] === $idUser) {
+				$adEvent = true;
+			}
+		}
+
+		if ($adEvent === false) {
+			echo 'The user is not the admin of the event.\n';
+			return false;
+		}
+
+		$stmt = $db->prepare('INSERT INTO Comment VALUES(, :idUser, :idEvent, :comm);');
+		$stmt->bindParam(:idUser, $idUser, PDO::PARAM_INT);
+		$stmt->bindParam(:idEvent, $idEvent, PDO::PARAM_INT);
+		$stmt->bindParam(:comm, $comm, PDO::PARAM_STR);
+		$stmt->execute();
+
+		return true;
+	}
 	// 	
 ?>
