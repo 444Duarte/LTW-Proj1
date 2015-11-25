@@ -208,7 +208,7 @@ form{
   height:60%;
 }
 
-input[type="email"],input[type="password"]{
+input[type="username"],input[type="password"]{
   width:92%;
   background:#fff;
   border:1px solid #ccc;
