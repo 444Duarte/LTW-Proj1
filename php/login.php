@@ -2,6 +2,12 @@
 	include_once('connect.php');
 	include_once('users.php');
 
+	function printResponse($value) {
+	    $data = ["login" => $value];
+	    //header('Content-Type: application/json');
+	    echo json_encode($data);
+}
+
 	$params;
 	foreach ($params as $param) {
 		if (isset($_POST[$param])) {
@@ -9,5 +15,9 @@
 			continue;
 		}
 	}
-	compareLogin($params['username'], $params['password']);
+	if (!(compareLogin($params['username'], $params['password']))) {
+		printResponse("wrong_login");
+	}
+
+	printResponse("success");
 ?>

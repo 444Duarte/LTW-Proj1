@@ -34,7 +34,7 @@
 
 <div id="login">
   <form name ="Registo" id="Reg" >
-    <input type="email" name="email" placeholder="Email"/>
+    <input type="username" name="username" placeholder="Username"/>
     <input type="password" name="password" placeholder="Password"/>
     <input type="submit" value="Submit"/>
   </form>
@@ -55,76 +55,8 @@
   <div id="name2">Duarte</div>
   <div id="name3">Miguel</div>
 </div>	
-	<script>
-		function login()
-		{
-			swal({   title: "Login!",   
-			text: "",   
-			type: "input",   
-			showCancelButton: true,   
-			closeOnConfirm: false,   animation: "slide-from-top",   
-			inputPlaceholder: "Username" }, 
-			function(inputValue){   
-				if (inputValue === false) 
-					return false;      
-				if (inputValue === "") {     
-					swal.showInputError("You need to write something!");
-					return false   
-				}
-				swal("Nice!", "You wrote: " + inputValue, "success"); });
-		};
-        $("#Log").click(function(){
-            swal({   
-                title: "Login",   
-                text: "",   
-                type: "input",
-                showCancelButton: true,   
-                closeOnConfirm: false,   
-                animation: "slide-from-top",   
-                inputPlaceholder: "Username" },
-                function(inputValue){ if (inputValue === false) return false;      
-                        if (inputValue === "") {     
-                        swal.showInputError("You need to write something!");     
-                        return false   
-                        }      
-                swal({   
-                    title: "Login",   
-                    text: "",   
-                    type: "input",
-                    showCancelButton: true,   
-                    closeOnConfirm: false,   
-                    animation: "slide-from-top",   
-                    inputPlaceholder: "Password" },
-                    function(inputValue) {
-                    	if (inputValue === false)
-                    			return false;      
-                            		if (inputValue === "") {     
-		                        	    swal.showInputError("You need to write something!");     
-		                            	return false   
-                            		}
-                    //verificar se a password coincide com a password do username na base de dados
-                    // se coincidir, entrar
-                    swal("Nice!", "Password: " + inputValue, "success");
-
-                    // se nao coincidir, mostrar inputError 
-                });
-                // se nao existir, mostrar inputError
-            });                 
-        });
-		$('#Reg').submit(function(ev) {
-		    ev.preventDefault(); // to stop the form from submitting
-		    /* Validations go here */
-		    var email = document.forms["Registo"]["email"].value;
-           console.log(email);
-           var password = document.forms["Registo"]["password"].value;
-
-           if(email==null || email=="")
-           {
-           	swal("Oops...", "Something went wrong!", "error");
-           	return false;
-           }
-		    this.submit(); // If all the validations succeeded
-		});
+	<script src="./js/bridge.js">
+      
 	</script>
 
 
