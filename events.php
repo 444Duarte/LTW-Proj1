@@ -8,14 +8,8 @@
 	<link rel="stylesheet" href="css/events.css">
 
 </head>
-<body>
-	<div class="top-bar">
-		<form>
-			<input id="search-bar" type="text" name="search" required="optional" placeholder="Search"/>
-			<input id="searchButton" type="button" value="Search"/>
-		</form>
-	</div>	
-	
+<body>	
+	<?php include 'topbar.php' ?>
 	<div class="left-bar">
 		<div>
 			<h5>My Events</h5>
