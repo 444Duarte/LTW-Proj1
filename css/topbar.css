@@ -1,0 +1,69 @@
+.top-bar{
+	height: 2rem;
+	background-color: #0066CC;
+	padding: 0.1rem 0.25rem;
+	vertical-align: middle;
+	border-bottom: groove 1px #eeeeee;
+}
+
+.top-bar > *{
+	display: inline-block;
+}
+.top-bar *{
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+}
+
+.top-bar form{
+	height: 100%;
+	padding: 0.3rem 0rem;
+}
+
+#search-bar{
+	width: 25rem;
+	float: left;
+}
+
+#preferences_button{
+	margin:	0.2rem;
+	padding: 0;
+	float: right;
+	background-color: transparent;
+	outline: none;
+	border: none;
+}
+
+#preferences_button:hover{
+	background-color: #000000;
+	opacity: 0.2;
+    filter: alpha(opacity=20); /* For IE8 and earlier */
+}
+
+#pref_menu {
+	max-height: 0em;
+    background-color: #eeeeee;
+    margin-top: 1.8rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 1s ease-in;
+}
+
+#pref_menu > a{
+	margin: 0.2em 0.2em 0em;
+}
+
+
+
+#pref_menu:hover,
+#preferences_button:hover + #pref_menu {
+    max-height: 2000px; 
+}
+
+#preferences_button img{
+	width: 20px;
+	height: 20px;
+	src: "images/template/gear-64.png";
+}
