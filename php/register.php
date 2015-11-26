@@ -18,6 +18,5 @@
 	if (!(register($params['username'], $params['password']))) {
 		printResponse("user_exists");
 	}
-
-	printResponse("success");
+	else printResponse("success");
 ?>

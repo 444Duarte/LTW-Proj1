@@ -18,6 +18,5 @@
 	if (!(compareLogin($params['username'], $params['password']))) {
 		printResponse("wrong_login");
 	}
-
-	printResponse("success");
+	else printResponse("success");
 ?>

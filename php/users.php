@@ -8,15 +8,13 @@
 		$stmt->bindParam(':user_given', $user_given, PDO::PARAM_STR);
 		$stmt->execute();
 
-		$result = $stmt->fetch();
+		$result = $stmt->fetchAllAll();
 
 		if (count($result) === 0) {
-			echo 'The username does not exist.';
 			return false;
 		}
 
 		if (!($pass_given === $result['password'])) {
-			echo 'The password does not match the username.';
 			return false;
 		}
 
@@ -30,10 +28,9 @@
 
 		$stmt->execute();
 
-		$result = $stmt->fetchAll();
+		$result = $stmt->fetchAllAll();
 
 		if (count($result) > 0) {
-			echo 'The username already exists.';
 			return false;
 		}
 
@@ -56,15 +53,13 @@
 		$stmt->bindParam(':user_given', $user_given, PDO::PARAM_STR);
 		$stmt->execute();
 
-		$result = $stmt->fetch();
+		$result = $stmt->fetchAll();
 
 		if (count($result) === 0) {
-			echo 'The username does not exist.';
 			return false;
 		}
 
 		if (!($pass_given === $result['password'])) {
-			echo 'The password does not match the username.';
 			return false;
 		}
 
@@ -89,10 +84,9 @@
 		$stmt->bindParam(':titleEvent', $titleEvent, PDO::PARAM_STR);
 		$stmt->execute();
 
-		$result = $stmt->fetch();
+		$result = $stmt->fetchAll();
 
 		if (count($result) === 0) {
-			echo 'Error fetching idEvent.';
 			return false;
 		}
 		$idEvent = $result['idEvent'];
@@ -101,10 +95,9 @@
 		$stmt->bindParam(':user_given', $user_given, PDO::PARAM_STR);
 		$stmt->execute();
 
-		$result = $stmt->fetch();
+		$result = $stmt->fetchAll();
 
 		if (count($result) === 0) {
-			echo 'Error fetching idUser.';
 			return false;
 		}
 
@@ -134,10 +127,9 @@
 		$stmt->bindParam(':user_given', $user_given, PDO::PARAM_STR);
 		$stmt->execute();
 
-		$result = $stmt->fetch();
+		$result = $stmt->fetchAll();
 
 		if (count($result) === 0) {
-			echo 'Error fetching idUser.';
 			return false;
 		}
 
@@ -147,10 +139,9 @@
 		$stmt->bindParam(':titleEvent', $titleEvent, PDO::PARAM_STR);
 		$stmt->execute();
 
-		$result = $stmt->fetch();
+		$result = $stmt->fetchAll();
 
 		if (count($result) === 0) {
-			echo 'Error fetching idEvent.';
 			return false;
 		}
 
@@ -163,7 +154,6 @@
 		$GoEvent = false; //se vai
 
 		if (count($result) === 0) {
-			echo 'No user has selected that event.';
 			return false;
 		}
 
@@ -174,7 +164,6 @@
 		}
 
 		if ($GoEvent === false) {
-			echo 'The user is not going to the event.';
 			return false;
 		}
 
@@ -185,7 +174,6 @@
 		$adEvent = false; //se e admin
 
 		if (count($result) === 0) {
-			echo 'No user has selected that event.';
 			return false;
 		}
 
@@ -196,7 +184,6 @@
 		}
 
 		if ($adEvent === false) {
-			echo 'The user is not the admin of the event.';
 			return false;
 		}
 
@@ -215,10 +202,9 @@
 		$stmt->bindParam(':titleEvent', $titleEvent, PDO::PARAM_INT);
 		$stmt->execute();
 
-		$result = $stmt->fetch();
+		$result = $stmt->fetchAll();
 
 		if (count($result) === 0) {
-			echo 'Error fetching idEvent.';
 			return false;
 		}
 
@@ -228,10 +214,9 @@
 		$stmt->bindParam(':user_given', $user_given, PDO::PARAM_STR);
 		$stmt->execute();
 
-		$result = $stmt->fetch();
+		$result = $stmt->fetchAll();
 
 		if (count($result) === 0) {
-			echo 'Error fetching idUser.';
 			return false;
 		}
 
@@ -251,10 +236,9 @@
 		$stmt->bindParam(':titleEvent', $titleEvent, PDO::PARAM_INT);
 		$stmt->execute();
 
-		$result = $stmt->fetch();
+		$result = $stmt->fetchAll();
 
 		if (count($result) === 0) {
-			echo 'Error fetching idEvent.';
 			return false;
 		}
 
@@ -264,10 +248,9 @@
 		$stmt->bindParam(':user_given', $user_given, PDO::PARAM_STR);
 		$stmt->execute();
 
-		$result = $stmt->fetch();
+		$result = $stmt->fetchAll();
 
 		if (count($result) === 0) {
-			echo 'Error fetching idUser.';
 			return false;
 		}
 
@@ -277,7 +260,7 @@
 		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
 		$stmt->execute();
 
-		$result = $stmt->fetch();
+		$result = $stmt->fetchAll();
 
 
 		$stmt = $db->prepare('DELETE FROM GoToEvent WHERE idUser = :idUser AND idEvent = :idEvent');

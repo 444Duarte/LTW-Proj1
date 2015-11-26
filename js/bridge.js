@@ -25,10 +25,10 @@ $('#Reg').submit(function(ev) {
                 var response = data['register'];
                 switch(response) {
                     case 'user_exists':
-                        swal("Register failed.", "Try again.", "insuccess")
+                        swal("Register failed.", "That username already exists.")
                         break;
                     case 'success':
-                        swal("Register successfull.", "success")
+                        swal("Register successfull.", "Success.")
                         break;
                     default:
                         //displayError("Error while processing the login...");
