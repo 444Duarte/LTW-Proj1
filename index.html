@@ -42,11 +42,16 @@
 </div>
 		
 <div id="img2">
-		<img src="./ta.png" alt="PENIS">
-	</div>
-	<div class="center">
-		<button class="loginButton" id="Log">Login</button>
-	</div>
+	<img src="./ta.png" alt="PENIS">
+</div>
+<div class="center" id="log" >
+	<form name="Login" id="LogForm" style="display:none">
+		<input type="username" name="username" placeholder="Username"/>
+		<input type="password" name="password" placeholder="Password"/>
+		<input type="submit" value="Submit"/>
+	</form>
+	<button class="loginButton" onclick="showForm(1)" id="Log">Login</button>
+</div>
 <div id="about">
 <img id="pedro" src="./cutmypic.png" alt="PENIS">
 <img id="cc" src="./cc.png" alt="PENIS">
@@ -57,7 +62,7 @@
   <div id="name3">Miguel</div>
 </div>	
 	<script src="./js/bridge.js">
-      
+
 	</script>
 
 

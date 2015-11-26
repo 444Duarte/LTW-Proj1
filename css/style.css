@@ -122,11 +122,6 @@ position: absolute;
   padding: 10px;	
 }
 
-.center {
-	text-align: center;
-}
-
-
 
 .loginButton {
   background: #3498db;
@@ -197,15 +192,23 @@ position: absolute;
 }
 
 
-form{
+#register #Reg{
   padding:6% 4%;
   background:#fff;
   position: relative;
- top:55%; 
   left:130%;
   resize:both;
   width:60%;
   height:60%;
+}
+
+#log #LogForm{
+  position: relative;
+  left:43.5%;
+  bottom: 12rem;
+  resize:both;
+  width:10%;
+  height:10%;
 }
 
 input[type="username"],input[type="password"]{

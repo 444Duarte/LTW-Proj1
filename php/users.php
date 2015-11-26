@@ -1,6 +1,7 @@
 <?php
 
 	include_once('connect.php');
+	include_once('encriptation.php');
 
 	function compareLogin($user_given, $pass_given) {
 		global $db;
@@ -8,17 +9,20 @@
 		$stmt->bindParam(':user_given', $user_given, PDO::PARAM_STR);
 		$stmt->execute();
 
-		$result = $stmt->fetchAllAll();
+		$result = $stmt->fetchAll();
 
 		if (count($result) === 0) {
 			return false;
 		}
 
-		if (!($pass_given === $result['password'])) {
+		return decryptPassword($pass_given, $result[0]['password']);
+		/*
+		if (!($pass_given === $result[0]['password'])) {
 			return false;
 		}
 
 		return true;
+		*/		
 	}
 
 	function register($user_given, $pass_given) {
@@ -28,15 +32,17 @@
 
 		$stmt->execute();
 
-		$result = $stmt->fetchAllAll();
+		$result = $stmt->fetchAll();
 
 		if (count($result) > 0) {
 			return false;
 		}
 
+		$passEnc = encryptPassword($pass_given, 20);
+
 		$stmt = $db->prepare('INSERT INTO User(user, password) VALUES(:user_given, :pass_given)'); // o tradicional disse que nao precisava de mandar id, porque ele auto-incrementa :p
 		$stmt->bindParam(':user_given', $user_given, PDO::PARAM_STR);
-		$stmt->bindParam(':pass_given', $pass_given, PDO::PARAM_STR);
+		$stmt->bindParam(':pass_given', $passEnc, PDO::PARAM_STR);
 		$stmt->execute();
 
 		return true;

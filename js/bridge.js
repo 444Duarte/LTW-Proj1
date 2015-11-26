@@ -34,21 +34,26 @@ $('#Reg').submit(function(ev) {
                         //displayError("Error while processing the login...");
                         break;
                 }
-
-
         }).fail(function(error) {
                 return false;
             });
 });
 
-$("#Log").click(function(ev){
+function showForm(value) {
+    if (value == 1) {
+        document.getElementById("LogForm").style.display="block";
+    }
+    else document.getElementById("LogForm").style.display="none";
+}
+
+$("#LogForm").submit(function(ev){
     ev.preventDefault();
 
     var username = document.forms["Login"]["username"].value;
     var password = document.forms["Login"]["password"].value;
 
     if (password == "" || username == "") {
-        wal("Oops...", "You didn't fill one of the fields.", "error");
+        swal("Oops...", "You didn't fill one of the fields.", "error");
         return false;
     }
 
@@ -62,14 +67,16 @@ $("#Log").click(function(ev){
             var response = data['login'];
             switch(response) {
                 case 'wrong_login':
-                    swal("Login failed, the username already exists.", "Try again.", "insuccess")
+                    swal("Login failed, the username doesn't exist.", "Try again.")
                     break;
                 case 'success':
-                    swal("Login successfull.", "success")
+                    swal("Login successfull.", "Success.")
                     break;
                 default:
                     //displayError("Error while processing the login...");
                     break;
-        }
-    });              
+            }
+    }).fail(function(error) {
+                return false;
+        });              
 });
