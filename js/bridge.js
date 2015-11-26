@@ -16,7 +16,7 @@ $('#Reg').submit(function(ev) {
         }
         
         $.post(
-            '../php/register.php',
+            'php/register.php',
             {
                 'username' : username,
                 'password' : password
@@ -36,13 +36,9 @@ $('#Reg').submit(function(ev) {
                 }
 
 
-        })
-
-        /*.fail(function(error) {
-                displayError("Error while processing the login...");
+        }).fail(function(error) {
+                return false;
             });
-        */
-        this.submit(); // If all the validations succeeded
 });
 
 $("#Log").click(function(ev){
@@ -57,7 +53,7 @@ $("#Log").click(function(ev){
     }
 
     $.post(
-        '../php/login.php',
+        'php/login.php',
         {
         'username' : username,
         'password' : password
@@ -75,7 +71,5 @@ $("#Log").click(function(ev){
                     //displayError("Error while processing the login...");
                     break;
         }
-    });
-    
-    this.submit();                 
+    });              
 });

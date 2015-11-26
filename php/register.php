@@ -8,7 +8,7 @@
 	    echo json_encode($data);
 	}
 
-	$params;
+	$params = [ 'username', 'password' ];
 	foreach ($params as $param) {
 		if (isset($_POST[$param])) {
 			$params[$param] = $_POST[$param];
