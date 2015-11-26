@@ -7,9 +7,10 @@
 		<div id="pref_menu">
 			<a href="">Logout</a>
 		</div>
+		<button id="home_button" type="button"><img src="images/template/logo-small.png"></button>
 		<form>
-			<input id="searchButton" type="button" value="Search"/>
 			<input id="search-bar" type="text" name="search" required="optional" placeholder="Search"/>
+			<input id="searchButton" type="button" value="Search"/>
 		</form>
 
 </div>	

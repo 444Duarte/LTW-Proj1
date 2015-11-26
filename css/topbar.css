@@ -21,11 +21,11 @@
 
 #search-bar{
 	width: 25rem;
-	float: left;
+	margin-right: 0.1rem;
 }
 
 #preferences_button{
-	margin:	0.2rem;
+	margin:	0.3rem;
 	padding: 0;
 	float: right;
 	background-color: transparent;
@@ -66,4 +66,20 @@
 	width: 20px;
 	height: 20px;
 	src: "images/template/gear-64.png";
+}
+
+#home_button{
+	float: left;
+	background-color: transparent;
+	margin: 0.4rem 0.2rem;
+	outline: none;
+	border: none;
+}
+
+#home_button:hover{
+	cursor: pointer;
+}
+
+#home_button img{
+	width: 16px;
 }
