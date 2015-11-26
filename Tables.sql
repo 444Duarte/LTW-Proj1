@@ -14,6 +14,7 @@ password VARCHAR(20) NOT NULL
 
 CREATE TABLE Event(
 idEvent INTEGER PRIMARY KEY,
+title VARCHAR(20) NOT NULL,
 datadoEvento DATE,
 descricao VARCHAR(20) NOT NULL,
 image VARCHAR(20) NOT NULL
