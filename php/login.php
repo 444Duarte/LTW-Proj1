@@ -3,7 +3,7 @@
 	include_once('users.php');
 
 	function printResponse($value) {
-	    $data = ["login" => $value];
+	    $data = ['login' => $value];
 	    header('Content-Type: application/json');
 	    echo json_encode($data);
 	}

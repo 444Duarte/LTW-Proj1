@@ -3,26 +3,32 @@ $('#Reg').submit(function(ev) {
 		    /* Validations go here */
         var username = document.forms["Registo"]["username"].value;
         var password = document.forms["Registo"]["password"].value;
+        var repPassword = document.forms["Registo"]["repPassword"].value;
 
         if(password == "" || username == "") {
             swal("Oops...", "You didn't fill one of the fields.", "error");
             return false;
         }
+
+        if (password !== repPassword) {
+            swal("Oops...", "The passwords don't match.", "error");
+            return false;
+        }
         
         $.post(
-            '../php/login.php',
+            '../php/register.php',
             {
                 'username' : username,
                 'password' : password
             },
             function(data) {
-                var response = data['login'];
+                var response = data['register'];
                 switch(response) {
-                    case 'wrong_login':
-                        swal("Login failed.", "Try again.", "insuccess")
+                    case 'user_exists':
+                        swal("Register failed.", "Try again.", "insuccess")
                         break;
                     case 'success':
-                        swal("Login successfull.", "success")
+                        swal("Register successfull.", "success")
                         break;
                     default:
                         //displayError("Error while processing the login...");
@@ -44,29 +50,22 @@ $("#Log").click(function(ev){
 
     var username = document.forms["Login"]["username"].value;
     var password = document.forms["Login"]["password"].value;
-    var repPassword = document.forms["Login"]["repeatPassword"].val;
 
     if (password == "" || username == "") {
-        swal("Oops...", "Something went wrong!", "error");
+        wal("Oops...", "You didn't fill one of the fields.", "error");
         return false;
     }
-
-    if (password !== repPassword) {
-        swal("Oops...", "The passwords don't match.", "error");
-        return false;
-    }
-
 
     $.post(
-        '../php/register.php',
+        '../php/login.php',
         {
         'username' : username,
         'password' : password
         },
         function(data) {
-            var response = data['register'];
+            var response = data['login'];
             switch(response) {
-                case 'user_exists':
+                case 'wrong_login':
                     swal("Login failed, the username already exists.", "Try again.", "insuccess")
                     break;
                 case 'success':
@@ -77,5 +76,6 @@ $("#Log").click(function(ev){
                     break;
         }
     });
+    
     this.submit();                 
 });
