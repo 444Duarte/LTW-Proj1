@@ -172,4 +172,39 @@
 		return true;
 	}
 
+	function retrieveEventbyID($idEvent) {
+		global $db;
+
+		$stmt = $db->prepare('SELECT * FROM Event WHERE idEvent = :idEvent');
+		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$result = $stmt->fetchAll();
+
+		$event = array();
+		array_push($event, $result[0]);
+
+		$stmt = $db->prepare('SELECT * FROM EventType WHERE idEvent = :idEvent');
+		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$result = $stmt->fetchAll();
+		array_push($event, $result[0]);
+
+		echo json_encode($event);
+	}
+
+	function retrieveCommentsByEventID($idEvent) {
+		global $db;
+
+		$stmt = $db->prepare('SELECT * FROM Comment WHERE idEvent = :idEvent');
+		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$result = $stmt->fetchAll();
+
+		echo json_encode($result);
+	}
+
+	
 ?>  

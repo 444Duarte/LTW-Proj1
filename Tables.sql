@@ -24,7 +24,6 @@ CREATE TABLE EventType(
 idEventType INTEGER PRIMARY KEY,
 idEvent INTEGER REFERENCES Event(idEvent),
 type VARCHAR NOT NULL
-type VARCHAR
 );
 
 CREATE TABLE AdminEvent(
