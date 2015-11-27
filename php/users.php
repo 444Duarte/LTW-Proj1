@@ -297,5 +297,19 @@
 
 		return true;
 	}
+
+	function search($titleEvent) {
+		global $db;
+		$stmt = $db->prepare('SELECT * FROM Event where title = :title');
+		$stmt->bindParam(':title', $titleEvent, PDO::PARAM_STR);
+		$stmt->execute();
+		$result = $stmt->fetchAll();
+
+		if (count($result) === 0 || count($result) > 1) {
+			return false;
+		}
+
+		return true;
+	}
 	
 ?>

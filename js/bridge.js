@@ -67,7 +67,7 @@ $("#LogForm").submit(function(ev){
             var response = data['login'];
             switch(response) {
                 case 'wrong_login':
-                    swal("Login failed, the username doesn't exist.", "Try again.")
+                    swal("Login failed, the username doesn't exist.", "Try again.");
                     break;
                 case 'success':
                     swal("Login successfull.", "Success.")
@@ -79,4 +79,31 @@ $("#LogForm").submit(function(ev){
     }).fail(function(error) {
                 return false;
         });              
+});
+
+$('#searchForm').submit(function(ev) {
+    ev.preventDefault();
+
+    var search=$("#search-bar").val();
+
+    $.post(
+        'php/search.php',
+        {
+            'search' : search
+        },
+        function(data) {
+            var response = data['search'];
+            switch(response) {
+                case 'wrong_search':
+                swal("An event with that title doesn't exist.", "Try again.");
+                break;
+                case 'success':
+                swal("Search successfull", "Success.");
+                break;
+                default:
+                break;
+            }
+        }).fail(function(error) {
+            return false;
+        });
 });

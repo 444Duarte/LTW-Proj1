@@ -141,4 +141,35 @@
 		echo json_encode($comments);		
 	}
 
+	function retrieveEventsOfAnUser($user_given) {
+		global $db;
+
+		$stmt = $db->prepare('SELECT idUser FROM User where username = :user_given');
+		$stmt->bindParam(':user_given', $user_given, PDO::PARAM_STR);
+		$stmt->execute();
+		$result = $stmt->fetchAll();
+
+		$idUser = $result[0]['idUser'];
+		
+		$stmt = $db->prepare('SELECT idEvent FROM AdminEvent WHERE idUser = :idUser');
+		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->execute();
+		$result = $stmt->fetchAll();
+
+		foreach($result as $row) {
+			//dar retrieve dos eventos de AdminEvent
+		}
+
+		$stmt = $db->prepare('SELECT idEvent FROM GoToEvent WHERE idUser = :idUser');
+		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->execute();
+		$result = $stmt->fetchAll();
+
+		foreach($result as $row) {
+			//dar retrieve dos eventos de GoToEvent
+		}
+
+		return true;
+	}
+
 ?>  
