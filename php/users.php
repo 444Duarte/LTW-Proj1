@@ -16,13 +16,6 @@
 		}
 
 		return decryptPassword($pass_given, $result[0]['password']);
-		/*
-		if (!($pass_given === $result[0]['password'])) {
-			return false;
-		}
-
-		return true;
-		*/		
 	}
 
 	function register($user_given, $pass_given) {
@@ -65,13 +58,15 @@
 			return false;
 		}
 
-		if (!($pass_given === $result['password'])) {
+		if (!(decryptPassword($pass_given, $result[0]['password']))) {
 			return false;
 		}
 
+		$passEnc = encryptPassword($new_pass, 20);
+
 		$stmt = $db->prepare('UPDATE User SET password = :new_pass WHERE user = :user_given');
 		$stmt->bindParam(':user_given', $user_given, PDO::PARAM_STR);
-		$stmt->bindParam(':new_pass', $new_pass, PDO::PARAM_STR);
+		$stmt->bindParam(':new_pass', $passEnc, PDO::PARAM_STR);
 		$stmt->execute();
 
 		return true;
@@ -95,7 +90,7 @@
 		if (count($result) === 0) {
 			return false;
 		}
-		$idEvent = $result['idEvent'];
+		$idEvent = $result[0]['idEvent'];
 
 		$stmt = $db->prepare('SELECT idUser FROM User WHERE user_given = :user_given');
 		$stmt->bindParam(':user_given', $user_given, PDO::PARAM_STR);
@@ -107,7 +102,7 @@
 			return false;
 		}
 
-		$idUser = $result['idUser'];
+		$idUser = $result[0]['idUser'];
 
 		$stmt = $db->prepare('INSERT INTO EventType(idEvent, type) VALUES(:idEvent, :type)');
 		$stmt->bindParam(':type', $type, PDO::PARAM_STR);
@@ -139,7 +134,7 @@
 			return false;
 		}
 
-		$idUser = $result['idUser'];
+		$idUser = $result[0]['idUser'];
 
 		$stmt = $db->prepare('SELECT idEvent FROM Event WHERE titleEvent = :titleEvent');
 		$stmt->bindParam(':titleEvent', $titleEvent, PDO::PARAM_STR);
@@ -151,7 +146,7 @@
 			return false;
 		}
 
-		$idEvent = $stmt['idEvent'];
+		$idEvent = $result[0]['idEvent'];
 
 		$stmt = $db->prepare('SELECT idUser FROM GoToEvent WHERE idEvent = :idEvent');
 		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
@@ -214,7 +209,7 @@
 			return false;
 		}
 
-		$idEvent = $result['idEvent'];
+		$idEvent = $result[0]['idEvent'];
 
 		$stmt = $db->prepare('SELECT idUser FROM User WHERE user_given = :user_given');
 		$stmt->bindParam(':user_given', $user_given, PDO::PARAM_STR);
@@ -226,7 +221,7 @@
 			return false;
 		}
 
-		$idUser = $result['idUser'];
+		$idUser = $result[0]['idUser'];
 
 		$stmt = $db->prepare('INSERT INTO GoToEvent(idUser, idEvent) VALUES(:idUser, :idEvent)');
 		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
@@ -248,7 +243,7 @@
 			return false;
 		}
 
-		$idEvent = $result['idEvent'];
+		$idEvent = $result[0]['idEvent'];
 
 		$stmt = $db->prepare('SELECT idUser FROM User WHERE user_given = :user_given');
 		$stmt->bindParam(':user_given', $user_given, PDO::PARAM_STR);
@@ -260,7 +255,7 @@
 			return false;
 		}
 
-		$idUser = $result['idUser'];
+		$idUser = $result[0]['idUser'];
 
 		$stmt = $db->prepare('DELETE FROM Comment WHERE idEvent = :idEvent');
 		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
@@ -293,12 +288,10 @@
 	function editEvent($titleEvent, $date, $description, $img, $type, $user_given) {
 
 		if (!(deleteEvent($user_given, $titleEvent))) {
-			echo 'Cannot edit event.';
 			return false;
 		}
 
 		if (!(createEvent($user_given, $titleEvent, $date, $description, $img, $type))) {
-			echo 'Cannot edit event.';
 			return false;
 		}
 
