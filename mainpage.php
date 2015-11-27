@@ -9,9 +9,9 @@
 
 </head>
 <body>	
-	<?php include 'topbar.php'; ?>
-	<?php include 'leftbar.php'; ?>
-	<?php include 'event.php'; ?>
+	<?php include 'templates/topbar.php'; ?>
+	<?php include 'templates/leftbar.php'; ?>
+	<?php include 'templates/event.php'; ?>
 	
 </body>
 </html>

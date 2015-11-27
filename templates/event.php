@@ -13,9 +13,9 @@
 <div class="display-event">
 	<div id="header">
 		<div>
-			<h1 id="name"><?php echo $event['title']?></h1>
+			<h1 id="name"><?php echo $event['title'];?></h1>
 			<br>
-			<h2 id="type"><?php echo $event['type']?></h2>
+			<h2 id="type"><?php echo $event['type'];?></h2>
 		</div>
 		<h3 id="date">24/11/2015</h3>
 		<form id="option">
