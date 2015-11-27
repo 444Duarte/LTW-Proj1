@@ -23,7 +23,11 @@ image VARCHAR NOT NULL
 CREATE TABLE EventType(
 idEventType INTEGER PRIMARY KEY,
 idEvent INTEGER REFERENCES Event(idEvent),
+<<<<<<< HEAD
 type VARCHAR NOT NULL
+=======
+type VARCHAR(20) UNIQUE NOT NULL
+>>>>>>> master
 );
 
 CREATE TABLE AdminEvent(
