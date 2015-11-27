@@ -17,14 +17,13 @@ idEvent INTEGER PRIMARY KEY,
 title VARCHAR NOT NULL,
 datadoEvento DATE,
 descricao VARCHAR NOT NULL,
-image VARCHAR NOT NULL
+image VARCHAR NOT NULL,
+idEventType INTEGER REFERENCES EventType(idEventType);
 );
 
 CREATE TABLE EventType(
 idEventType INTEGER PRIMARY KEY,
-idEvent INTEGER REFERENCES Event(idEvent),
 type VARCHAR NOT NULL
-type VARCHAR
 );
 
 CREATE TABLE AdminEvent(

@@ -48,7 +48,7 @@
     top: 0;
     overflow: hidden;
     z-index: 1;
-    transition: all 1s ease-in;
+    transition: max-height 1s ease-in;
 }
 
 #pref_menu > a{
@@ -59,7 +59,8 @@
 
 #pref_menu:hover,
 #preferences_button:hover + #pref_menu {
-    max-height: 2000px; 
+    max-height: 2000px;
+	border: 1px solid #444444;
 }
 
 #preferences_button img{

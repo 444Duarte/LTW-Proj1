@@ -50,9 +50,9 @@
 		$users = array();
 		foreach( $result as $row) {			
 			$list = array();
-			$list['idUser'] = .$row['idUser'];
-			$list['user'] = .$row['user'];
-			$list['password'] = .$row['password'];
+			$list[' '] = $row['idUser'];
+			$list['user'] = $row['user'];
+			$list['password'] = $row['password'];
 
 			array_push($users, $list);
 		}
@@ -66,10 +66,10 @@
 		$events = array();
 		foreach( $result as $row) {			
 			$list = array();
-			$list['idEvent'] = .$row['idEvent'];
-			$list['datadoEvento'] = .$row['datadoEvento'];
-			$list['descricao'] = .$row['descricao'];
-			$list['imagem'] = .$row['imagem'];
+			$list['idEvent'] = $row['idEvent'];
+			$list['datadoEvento'] = $row['datadoEvento'];
+			$list['descricao'] = $row['descricao'];
+			$list['imagem'] = $row['imagem'];
 
 			array_push($events, $list);
 		}
@@ -83,10 +83,10 @@
 		$eventsType = array();
 		foreach( $result as $row) {			
 			$list = array();
-			$list['idEventType'] = .$row['idEventType'];
-			$list['datadoEvento'] = .$row['datadoEvento'];
-			$list['descricao'] = .$row['descricao'];
-			$list['imagem'] = .$row['imagem'];
+			$list['idEventType'] = $row['idEventType'];
+			$list['datadoEvento'] = $row['datadoEvento'];
+			$list['descricao'] = $row['descricao'];
+			$list['imagem'] = $row['imagem'];
 
 			array_push($eventsType, $list);
 		}
@@ -100,8 +100,8 @@
 		$adminEvents = array();
 		foreach( $result as $row) {			
 			$list = array();
-			$list['idUser'] = .$row['idUser'];
-			$list['idEvent'] = .$row['idEvent'];
+			$list['idUser'] = $row['idUser'];
+			$list['idEvent'] = $row['idEvent'];
 
 			array_push($adminEvents, $list);
 		}
@@ -115,8 +115,8 @@
 		$goToEvents = array();
 		foreach( $result as $row) {			
 			$list = array();
-			$list['idUser'] = .$row['idUser'];
-			$list['idEvent'] = .$row['idEvent'];
+			$list['idUser'] = $row['idUser'];
+			$list['idEvent'] = $row['idEvent'];
 
 			array_push($goToEvents, $list);
 		}
@@ -130,10 +130,10 @@
 		$comments = array();
 		foreach( $result as $row) {			
 			$list = array();
-			$list['idComment'] = .$row['idComment'];
-			$list['idUser'] = .$row['idUser'];
-			$list['idEvent'] = .$row['idEvent'];
-			$list['comment'] = .$row['comment'];
+			$list['idComment'] = $row['idComment'];
+			$list['idUser'] = $row['idUser'];
+			$list['idEvent'] = $row['idEvent'];
+			$list['comment'] = $row['comment'];
 
 			array_push($comments, $list);
 		}
@@ -172,4 +172,39 @@
 		return true;
 	}
 
+	function retrieveEventbyID($idEvent) {
+		global $db;
+
+		$stmt = $db->prepare('SELECT * FROM Event WHERE idEvent = :idEvent');
+		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$result = $stmt->fetchAll();
+
+		$event = $result[0];
+		$idEventType = 0 /*$event['idEventType']*/;
+
+		$stmt = $db->prepare('SELECT * FROM EventType WHERE idEvent = :idEventType');
+		$stmt->bindParam(':idEventType', $idEventType, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$result = $stmt->fetchAll();
+		$event['type'] = $result[0]['type'];
+
+		echo json_encode($event);
+	}
+
+	function retrieveCommentsByEventID($idEvent) {
+		global $db;
+
+		$stmt = $db->prepare('SELECT * FROM Comment WHERE idEvent = :idEvent');
+		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$result = $stmt->fetchAll();
+
+		echo json_encode($result);
+	}
+
+	
 ?>  
