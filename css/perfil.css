@@ -9,3 +9,7 @@ html,body{
 	background-color: #eeeeee;
 }
 
+#profile {
+	width: 75%;
+	padding-left: 13%;
+}
