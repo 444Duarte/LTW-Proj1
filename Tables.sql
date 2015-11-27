@@ -8,21 +8,26 @@ DROP TABLE IF EXISTS GoToEvent;
 
 CREATE TABLE User(
 idUser INTEGER PRIMARY KEY,
-user VARCHAR(20) NOT NULL,
-password VARCHAR(20) NOT NULL
+user VARCHAR NOT NULL,
+password VARCHAR NOT NULL
 );
 
 CREATE TABLE Event(
 idEvent INTEGER PRIMARY KEY,
+title VARCHAR NOT NULL,
 datadoEvento DATE,
-descricao VARCHAR(20) NOT NULL,
-image VARCHAR(20) NOT NULL
+descricao VARCHAR NOT NULL,
+image VARCHAR NOT NULL
 );
 
 CREATE TABLE EventType(
 idEventType INTEGER PRIMARY KEY,
 idEvent INTEGER REFERENCES Event(idEvent),
+<<<<<<< HEAD
+type VARCHAR NOT NULL
+=======
 type VARCHAR(20) UNIQUE NOT NULL
+>>>>>>> master
 );
 
 CREATE TABLE AdminEvent(
@@ -41,7 +46,7 @@ CREATE TABLE Comment(
 	idComment INTEGER PRIMARY KEY,
 	idUser INTEGER REFERENCES User(idUser),
 	idEvent INTEGER REFERENCES Event(idEvent),
-	comentario VARCHAR(20) NOT NULL
+	comentario VARCHAR NOT NULL
 );
 
 
