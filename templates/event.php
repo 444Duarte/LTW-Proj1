@@ -3,11 +3,6 @@
 </header>
 
 <?php
-	include 'database/connect.php';
-	include 'database/access_db.php';
-
-	$idEvent = $_GET['event'];
-
 	$event = retrieveEventByID($idEvent);
 	$usersGoing = getUsersGoingEventByID($idEvent);
 	$invitedUsers = getInvitedByIDEvent($idEvent);	

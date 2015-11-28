@@ -7,6 +7,13 @@
 	<link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
 	<link rel="stylesheet" href="../css/mainpage.css">
 
+<?php
+	include 'database/connect.php';
+	include 'database/access_db.php';
+
+	$idEvent = $_GET['event'];
+?>
+
 </head>
 <body>	
 	<?php include 'templates/topbar.php'; ?>
