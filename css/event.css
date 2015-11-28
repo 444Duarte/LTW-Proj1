@@ -65,11 +65,18 @@
 .users{
 	font-size: small;
 	margin-left: 1rem;
+	float:right;
 	display: inline-block; 
+	background-image: url('stardust.png');
 }
 
 .users div h1:first-child{
 	text-align: left;
+}
+
+.users h1{
+
+	background-image: url('stardust.png');
 }
 
 .users div{
