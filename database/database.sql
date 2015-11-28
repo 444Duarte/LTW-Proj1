@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS EventType;
 DROP TABLE IF EXISTS Comment;
 DROP TABLE IF EXISTS AdminEvent;
 DROP TABLE IF EXISTS GoToEvent;
+DROP TABLE IF EXISTS InvitedTo;
 
 
 CREATE TABLE User(
@@ -18,7 +19,14 @@ title VARCHAR NOT NULL,
 eventDate DATE,
 description VARCHAR NOT NULL,
 image VARCHAR NOT NULL,
+private BOOLEAN,
 idEventType INTEGER REFERENCES EventType(idEventType)
+);
+
+CREATE TABLE InvitedTo(
+idUser INTEGER REFERENCES User(idUser),
+idEvent INTEGER REFERENCES Event(idEvent),
+PRIMARY KEY (idEvent, idUser)
 );
 
 CREATE TABLE EventType(
@@ -46,4 +54,18 @@ CREATE TABLE Comment(
 );
 
 
+INSERT INTO EventType VALUES (0, 'Festa de Aniversário');
+INSERT INTO EventType VALUES (1, 'Corrida');
+INSERT INTO EventType VALUES (2, 'Jantar');
+INSERT INTO EventType VALUES (3, 'Copos');
+INSERT INTO EventType VALUES (4, 'Encontro');
 
+INSERT INTO User VALUES (0,'Utilizador1', '123456');
+INSERT INTO User VALUES (1,'Utilizador2', '123456');
+INSERT INTO User VALUES (2,'Utilizador3', '123456');
+
+INSERT INTO AdminEvent VALUES (0,0);
+INSERT INTO GoToEvent VALUES (0,0);
+INSERT INTO GoToEvent VALUES (1,0);
+INSERT INTO InvitedTo VALUES (2,0);
+INSERT INTO Event VALUES (0,'Evento Teste', '2015-12-03', 'Este evento é apenas para teste. Isto é a descrição do evento', 'images/events/1.jpg', 0, "FALSE");
