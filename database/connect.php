@@ -1,9 +1,8 @@
 <?php
 	
-	$path = 'database/data.db';
-	$path = 'database/test-table.db';
+	$path = 'database/database.db';
 	if(!file_exists($path))
-		$path = 'data.db';
+		$path = 'database.db';
 
 	try {
 		$db = new PDO('sqlite:' . $path);
