@@ -211,10 +211,10 @@
 		return $result;
 	}
 
-	public function getUsersGoingEventByID($idEvent){
+	function getUsersGoingEventByID($idEvent){
 		global $db;
 
-		$stmt = $db->prepare('SELECT idUser, username FROM GoToEvent WHERE idEvent = :idEvent');
+		$stmt = $db->prepare('SELECT idUser FROM GoToEvent WHERE idEvent = :idEvent');
 		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
 		$stmt->execute();
 
@@ -223,10 +223,10 @@
 		return $result;
 	}
 
-	public function getInvitedByIDEvent($idEvent){
+	function getInvitedByIDEvent($idEvent){
 		global $db;
 
-		$stmt = $db->prepare('SELECT idUser, username FROM InvitedTo WHERE idEvent = :idEvent');
+		$stmt = $db->prepare('SELECT idUser FROM InvitedTo WHERE idEvent = :idEvent');
 		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
 		$stmt->execute();
 
@@ -235,8 +235,9 @@
 		return $result;
 	}
 
-	public function getUserByID($idUser){
-		$stmt = $db->prepare('SELECT userID FROM User WHERE idUser = :idUser');
+	function getUserByID($idUser){
+		global $db;
+		$stmt = $db->prepare('SELECT * FROM User WHERE idUser = :idUser');
 		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
 		$stmt->execute();
 		
@@ -247,7 +248,7 @@
 		return $result[0];
 	}
 
-	public function getUserGoesToEvent($idUser, $idEvent){
+	function getUserGoesToEvent($idUser, $idEvent){
 		global $db;
 
 		$stmt = $db->prepare('SELECT * FROM GoToEvent WHERE idEvent = :idEvent AND idUser = :idUser');
@@ -257,27 +258,27 @@
 
 		$result = $stmt->fetchAll();
 
-		return count($result)>0
+		return count($result)>0;
 	}
 
-	private function createUserToEvent($idUser, $idEvent){
+	function createUserToEvent($idUser, $idEvent){
 		global $db;
 		$stmt = $db->prepare('INSERT INTO GoToEvent(idUser,idEvent) VALUES (:idUser, :idEvent)');
 		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
 		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
 		$stmt->execute();
-	}
+	};
 
-	private function deleteUserToEvent($idUser, $idEvent){
+	function deleteUserToEvent($idUser, $idEvent){
 		global $db;
 		$stmt = $db->prepare('	DELETE FROM GoToEvent
 								WHERE  idUser = :idUser AND idEvent = :idEvent');
 		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
 		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
 		$stmt->execute();
-	}
+	};
 
-	public function setUserGoesToEvent($idUser, $idEvent, $state){
+	function setUserGoesToEvent($idUser, $idEvent, $state){
 		global $db;
 		if(getUserByID($idUser)==FALSE)
 			return FALSE;
@@ -299,7 +300,7 @@
 		return TRUE;
 	}
 
-	public function getUserAdminEvents($idUser){
+	function getUserAdminEvents($idUser){
 		global $db;
 		
 		$stmt = $db->prepare('SELECT Event.idEvent, title 
