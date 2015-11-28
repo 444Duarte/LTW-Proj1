@@ -1,7 +1,7 @@
 <?php
 	
-	$path = '../data.db';
-	
+	$path = 'database/data.db';
+	$path = 'database/test-table.db';
 	if(!file_exists($path))
 		$path = 'data.db';
 
