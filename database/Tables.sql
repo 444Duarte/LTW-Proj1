@@ -15,10 +15,10 @@ password VARCHAR NOT NULL
 CREATE TABLE Event(
 idEvent INTEGER PRIMARY KEY,
 title VARCHAR NOT NULL,
-datadoEvento DATE,
-descricao VARCHAR NOT NULL,
+eventDate DATE,
+description VARCHAR NOT NULL,
 image VARCHAR NOT NULL,
-idEventType INTEGER REFERENCES EventType(idEventType);
+idEventType INTEGER REFERENCES EventType(idEventType)
 );
 
 CREATE TABLE EventType(
@@ -42,7 +42,7 @@ CREATE TABLE Comment(
 	idComment INTEGER PRIMARY KEY,
 	idUser INTEGER REFERENCES User(idUser),
 	idEvent INTEGER REFERENCES Event(idEvent),
-	comentario VARCHAR NOT NULL
+	comment VARCHAR NOT NULL
 );
 
 

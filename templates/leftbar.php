@@ -1,5 +1,5 @@
 <header>
-	<link rel="stylesheet" href="css/leftbar.css">
+	<link rel="stylesheet" href="../css/leftbar.css">
 </header>
 
 <div class="left-bar">

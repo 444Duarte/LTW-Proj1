@@ -172,9 +172,8 @@
 		return true;
 	}
 
-	function retrieveEventbyID($idEvent) {
+	function retrieveEventByID($idEvent) {
 		global $db;
-
 		$stmt = $db->prepare('SELECT * FROM Event WHERE idEvent = :idEvent');
 		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
 		$stmt->execute();
@@ -182,16 +181,16 @@
 		$result = $stmt->fetchAll();
 
 		$event = $result[0];
-		$idEventType = 0 /*$event['idEventType']*/;
+		$idEventType = $event['idEventType'];
 
-		$stmt = $db->prepare('SELECT * FROM EventType WHERE idEvent = :idEventType');
+		$stmt = $db->prepare('SELECT * FROM EventType WHERE idEventType = :idEventType');
 		$stmt->bindParam(':idEventType', $idEventType, PDO::PARAM_INT);
 		$stmt->execute();
 
 		$result = $stmt->fetchAll();
 		$event['type'] = $result[0]['type'];
 
-		echo json_encode($event);
+		return $event;
 	}
 
 	function retrieveCommentsByEventID($idEvent) {
@@ -203,7 +202,7 @@
 
 		$result = $stmt->fetchAll();
 
-		echo json_encode($result);
+		return $result;
 	}
 
 	
