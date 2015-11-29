@@ -8,10 +8,12 @@
 	<link rel="stylesheet" href="../css/mainpage.css">
 
 <?php
-	include 'database/connect.php';
-	include 'database/access_db.php';
+	include_once 'database/connect.php';
+	include_once 'database/access_db.php';
 
+	$idUser = $_GET['user'];
 	$idEvent = $_GET['event'];
+
 ?>
 
 </head>
