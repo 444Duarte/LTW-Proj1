@@ -235,6 +235,25 @@
 		return $result;
 	}
 
+	function getInvitedNotGoing($idEvent){
+		global $db;
+
+		$stmt = $db->prepare('	SELECT idUser
+								FROM InvitedTo
+								WHERE idEvent = :idEvent AND
+									idUser NOT IN( 
+										SELECT idUser 
+										FROM GoToEvent
+										WHERE idEvent = :idEvent)
+									');
+		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$result = $stmt->fetchAll();
+
+		return $result;
+	}
+
 	function getUserByID($idUser){
 		global $db;
 		$stmt = $db->prepare('SELECT * FROM User WHERE idUser = :idUser');
