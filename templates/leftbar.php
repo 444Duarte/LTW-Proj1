@@ -9,27 +9,22 @@
 	$myInvitedEvents = getUserRelatedEvents($idUser);
 ?>
 
-<div class="left-bar">
-	<div>
-		<h5>My Events</h5>
-		<br>
-		<div class="link-events"> 
+<div id="left-bar">
+	<ul>
+		<li class='has-sub'><a href='#'><span>My Events</span></a>
+		<ul>
 			<?php foreach($myEvents as $event){?>
 			
-			<a href="<?php echo $event['idEvent'];?>"><?php echo getEventByID($event['idEvent'])['title'];?></a>
-
+			 <li><a href="<?php echo $event['idEvent'];?>"><?php echo getEventByID($event['idEvent'])['title'];?></a></li>
+         </ul>
+       </li>
 			<?php } ?>
-		</div>
-	</div>
-	<div>
-		<h5>Other Events</h5>
-		<br>
-		<div class="link-events">
+		 <li class='has-sub'><a href='#'><span>Other Events</span></a>
+      <ul>
 			<?php foreach($myInvitedEvents as $event){?>
 			
-			<a href="<?php echo $event['idEvent'];?>"><?php echo getEventByID($event['idEvent'])['title'];?></a>
-
+			<li><a href="<?php echo $event['idEvent'];?>"><?php echo getEventByID($event['idEvent'])['title'];?></a></li>
+			</ul>
+      </ul>
 			<?php } ?>
 		</div>
-	</div>
-</div>
