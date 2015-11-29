@@ -3,11 +3,11 @@
 </header>
 
 <?php
-	include 'database/connect.php';
-	include 'database/access_db.php';
+	include_once 'database/access_db.php';
 
-	$event = retrieveEventByID($_GET['event']);
-	
+	$event = getEventByID($idEvent);
+	$usersGoing = getUsersGoingEventByID($idEvent);
+	$invitedUsers = getInvitedNotGoing($idEvent);	
  ?>
 
 <div class="display-event">
@@ -37,33 +37,32 @@
 	<div class="users">
 		<div id="users-going">
 			<h1>Going</h1>
-			<a href="">User1</a>
+			<?php 
+				foreach( $usersGoing as $idUser) 
+				{
+			?>
+			<a href="<?php echo "?user=".$idUser['idUser'] ;?>">
+				<?php 
+					$username = getUserByID($idUser['idUser'])['user'];
+					echo $username; 
+				?>
+			</a>
 			<br>
-			<a href="">User2</a>
-			<br>
-			<a href="">User3</a>
-			<br>
-			<a href="">User4</a>
-		</div>
-		<div id="users-not-going">
-			<h1>Not going</h1>
-			<a href="">User1</a>
-			<br>
-			<a href="">User2</a>
-			<br>
-			<a href="">User3</a>
-			<br>
-			<a href="">User4</a>
+			<?php } ?>
 		</div>
 		<div id="users-invited">
 			<h1>Invited</h1>
-			<a href="">User1</a>
+			<?php
+				foreach($invitedUsers as $idUser){
+			?>
+			<a href="<?php echo "?user=".$idUser['idUser'] ; ?>">
+				<?php 
+					$username = getUserByID($idUser['idUser'])['user'];
+					echo $username; 
+				?>
+			</a>
 			<br>
-			<a href="">User2</a>
-			<br>
-			<a href="">User3</a>
-			<br>
-			<a href="">User4</a>
+			<?php } ?>
 		</div>
 	</div>
 </div>
