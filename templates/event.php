@@ -3,7 +3,9 @@
 </header>
 
 <?php
-	$event = retrieveEventByID($idEvent);
+	include_once 'database/access_db.php';
+
+	$event = getEventByID($idEvent);
 	$usersGoing = getUsersGoingEventByID($idEvent);
 	$invitedUsers = getInvitedByIDEvent($idEvent);	
  ?>
