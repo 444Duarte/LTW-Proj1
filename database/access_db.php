@@ -172,7 +172,7 @@
 		return true;
 	}
 
-	function retrieveEventByID($idEvent) {
+	function getEventByID($idEvent) {
 		global $db;
 		$stmt = $db->prepare('SELECT * FROM Event WHERE idEvent = :idEvent');
 		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
@@ -303,13 +303,32 @@
 	function getUserAdminEvents($idUser){
 		global $db;
 		
-		$stmt = $db->prepare('SELECT Event.idEvent, title 
-								FROM AdminEvent, Event
-								WHERE AdminEvent.idEvent =Event.idEvent AND Event.idEvent = :idEvent AND idUser = :idUser');
-		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+		$stmt = $db->prepare('SELECT idEvent
+								FROM AdminEvent
+								WHERE idUser = :idUser');
 		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
 		$stmt->execute();
 
+		$result = $stmt->fetchAll();
+		return $result;
+	}
+
+	function getUserRelatedEvents($idUser){
+		global $db;
+
+		$stmt = $db->prepare('SELECT DISTINCT idEvent 
+								FROM (SELECT idEvent 
+										FROM GoToEvent
+										WHERE idUser = :idUser
+										UNION 
+										SELECT idEvent
+										FROM InvitedTo
+										WHERE idUser = :idUser)
+								WHERE idEvent NOT IN (SELECT idEvent FROM AdminEvent WHERE idUser = :idUser);
+										');
+		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->execute();
+		
 		$result = $stmt->fetchAll();
 		return $result;
 	}
