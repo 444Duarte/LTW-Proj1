@@ -1,0 +1,16 @@
+.display_search{
+	margin: 0.5rem;
+	background-color: #dddddd;
+    border: groove 1px #eeeeee;
+    overflow: hidden;
+}
+
+.header_search{
+	padding: 0.5rem;
+	border-bottom: groove 2px #999999
+}
+
+#search_text{
+	-webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+}
