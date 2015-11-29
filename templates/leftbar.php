@@ -16,15 +16,16 @@
 			<?php foreach($myEvents as $event){?>
 			
 			 <li><a href="<?php echo $event['idEvent'];?>"><?php echo getEventByID($event['idEvent'])['title'];?></a></li>
-         </ul>
-       </li>
 			<?php } ?>
+			</ul>
+       </li>
 		 <li class='has-sub'><a href='#'><span>Other Events</span></a>
       <ul>
 			<?php foreach($myInvitedEvents as $event){?>
 			
 			<li><a href="<?php echo $event['idEvent'];?>"><?php echo getEventByID($event['idEvent'])['title'];?></a></li>
+	
+			<?php } ?>
 			</ul>
       </ul>
-			<?php } ?>
 		</div>

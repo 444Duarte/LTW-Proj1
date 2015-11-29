@@ -50,9 +50,9 @@
 				?>
 			</a>
 			</li>
+			<?php } ?>
 			</ul>
 			</li>
-			<?php } ?>
 		<li class='has-sub'><a href='#'><span>Invited</span></a>
 	  <ul>
 			<?php
@@ -65,8 +65,8 @@
 				?>
 			</a>
 			</li>
+			<?php } ?>
 			</ul>
             </li>
-			<?php } ?>
 		</div>
 </div>
