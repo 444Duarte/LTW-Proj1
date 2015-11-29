@@ -7,7 +7,7 @@
 
 	$event = getEventByID($idEvent);
 	$usersGoing = getUsersGoingEventByID($idEvent);
-	$invitedUsers = getInvitedByIDEvent($idEvent);	
+	$invitedUsers = getInvitedNotGoing($idEvent);	
  ?>
 
 <div class="display-event">
@@ -43,7 +43,7 @@
 			?>
 			<a href="<?php echo "?user=".$idUser['idUser'] ;?>">
 				<?php 
-					$username = getUserByID($idUser)['user'];
+					$username = getUserByID($idUser['idUser'])['user'];
 					echo $username; 
 				?>
 			</a>
@@ -57,7 +57,7 @@
 			?>
 			<a href="<?php echo "?user=".$idUser['idUser'] ; ?>">
 				<?php 
-					$username = getUserByID($idUser)['user'];
+					$username = getUserByID($idUser['idUser'])['user'];
 					echo $username; 
 				?>
 			</a>
