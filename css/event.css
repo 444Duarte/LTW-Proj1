@@ -83,8 +83,13 @@ background: #013B61;
 .users{
 	font-size: small;
 	margin-left: 1rem;
+	float:right;
 	display: inline-block; 
+<<<<<<< HEAD
 >>>>>>> parent of 4d182ae... melhorando evento.css
+=======
+	background-image: url('stardust.png');
+>>>>>>> refs/remotes/origin/master
 }
 
 #description *{
@@ -92,6 +97,7 @@ background: #013B61;
     -webkit-margin-after: 0rem;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 @charset "UTF-8";
 /* Base Styles */
@@ -232,6 +238,13 @@ background: #013B61;
 #cssmenu ul ul a:hover {
   color: #e94f31;
 =======
+=======
+.users h1{
+
+	background-image: url('stardust.png');
+}
+
+>>>>>>> refs/remotes/origin/master
 .users div{
 	text-align: center;
 >>>>>>> parent of 4d182ae... melhorando evento.css

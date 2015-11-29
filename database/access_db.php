@@ -1,5 +1,5 @@
 <?php
-	include_once('connect.php');
+	//include_once('connect.php');			Retirei porque segundo o que se fez na aula, isto não devia tar aqui.
 	
 	class User {
 		public $idUser = "";
@@ -172,7 +172,7 @@
 		return true;
 	}
 
-	function retrieveEventByID($idEvent) {
+	function getEventByID($idEvent) {
 		global $db;
 		$stmt = $db->prepare('SELECT * FROM Event WHERE idEvent = :idEvent');
 		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
@@ -180,7 +180,13 @@
 
 		$result = $stmt->fetchAll();
 
+
+		if(count($result)==0)
+			return FALSE;
+
 		$event = $result[0];
+
+
 		$idEventType = $event['idEventType'];
 
 		$stmt = $db->prepare('SELECT * FROM EventType WHERE idEventType = :idEventType');
@@ -205,5 +211,145 @@
 		return $result;
 	}
 
-	
+	function getUsersGoingEventByID($idEvent){
+		global $db;
+
+		$stmt = $db->prepare('SELECT idUser FROM GoToEvent WHERE idEvent = :idEvent');
+		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$result = $stmt->fetchAll();
+
+		return $result;
+	}
+
+	function getInvitedByIDEvent($idEvent){
+		global $db;
+
+		$stmt = $db->prepare('SELECT idUser FROM InvitedTo WHERE idEvent = :idEvent');
+		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$result = $stmt->fetchAll();
+
+		return $result;
+	}
+
+	function getInvitedNotGoing($idEvent){
+		global $db;
+
+		$stmt = $db->prepare('	SELECT idUser
+								FROM InvitedTo
+								WHERE idEvent = :idEvent AND
+									idUser NOT IN( 
+										SELECT idUser 
+										FROM GoToEvent
+										WHERE idEvent = :idEvent)
+									');
+		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$result = $stmt->fetchAll();
+
+		return $result;
+	}
+
+	function getUserByID($idUser){
+		global $db;
+		$stmt = $db->prepare('SELECT * FROM User WHERE idUser = :idUser');
+		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->execute();
+		
+		$result = $stmt->fetchAll();
+
+		if(count($result) == 0)
+			return FALSE;
+		return $result[0];
+	}
+
+	function getUserGoesToEvent($idUser, $idEvent){
+		global $db;
+
+		$stmt = $db->prepare('SELECT * FROM GoToEvent WHERE idEvent = :idEvent AND idUser = :idUser');
+		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$result = $stmt->fetchAll();
+
+		return count($result)>0;
+	}
+
+	function createUserToEvent($idUser, $idEvent){
+		global $db;
+		$stmt = $db->prepare('INSERT INTO GoToEvent(idUser,idEvent) VALUES (:idUser, :idEvent)');
+		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->execute();
+	};
+
+	function deleteUserToEvent($idUser, $idEvent){
+		global $db;
+		$stmt = $db->prepare('	DELETE FROM GoToEvent
+								WHERE  idUser = :idUser AND idEvent = :idEvent');
+		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->execute();
+	};
+
+	function setUserGoesToEvent($idUser, $idEvent, $state){
+		global $db;
+		if(getUserByID($idUser)==FALSE)
+			return FALSE;
+		if(retrieveEventByID($idEvent) == FALSE)
+			return FALSE;
+
+		if($state){
+			if(getUserGoesToEvent($idUser, $idEvent)){
+				return FALSE;
+			}
+			
+			createUserToEvent($idUser, $idEvent);
+		}else{
+			if(!getUserGoesToEvent($idUser, $idEvent))
+				return FALSE;
+			deleteUserToEvent($idUser, $idEvent);			
+		}
+
+		return TRUE;
+	}
+
+	function getUserAdminEvents($idUser){
+		global $db;
+		
+		$stmt = $db->prepare('SELECT idEvent
+								FROM AdminEvent
+								WHERE idUser = :idUser');
+		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$result = $stmt->fetchAll();
+		return $result;
+	}
+
+	function getUserRelatedEvents($idUser){
+		global $db;
+
+		$stmt = $db->prepare('SELECT DISTINCT idEvent 
+								FROM (SELECT idEvent 
+										FROM GoToEvent
+										WHERE idUser = :idUser
+										UNION 
+										SELECT idEvent
+										FROM InvitedTo
+										WHERE idUser = :idUser)
+								WHERE idEvent NOT IN (SELECT idEvent FROM AdminEvent WHERE idUser = :idUser);
+										');
+		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->execute();
+		
+		$result = $stmt->fetchAll();
+		return $result;
+	}
+
 ?>  
