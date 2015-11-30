@@ -4,27 +4,28 @@
 
 html,body{
 
-background: #013B61;
+background: #e9eaed;
+cusor:default;
 }
 
 
 .display-event{
-        margin: 0.5rem;
-	background-color: #ffffff;
+        margin-top: 0.85rem;
+  background-color: #ffffff;
         border-bottom: groove 1px #000000;
         border-left: groove 1px #000000;
          overflow: hidden;
 }
 
 #header{
-	display: inline-block;
-	min-height: 10%;
-	width: 100%;
-	padding: 1rem;
-	box-sizing: border-box;
-	border-bottom: groove 2px #cccccc;
-	position: relative;
-	background-size: 100% 100%;
+  display: inline-block;
+  min-height: 10%;
+  width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+  border-bottom: groove 2px #cccccc;
+  position: relative;
+  background-size: 100% 100%;
     background-repeat: no-repeat;
     color: #ffffff;
     text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
@@ -32,40 +33,38 @@ background: #013B61;
 }
 
 #header:hover{
-	cursor: pointer;
 }
 
 #header *:hover{
-	cursor: initial;
 }
 
 #header div:first-child{
-	float: left;
-	height: 100%;
-	width: auto;
+  float: left;
+  height: 100%;
+  width: auto;
 }
 
 #header *{
-	-webkit-margin-before: 0rem;
+  -webkit-margin-before: 0rem;
     -webkit-margin-after: 0rem;
 }
 
 #date{
-	float: right;
+  float: right;
 }
 
 #option{
-	position: absolute; 
-	bottom: 0;
-	right: 0;
+  position: absolute; 
+  bottom: 0;
+  right: 0;
 }
 
 #description{
-	width: 70%;
+  width: 70%;
         height: 70%;
-	float: left;
-	padding: 1rem;
-	box-sizing: border-box;
+  float: left;
+  padding: 1rem;
+  box-sizing: border-box;
         font size:14px;
         color: black;
         background: #ffffff;
@@ -77,7 +76,6 @@ background: #013B61;
         font-family: 'Open Sans', sans-serif;
 }
 
-@charset "UTF-8";
 /* Base Styles */
 #cssmenu,
 #cssmenu ul,
@@ -95,13 +93,15 @@ background: #013B61;
 }
 #cssmenu {
   width: 250px;
-  border-bottom: 4px solid #656659;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
   float:right;
  position:relative;
+margin-right:0.5rem;
+margin-bottom:0.4rem;
   top:-1%;
+cursor:default;
 }
 #cssmenu a {
   line-height: 1.3;
@@ -134,13 +134,7 @@ background: #013B61;
 #cssmenu > ul > li:first-child > a > span {
   padding: 0;
 }
-#cssmenu > ul > li:first-child:hover {
-  background: #47639E;
-  background: -moz-linear-gradient(#47639E 0%, #47639E 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #47639E), color-stop(100%, #47639E));
-  background: -webkit-linear-gradient(#47639E 0%, #47639E 100%);
-  background: linear-gradient(#47639E 0%, #47639E 100%);
-}
+
 #cssmenu > ul > li {
   background: #e9eaed;
   background: -moz-linear-gradient(#e9eaed 0%, #e9eaed 100%);
@@ -148,13 +142,7 @@ background: #013B61;
   background: -webkit-linear-gradient(#e9eaed 0%, #e9eaed 100%);
   background: linear-gradient(#e9eaed 0%, #e9eaed 100%);
 }
-#cssmenu > ul > li:hover {
-  background: #e9eaed;
-  background: -moz-linear-gradient(#e9eaed 0%, #e9eaed 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e9eaed), color-stop(100%, #e9eaed));
-  background: -webkit-linear-gradient(#e9eaed 0%, #e9eaed 100%);
-  background: linear-gradient(#e9eaed 0%, #e9eaed 100%);
-}
+
 #cssmenu > ul > li > a {
   font-size: 14px;
   display: block;
@@ -165,8 +153,8 @@ background: #013B61;
 #cssmenu > ul > li > a > span {
   display: block;
   padding: 12px 10px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
   border-radius: 4px;
 }
 #cssmenu > ul > li > a:hover {
@@ -198,7 +186,7 @@ background: #013B61;
   background: linear-gradient(#f7f7f7 0%, #ececec 100%);
 }
 #cssmenu ul ul li:last-child {
-  border-bottom: none;
+  border-bottom: 1px solid:black;
 }
 #cssmenu ul ul a {
   padding: 10px 10px 10px 25px;
@@ -213,5 +201,3 @@ background: #013B61;
   left: 10px;
   color: #e94f31;
 }
-#cssmenu ul ul a:hover {
-  color: #e94f31;
