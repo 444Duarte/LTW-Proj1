@@ -14,3 +14,18 @@
 	-webkit-margin-before: 0em;
     -webkit-margin-after: 0em;
 }
+
+.result_event{
+	padding: 0.75%;
+}
+
+.result_event > *{
+	display: inline-block;
+}
+
+.event_image{
+	display: relative;
+	left: 0;
+	float: left;
+}
+
