@@ -15,6 +15,8 @@
 
 	$idUser = $_GET['user'];
 	$searchQuery = urlencode($_GET['query']);
+
+	$searchResults = searchEvent(urldecode($searchQuery));
 ?>
 
 <body>	

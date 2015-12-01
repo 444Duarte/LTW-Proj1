@@ -13,11 +13,22 @@
 	</div>
 
 	<div id="search_results">
+		
+		<?php if(count($searchResults) == 0){ ?>
+			<h5>No search results.</h5>
+		<?php } ?>
+
+		<?php 
+
+			foreach( $searchResults as $idEvent) 
+			{
+		?>
 		<div class = "result_event">
-			<?php $event1 =  getEventByID(0);?>
-			<img class="event_image" src="<?php echo  '../' . $event1['image'];?>">
-			<a class="event_name" href="../mainpage.php/?event=<?php echo $event1['idEvent']; ?>  "><h1><?php echo $event1['title']; ?></h1></a>
-			<h3 class="event_date"><?php echo $event1['eventDate']; ?></h3>	
+			<?php $event =  getEventByID($idEvent['idEvent']);?>
+			<img class="event_image" src="<?php echo  '../' . $event['image'];?>">
+			<a class="event_name" href="../mainpage.php/?event=<?php echo $event['idEvent']; ?>  "><h1><?php echo $event['title']; ?></h1></a>
+			<h3 class="event_date"><?php echo $event['eventDate']; ?></h3>	
 		</div>
+		<?php } ?>
 	</div>
 </div>
