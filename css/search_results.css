@@ -46,3 +46,17 @@
 	-webkit-margin-before: 0em;
     -webkit-margin-after: 0em;
 }
+
+.search_results > .result_event{
+	margin: 1% 0%;
+}
+
+.search_results .result_event:first-child{
+	margin-top: 0%;
+	margin-bottom: 1%;
+}
+
+.search_reslts .result_event:last-child{
+	margin-top: 1%;
+	margin-bottom: 0%;
+}
