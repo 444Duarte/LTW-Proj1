@@ -10,11 +10,10 @@ cusor:default;
 
 
 .display-event{
-        margin-top: 0.85rem;
+  margin: 0.5rem;
   background-color: #ffffff;
-        border-bottom: groove 1px #000000;
-        border-left: groove 1px #000000;
-         overflow: hidden;
+  border: groove 1px #999999;
+  overflow: hidden;
 }
 
 #header{
@@ -26,17 +25,11 @@ cusor:default;
   border-bottom: groove 2px #cccccc;
   position: relative;
   background-size: 100% 100%;
-    background-repeat: no-repeat;
-    color: #ffffff;
-    text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
-    
+  background-repeat: no-repeat;
+  color: #ffffff;
+  text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000; 
 }
 
-#header:hover{
-}
-
-#header *:hover{
-}
 
 #header div:first-child{
   float: left;

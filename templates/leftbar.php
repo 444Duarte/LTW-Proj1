@@ -1,6 +1,6 @@
-<header>
+<head>
 	<link rel="stylesheet" href="../css/leftbar.css">
-</header>
+</head>
 
 <?php
 	include_once 'database/access_db.php';
@@ -11,11 +11,11 @@
 
 <div id="left-bar">
 	<ul>
-		<li class='has-sub'><a href='#'><span>My Events</span></a>
+		<li class='has-sub'><a href=''><span>My Events</span></a>
 		<ul>
 			<?php foreach($myEvents as $event){?>
 			
-			 <li><a href="<?php echo $event['idEvent'];?>"><?php echo getEventByID($event['idEvent'])['title'];?></a></li>
+			 <li><a href="../mainpage.php/?event=<?php echo $event['idEvent'];?>"><?php echo getEventByID($event['idEvent'])['title'];?></a></li>
 			<?php } ?>
 			</ul>
        </li>

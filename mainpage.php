@@ -18,9 +18,10 @@
 
 </head>
 <body>	
-	<?php include 'templates/topbar.php'; ?>
-	<?php include 'templates/leftbar.php'; ?>
-	<?php include 'templates/event.php'; ?>
-	
+	<?php 
+		include 'templates/topbar.php';
+		include 'templates/leftbar.php'; 
+		include 'templates/event.php'; 
+	?>
 </body>
 </html>
