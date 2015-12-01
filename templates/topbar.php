@@ -9,9 +9,9 @@
 			<a href="">Logout</a>
 		</div>
 		<button id="home_button" type="button"><img src="../images/template/logo-small.png"></button>
-		<form id="searchForm">
-			<input id="search-bar" type="text" name="search" required="optional" placeholder="Search"/>
-			<input id="searchButton" type="button" value="Search"/>
+		<form id="searchForm" action="../search.php/?query=<?php echo urlencode($_GET['query']) ?>">
+			<input id="search-bar" type="text" name="query" required="optional" placeholder="Search"/>
+			<input id="searchButton" type="submit" value="Search"/>
 		</form>
 
 	<script src="./js/bridge.js">

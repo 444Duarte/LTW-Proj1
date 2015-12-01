@@ -352,4 +352,19 @@
 		return $result;
 	}
 
+	function searchEvent($query){
+		global $db;
+
+		$preparedQuery =  '%' . $query . '%';
+
+		$stmt = $db->prepare('SELECT idEvent
+								FROM Event
+								WHERE title LIKE :query ');
+		$stmt->bindParam(':query', $preparedQuery, PDO::PARAM_STR);
+		$stmt->execute();
+
+		$result = $stmt->fetchAll();
+		return $result;
+	}
+
 ?>  
