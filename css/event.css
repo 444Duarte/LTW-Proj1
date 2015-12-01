@@ -1,19 +1,31 @@
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700);
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,300);
+
+html,body{
+
+background: #e9eaed;
+cusor:default;
+}
+
+
 .display-event{
-	margin: 0.5rem;
-	background-color: #dddddd;
-    border: groove 1px #eeeeee;
-    overflow: hidden;
+        margin-top: 0.85rem;
+  background-color: #ffffff;
+        border-bottom: groove 1px #000000;
+        border-left: groove 1px #000000;
+         overflow: hidden;
 }
 
 #header{
-	display: inline-block;
-	min-height: 10%;
-	width: 100%;
-	padding: 1rem;
-	box-sizing: border-box;
-	border-bottom: groove 2px #cccccc;
-	position: relative;
-	background-size: 100% 100%;
+  display: inline-block;
+  min-height: 10%;
+  width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+  border-bottom: groove 2px #cccccc;
+  position: relative;
+  background-size: 100% 100%;
     background-repeat: no-repeat;
     color: #ffffff;
     text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
@@ -21,64 +33,171 @@
 }
 
 #header:hover{
-	cursor: pointer;
 }
 
 #header *:hover{
-	cursor: initial;
 }
 
 #header div:first-child{
-	float: left;
-	height: 100%;
-	width: auto;
+  float: left;
+  height: 100%;
+  width: auto;
 }
 
 #header *{
-	-webkit-margin-before: 0em;
-    -webkit-margin-after: 0em;
+  -webkit-margin-before: 0rem;
+    -webkit-margin-after: 0rem;
 }
 
 #date{
-	float: right;
+  float: right;
 }
 
 #option{
-	margin: 0.5rem;
-	position: absolute; 
-	bottom: 0;
-	right: 0;
+  position: absolute; 
+  bottom: 0;
+  right: 0;
 }
 
 #description{
-	width: 80%;
-	float: left;
-	padding: 1rem;
-	box-sizing: border-box;
+  width: 70%;
+        height: 70%;
+  float: left;
+  padding: 1rem;
+  box-sizing: border-box;
+        font size:14px;
+        color: black;
+        background: #ffffff;
+        font-family: 'Open Sans', sans-serif;
 }
 
-#description *{
-	-webkit-margin-before: 0em;
-    -webkit-margin-after: 0em;
+#description h4{
+        font-size:25px;
+        font-family: 'Open Sans', sans-serif;
 }
 
-.users{
-	font-size: small;
-	margin-left: 1rem;
-	float:right;
-	display: inline-block; 
-	background-image: url('stardust.png');
+/* Base Styles */
+#cssmenu,
+#cssmenu ul,
+#cssmenu li,
+#cssmenu a {
+  margin: 0;
+  padding:0;
+  border: 0;
+  list-style: none;
+  font-weight: normal;
+  text-decoration: none;
+  line-height: 1;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+}
+#cssmenu {
+  width: 250px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  float:right;
+ position:relative;
+margin-right:0.5rem;
+margin-bottom:0.4rem;
+  top:-1%;
+cursor:default;
+}
+#cssmenu a {
+  line-height: 1.3;
+}
+#cssmenu > ul > li:first-child {
+  background: #47639E;
+  background: -moz-linear-gradient(#47639E 0%, #47639E 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #47639E), color-stop(100%, #47639E));
+  background: -webkit-linear-gradient(#47639E 0%, #47639E 100%);
+  background: linear-gradient(#47639E 0%, #47639E 100%);
+  border: 1px solid #e9eaed;
+  -webkit-border-radius: 3px 3px 0 0;
+  -moz-border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
+}
+#cssmenu > ul > li:first-child > a {
+  padding: 15px 10px;
+  background: url('pattern.png') top left repeat;
+  border: none;
+  border-top: 1px solid #e9eaed;
+  -webkit-border-radius: 3px 3px 0 0;
+  -moz-border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
+  font-family: 'Ubuntu', sans-serif;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 300;
+  text-shadow: 0 -1px 1px #000000;
+}
+#cssmenu > ul > li:first-child > a > span {
+  padding: 0;
 }
 
-.users div h1:first-child{
-	text-align: left;
+#cssmenu > ul > li {
+  background: #e9eaed;
+  background: -moz-linear-gradient(#e9eaed 0%, #e9eaed 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e9eaed), color-stop(100%, #e9eaed));
+  background: -webkit-linear-gradient(#e9eaed 0%, #e9eaed 100%);
+  background: linear-gradient(#e9eaed 0%, #e9eaed 100%);
 }
 
-.users h1{
-
-	background-image: url('stardust.png');
+#cssmenu > ul > li > a {
+  font-size: 14px;
+  display: block;
+  background: url('pattern.png') top left repeat;
+  color: black;
+  border: 1px solid #47639E;
 }
-
-.users div{
-	text-align: center;
+#cssmenu > ul > li > a > span {
+  display: block;
+  padding: 12px 10px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 4px;
+}
+#cssmenu > ul > li > a:hover {
+  text-decoration: none;
+}
+#cssmenu > ul > li.active {
+  border-bottom: none;
+}
+#cssmenu > ul > li.has-sub > a span {
+  background: url('icon_plus.png') 96% center no-repeat;
+}
+#cssmenu > ul > li.has-sub.active > a span {
+  background: url('icon_minus.png') 96% center no-repeat;
+}
+/* Sub menu */
+#cssmenu ul ul {
+  background: #fff;
+  border-right: 1px solid #a2a194;
+  border-left: 1px solid #a2a194;
+}
+#cssmenu ul ul li {
+  padding: 0;
+  border-bottom: 1px solid #d4d4d4;
+  border-top: none;
+  background: #f7f7f7;
+  background: -moz-linear-gradient(#f7f7f7 0%, #ececec 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f7f7f7), color-stop(100%, #ececec));
+  background: -webkit-linear-gradient(#f7f7f7 0%, #ececec 100%);
+  background: linear-gradient(#f7f7f7 0%, #ececec 100%);
+}
+#cssmenu ul ul li:last-child {
+  border-bottom: 1px solid:black;
+}
+#cssmenu ul ul a {
+  padding: 10px 10px 10px 25px;
+  display: block;
+  color: #676767;
+  font-size: 12px;
+  font-weight: normal;
+}
+#cssmenu ul ul a:before {
+  content: "»";
+  position: absolute;
+  left: 10px;
+  color: #e94f31;
 }

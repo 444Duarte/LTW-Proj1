@@ -34,35 +34,39 @@
 		<p> <?php echo $event['description']; ?> </p>
 	</div>
 
-	<div class="users">
-		<div id="users-going">
-			<h1>Going</h1>
+	<div id='cssmenu'>
+		<ul>
+   <li class='active'><a href='#'><span>Users</span></a></li>
+   <li class='has-sub'><a href='#'><span>Going</span></a>
+      <ul>
 			<?php 
 				foreach( $usersGoing as $idUser) 
 				{
 			?>
-			<a href="<?php echo "?user=".$idUser['idUser'] ;?>">
+			<li><a href="<?php echo "?user=".$idUser['idUser'] ;?>">
 				<?php 
 					$username = getUserByID($idUser['idUser'])['user'];
 					echo $username; 
 				?>
 			</a>
-			<br>
+			</li>
 			<?php } ?>
-		</div>
-		<div id="users-invited">
-			<h1>Invited</h1>
+			</ul>
+			</li>
+		<li class='has-sub'><a href='#'><span>Invited</span></a>
+	  <ul>
 			<?php
 				foreach($invitedUsers as $idUser){
 			?>
-			<a href="<?php echo "?user=".$idUser['idUser'] ; ?>">
+			<li><a href="<?php echo "?user=".$idUser['idUser'] ; ?>">
 				<?php 
 					$username = getUserByID($idUser['idUser'])['user'];
 					echo $username; 
 				?>
 			</a>
-			<br>
+			</li>
 			<?php } ?>
+			</ul>
+            </li>
 		</div>
-	</div>
 </div>
