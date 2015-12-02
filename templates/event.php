@@ -36,8 +36,8 @@
 
 	<div id='cssmenu'>
 		<ul>
-   <li class='active'><a href='#'><span>Users</span></a></li>
-   <li class='has-sub'><a href='#'><span>Going</span></a>
+   <li class='active'><a><span>Users</span></a></li>
+   <li class='has-sub'><a><span>Going</span></a>
       <ul>
 			<?php 
 				foreach( $usersGoing as $idUser) 
@@ -53,7 +53,7 @@
 			<?php } ?>
 			</ul>
 			</li>
-		<li class='has-sub'><a href='#'><span>Invited</span></a>
+		<li class='has-sub'><a><span>Invited</span></a>
 	  <ul>
 			<?php
 				foreach($invitedUsers as $idUser){

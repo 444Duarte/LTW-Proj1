@@ -11,7 +11,7 @@
 
 <div id="left-bar">
 	<ul>
-		<li class='has-sub'><a href=''><span>My Events</span></a>
+		<li class='has-sub'><a><span>My Events</span></a>
 		<ul>
 			<?php foreach($myEvents as $event){?>
 			
@@ -19,7 +19,7 @@
 			<?php } ?>
 			</ul>
        </li>
-		 <li class='has-sub'><a href='#'><span>Other Events</span></a>
+		 <li class='has-sub'><a><span>Other Events</span></a>
       <ul>
 			<?php foreach($myInvitedEvents as $event){?>
 			
