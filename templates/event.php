@@ -36,37 +36,43 @@
 
 	<div id='cssmenu'>
 		<ul>
-   <li class='active'><a><span>Users</span></a></li>
-   <li class='has-sub'><a><span>Going</span></a>
-      <ul>
-			<?php 
-				foreach( $usersGoing as $idUser) 
-				{
-			?>
-			<li><a href="<?php echo "?user=".$idUser['idUser'] ;?>">
-				<?php 
-					$username = getUserByID($idUser['idUser'])['user'];
-					echo $username; 
-				?>
-			</a>
+			<li class='active'>
+				<a><span>Users</span></a>
 			</li>
-			<?php } ?>
-			</ul>
+			<li class='has-sub'>
+				<a><span>Going</span></a>
+		  		<ul>
+					<?php 
+						foreach( $usersGoing as $idUser) 
+						{
+					?>
+					<li>
+						<a href="<?php echo "?user=".$idUser['idUser'] ;?>">
+						<?php 
+							$username = getUserByID($idUser['idUser'])['user'];
+							echo $username; 
+						?>
+						</a>
+					</li>
+					<?php } ?>
+				</ul>	
 			</li>
-		<li class='has-sub'><a><span>Invited</span></a>
-	  <ul>
-			<?php
-				foreach($invitedUsers as $idUser){
-			?>
-			<li><a href="<?php echo "?user=".$idUser['idUser'] ; ?>">
-				<?php 
-					$username = getUserByID($idUser['idUser'])['user'];
-					echo $username; 
-				?>
-			</a>
-			</li>
-			<?php } ?>
-			</ul>
-            </li>
-		</div>
+			<li class='has-sub'><a><span>Invited</span></a>
+		  		<ul>
+					<?php
+						foreach($invitedUsers as $idUser){
+					?>
+					<li>
+						<a href="<?php echo "?user=".$idUser['idUser'] ; ?>">
+							<?php 
+								$username = getUserByID($idUser['idUser'])['user'];
+								echo $username; 
+							?>
+						</a>
+					</li>
+					<?php } ?>
+				</ul>
+		    </li>
+		</ul>
+	</div>
 </div>
