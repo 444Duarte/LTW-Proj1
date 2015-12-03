@@ -367,4 +367,18 @@
 		return $result;
 	}
 
+	function userCanComment($idUser){
+		global $db;
+
+		$stmt = $db->prepare('	SELECT idUser
+								FROM GoToEvent
+								WHERE idUser=:idUser
+								');
+		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$result = $stmt->fetchAll();
+		return count($result)>0;
+	}
+
 ?>  

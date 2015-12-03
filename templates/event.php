@@ -75,4 +75,7 @@
 		    </li>
 		</ul>
 	</div>
+
+	<?php include_once "comments_section.php"; ?>
+	
 </div>
