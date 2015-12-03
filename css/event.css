@@ -85,16 +85,14 @@ cusor:default;
   font-size: 14px;
 }
 #users_event {
-  width: 250px;
+  width: 20%;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  float:right;
- position:relative;
-margin-right:0.5rem;
-margin-bottom:0.4rem;
-  top:-1%;
-cursor:default;
+  float: right;
+  margin-right:0.5rem;
+  margin-bottom:0.4rem;
+  cursor:default;
 }
 #users_event a {
   line-height: 1.3;
@@ -187,10 +185,4 @@ cursor:default;
   color: #676767;
   font-size: 12px;
   font-weight: normal;
-}
-#users_event ul ul a:before {
-  content: "»";
-  position: absolute;
-  left: 10px;
-  color: #e94f31;
 }

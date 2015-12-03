@@ -43,13 +43,13 @@
 				<a><span>Going</span></a>
 		  		<ul>
 					<?php 
-						foreach( $usersGoing as $idUser) 
+						foreach( $usersGoing as $user) 
 						{
 					?>
 					<li>
-						<a href="<?php echo "?user=".$idUser['idUser'] ;?>">
+						<a href="<?php echo "?user=".$user['idUser'] ;?>">
 						<?php 
-							$username = getUserByID($idUser['idUser'])['user'];
+							$username = getUserByID($user['idUser'])['user'];
 							echo $username; 
 						?>
 						</a>
@@ -60,12 +60,12 @@
 			<li class='has-sub'><a><span>Invited</span></a>
 		  		<ul>
 					<?php
-						foreach($invitedUsers as $idUser){
+						foreach($invitedUsers as $user){
 					?>
 					<li>
-						<a href="<?php echo "?user=".$idUser['idUser'] ; ?>">
+						<a href="<?php echo "?user=".$user['idUser'] ; ?>">
 							<?php 
-								$username = getUserByID($idUser['idUser'])['user'];
+								$username = getUserByID($user['idUser'])['user'];
 								echo $username; 
 							?>
 						</a>
@@ -75,7 +75,6 @@
 		    </li>
 		</ul>
 	</div>
-
-	<?php include_once "comments_section.php"; ?>
+	<?php include "comments_section.php"; ?>
 	
 </div>
