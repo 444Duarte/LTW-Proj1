@@ -50,6 +50,7 @@ CREATE TABLE Comment(
 	idComment INTEGER PRIMARY KEY,
 	idUser INTEGER REFERENCES User(idUser),
 	idEvent INTEGER REFERENCES Event(idEvent),
+	dateComment DATE NOT NULL,
 	comment VARCHAR NOT NULL
 );
 
