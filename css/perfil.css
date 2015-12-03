@@ -1,20 +1,62 @@
-html{
-	overflow: scroll;
+body { 
+  background: #f0f0f0; 
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #313131;
+  font-size: 62.5%; 
+  line-height: 1; 
 }
 
-html,body{
-	width: 100%;
-	margin: 0;
-	height: 100%;
-	background-color: #eeeeee;
+
+h1 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 2.5em;
+  line-height: 1.5em;
+  letter-spacing: -0.05em;
+  margin-bottom: 20px;
+  padding: .1em 0;
+  color: #444;
+  position: relative;
+  text-align: left;
+  padding-left:1em;
+}
+#bio{
+  display: block;
+  font-size: 1.4em;
+  line-height: 7%;
+margin-top:20%;
+  color: #555;
+  height:30%;
+width:71%;
+  position:relative;
+  padding-left:2em;
+}
+#tela {
+  display: block;
+  width:40%;
+  height:55%;
+  margin: 0 auto;
+  padding-top: 10%;
+  position:absolute;
+  bottom:20%;
+  left:30%;
 }
 
-#profile {
-	width: 75%;
-	padding-left: 13%;
+#conteudo {
+  display: block;
+  width: 100%;
+  background: #fff;
+  padding: 1.3em 1em;
+  padding-bottom: 1em;
 }
 
-#profile h4{
-
-	color: red;
+#userphoto {
+  display: block;
+  float: right;
+  margin-left: 0.285em;
+  margin-bottom: 0.228em;
 }
+#userphoto img {
+  display: block;
+  padding: 2px;
+  background: #fff;
+ }
