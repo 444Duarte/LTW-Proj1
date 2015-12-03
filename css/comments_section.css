@@ -12,3 +12,7 @@
 #event_comments > h4:first-child{
 	text-align: center;
 }
+
+textarea {
+   resize: none;
+}
