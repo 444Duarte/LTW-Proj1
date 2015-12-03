@@ -16,3 +16,11 @@
 textarea {
    resize: none;
 }
+
+.user_comment > div{
+	display: inline-block;
+}
+
+.user_comment > div > .date_comment{
+	float: right;
+}

@@ -27,7 +27,10 @@
 
 			<?php foreach($eventComments as $event){ ?>
 				<div class="user_comment">
-					<h5><?php echo getUserByID($event['idUser'])['idUser']; ?></h5>
+					<div>
+						<h5><?php echo getUserByID($event['idUser'])['idUser']; ?></h5>
+						<h6 class="date_comment"><?php echo $event['dateComment']; ?></h6>
+					</div>
 					<p><?php echo $event['comment']; ?></p>
 				</div>
 			<?php } ?>
