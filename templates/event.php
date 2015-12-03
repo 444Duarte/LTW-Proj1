@@ -34,7 +34,7 @@
 		<p> <?php echo $event['description']; ?> </p>
 	</div>
 
-	<div id='cssmenu'>
+	<div id='users_event'>
 		<ul>
 			<li class='active'>
 				<a><span>Users</span></a>
