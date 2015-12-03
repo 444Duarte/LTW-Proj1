@@ -93,6 +93,7 @@ cusor:default;
   margin-right:0.5rem;
   margin-bottom:0.4rem;
   cursor:default;
+  overflow: hidden;
 }
 #users_event a {
   line-height: 1.3;
