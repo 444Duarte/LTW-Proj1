@@ -54,19 +54,19 @@ cusor:default;
 
 #description{
   width: 70%;
-        height: 70%;
-  float: left;
+  height: 70%;
   padding: 1rem;
   box-sizing: border-box;
-        font size:14px;
-        color: black;
-        background: #ffffff;
-        font-family: 'Open Sans', sans-serif;
+  font size:14px;
+  color: black;
+  background: #ffffff;
+  float: left;
+  font-family: 'Open Sans', sans-serif;
 }
 
 #description h4{
-        font-size:25px;
-        font-family: 'Open Sans', sans-serif;
+  font-size:25px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 /* Base Styles */

@@ -1,5 +1,6 @@
 <header>
 	<link rel="stylesheet" href="../css/event.css">
+	<link rel="stylesheet" href="../css/comments_section.css">
 </header>
 
 <?php

@@ -1,0 +1,14 @@
+#comments_section{
+	max-width: 100%;
+	padding: 1%;
+	float: left;
+}
+
+#event_comments{
+	margin-top: 3%; 
+	border-top: groove 2px #999999;
+}
+
+#event_comments > h4:first-child{
+	text-align: center;
+}
