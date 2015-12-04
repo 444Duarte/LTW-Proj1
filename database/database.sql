@@ -50,8 +50,44 @@ CREATE TABLE Comment(
 	idComment INTEGER PRIMARY KEY,
 	idUser INTEGER REFERENCES User(idUser),
 	idEvent INTEGER REFERENCES Event(idEvent),
+	dateComment DATE NOT NULL,
 	comment VARCHAR NOT NULL
 );
+
+/*Quando um AdminEvent é adicionado criar também um GoToEvent para esse utilizador*/
+CREATE TRIGGER adminVaiAoEvento
+AFTER INSERT ON AdminEvent
+FOR EACH ROW
+WHEN NEW.idUser NOT IN (SELECT idUser
+						FROM GoToEvent
+						WHERE idEvent = NEW.idEvent)
+BEGIN
+	INSERT INTO GoToEvent(idUser, idEvent) VALUES (NEW.idUser, NEW.idEvent);
+END;
+
+
+/*Quando um admin tenta não ir ao evento não deixa*/
+CREATE TRIGGER adminTentaNaoIrAoEvento
+BEFORE DELETE ON GoToEvent
+FOR EACH ROW
+WHEN OLD.idUser IN (SELECT idUser
+					FROM AdminEvent
+					WHERE idEvent = OLD.idEvent)
+BEGIN
+	SELECT RAISE(ABORT, "Os Admins dos eventos têm que ir ao evento");
+END;
+
+/*Quando alguém que não vai ao evento tenta fazer um comentário não deixa*/
+
+CREATE TRIGGER comentarioNaoVaiAoEvento
+BEFORE INSERT ON Comment
+FOR EACH ROW
+WHEN NEW.idUser NOT IN (SELECT idUser
+						FROM GoToEvent
+						WHERE idEvent = NEW.idEvent)
+BEGIN
+	SELECT RAISE(ABORT, "Um utilizador que não vai ao evento não pode fazer comentários");
+END;
 
 
 INSERT INTO EventType VALUES (0, 'Festa de Aniversário');
