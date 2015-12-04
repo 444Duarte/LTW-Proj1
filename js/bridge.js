@@ -42,6 +42,7 @@ $('#Reg').submit(function(ev) {
 function showForm(value) {
     if (value == 1) {
         document.getElementById("LogForm").style.display="block";
+        document.getElementById("Log").style.display="none";
     }
     else document.getElementById("LogForm").style.display="none";
 }

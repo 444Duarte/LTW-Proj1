@@ -47,15 +47,6 @@ body{
   height: auto;
 }
 
-#img2 img{
-  position: absolute;
-  padding-right: 40rem;
-  top:0%; bottom:67%; left:0%; right:25%;
-  margin: auto;
-	width: 17%; /* you can use % */
-  height: auto;
-}
-
 #about #pedro{
 
   position: absolute;
