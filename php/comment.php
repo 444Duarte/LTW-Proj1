@@ -6,7 +6,8 @@
 
 	$idUser = $_POST['user'];
 	$idEvent = $_POST['event'];
-	$comment = $_POST['comment'];
+
+	$comment = htmlentities($_POST['comment']);
 
 	makeCommentInEvent($idUser, $idEvent, $comment);
 
