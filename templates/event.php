@@ -1,5 +1,6 @@
 <header>
 	<link rel="stylesheet" href="../css/event.css">
+	<link rel="stylesheet" href="../css/comments_section.css">
 </header>
 
 <?php
@@ -34,39 +35,47 @@
 		<p> <?php echo $event['description']; ?> </p>
 	</div>
 
-	<div id='cssmenu'>
+	<div id='users_event'>
 		<ul>
-   <li class='active'><a><span>Users</span></a></li>
-   <li class='has-sub'><a><span>Going</span></a>
-      <ul>
-			<?php 
-				foreach( $usersGoing as $idUser) 
-				{
-			?>
-			<li><a href="<?php echo "?user=".$idUser['idUser'] ;?>">
-				<?php 
-					$username = getUserByID($idUser['idUser'])['user'];
-					echo $username; 
-				?>
-			</a>
+			<li class='active'>
+				<a><span>Users</span></a>
 			</li>
-			<?php } ?>
-			</ul>
+			<li class='has-sub'>
+				<a><span>Going</span></a>
+		  		<ul>
+					<?php 
+						foreach( $usersGoing as $user) 
+						{
+					?>
+					<li>
+						<a href="<?php echo "?user=".$user['idUser'] ;?>">
+						<?php 
+							$username = getUserByID($user['idUser'])['user'];
+							echo $username; 
+						?>
+						</a>
+					</li>
+					<?php } ?>
+				</ul>	
 			</li>
-		<li class='has-sub'><a><span>Invited</span></a>
-	  <ul>
-			<?php
-				foreach($invitedUsers as $idUser){
-			?>
-			<li><a href="<?php echo "?user=".$idUser['idUser'] ; ?>">
-				<?php 
-					$username = getUserByID($idUser['idUser'])['user'];
-					echo $username; 
-				?>
-			</a>
-			</li>
-			<?php } ?>
-			</ul>
-            </li>
-		</div>
+			<li class='has-sub'><a><span>Invited</span></a>
+		  		<ul>
+					<?php
+						foreach($invitedUsers as $user){
+					?>
+					<li>
+						<a href="<?php echo "?user=".$user['idUser'] ; ?>">
+							<?php 
+								$username = getUserByID($user['idUser'])['user'];
+								echo $username; 
+							?>
+						</a>
+					</li>
+					<?php } ?>
+				</ul>
+		    </li>
+		</ul>
+	</div>
+	<?php include "comments_section.php"; ?>
+	
 </div>
