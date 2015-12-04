@@ -367,4 +367,19 @@
 		return $result;
 	}
 
+	function getIdByUserPass($user, $pass) {
+		global $db;
+
+		$stmt = $db->prepare('SELECT idUser FROM User WHERE user = :user AND password = :pass');
+		$stmt->bindParam(':user', $user, PDO::PARAM_STR);
+		$stmt->bindParam(':pass', $pass, PDO::PARAM_STR);
+		
+		if (!($stmt->execute()))
+			return false;
+		else {
+			$result = $stmt->fetchAll();
+			return $result[0];
+		}
+	}
+
 ?>  

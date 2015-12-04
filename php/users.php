@@ -1,6 +1,7 @@
 <?php
 
 	include_once('../database/connect.php');
+	include_once('../database/access_db.php');
 	include_once('encriptation.php');
 
 	function compareLogin($user_given, $pass_given) {
@@ -313,12 +314,7 @@
 	}
 
 	function returnEventOfUser($idUser, $idEvent) {
-		global $db;
-		$stmt = $db->prepare('SELECT * FROM Event WHERE idEvent = :idEvent');
-		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
-		$stmt->execute();
-
-		$result = $stmt->fetchAll();
+		$result = getEventById($idEvent);
 
 		//e privado
 		if ($result[0]['private']) {
@@ -329,7 +325,10 @@
 			if ($stmt->execute()) {
 				return $result[0];
 			}
-			else return false; //o utilizador nao foi convidado
+			else if () {
+
+				return false; //o utilizador nao foi convidado
+			}
 		}
 		else return $result[0];
 	}
