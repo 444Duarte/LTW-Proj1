@@ -311,5 +311,27 @@
 
 		return true;
 	}
+
+	function returnEventOfUser($idUser, $idEvent) {
+		global $db;
+		$stmt = $db->prepare('SELECT * FROM Event WHERE idEvent = :idEvent');
+		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$result = $stmt->fetchAll();
+
+		//e privado
+		if ($result[0]['private']) {
+			$stmt = $db->prepare('SELECT * FROM InvitedTo WHERE idEvent = :idEvent AND idUser = :idUser');
+			$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+			$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+
+			if ($stmt->execute()) {
+				return $result[0];
+			}
+			else return false; //o utilizador nao foi convidado
+		}
+		else return $result[0];
+	}
 	
 ?>
