@@ -9,7 +9,7 @@
 </head>
 
 <?php
-	start_session();
+	session_start();
 	include_once 'database/connect.php';
 	include_once 'database/access_db.php';
 
