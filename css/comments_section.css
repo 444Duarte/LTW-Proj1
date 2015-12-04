@@ -1,5 +1,6 @@
 #comments_section{
-	max-width: 100%;
+	width: 100%;
+	box-sizing: border-box;
 	padding: 1%;
 	float: left;
 }
@@ -17,10 +18,25 @@ textarea {
    resize: none;
 }
 
-.user_comment > div{
+.user_comment > div > *{
 	display: inline-block;
+
+}
+
+#event_comments{
+	width: 100%;
+}
+
+.user_comment > div {
+	width: 100%
 }
 
 .user_comment > div > .date_comment{
+	margin: 0;
 	float: right;
+}
+
+.user_comment > div > .username_comment{
+	margin: 0;
+	float: left;
 }
