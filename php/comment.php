@@ -1,10 +1,11 @@
 <?php
+	session_start();
+
 	include_once '../database/connect.php';
 	include_once '../database/access_db.php';
 	
-	var_dump($_POST);
 
-	$idUser = $_POST['user'];
+	$idUser = $_SESSION['user'];
 	$idEvent = $_POST['event'];
 
 	$comment = htmlentities($_POST['comment']);
