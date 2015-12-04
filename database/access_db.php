@@ -382,4 +382,35 @@
 		}
 	}
 
+	function userCanComment($idUser){
+		global $db;
+
+		$stmt = $db->prepare('	SELECT idUser
+								FROM GoToEvent
+								WHERE idUser=:idUser
+								');
+		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$result = $stmt->fetchAll();
+		return count($result)>0;
+	}
+
+
+
+	function makeComment($idUser, $idEvent, $comment, $date){
+		global $db;
+
+		$dateComment = date("Y-m-d H:i:s", $date);
+
+		$stmt = $db->prepare('INSERT INTO Comment(idUser, idEvent, comment, dateComment) VALUES(:idUser, :idEvent, :comment, :dateComment)');
+		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_STR);
+		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_STR);
+		$stmt->bindParam(':comment', $comment, PDO::PARAM_STR);
+		$stmt->bindParam(':dateComment', $dateComment, PDO::PARAM_STR);
+		$stmt->execute();
+		$result = $stmt->fetchAll();
+
+		return $result;
+	}
 ?>  
