@@ -17,12 +17,9 @@
 			$params[$param] = $_POST[$param];
 			continue;
 		}
-	}
-	if (!(compareLogin($params['username'], $params['password']))) {
+	}if (!(compareLogin($params['username'], $params['password']))) {
 		printResponse("wrong_login");
-	}
-	else 
-	{
+	}else{
 		$_SESSION['user'] = getIdByUserPass($params['username'], $params['password']);
 		printResponse("success");
 	}

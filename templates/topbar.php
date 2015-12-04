@@ -5,7 +5,7 @@
 <div class="top-bar">
 		<button id="preferences_button" type="button"> <img src="../images/template/gear-16.png"></button>
 		<div id="pref_menu">
-			<a href="">Logout</a>
+			<a href="../php/logout.php">Logout</a>
 		</div>
 		<button id="home_button" type="button"><img src="../images/template/logo-small.png"></button>
 		<form id="searchForm" action="../search.php/">
