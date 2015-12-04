@@ -9,11 +9,12 @@
 </head>
 
 <?php
+	start_session();
 	include_once 'database/connect.php';
 	include_once 'database/access_db.php';
 
 
-	$idUser = $_GET['user'];
+	$idUser = $_SESSION['user'];
 	$searchQuery = urlencode($_GET['query']);
 
 	$searchResults = searchEvent(urldecode($searchQuery));
