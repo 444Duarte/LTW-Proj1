@@ -16,9 +16,6 @@
 	header($redirectPage); /* Redirect browser */
 	exit();
 
-
-
-
 	function makeCommentInEvent($idUser, $idEvent, $comment){
 		$dateComment = date('now');
 
