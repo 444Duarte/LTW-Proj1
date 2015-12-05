@@ -1,6 +1,6 @@
 <?php
 	//include_once('connect.php');			Retirei porque segundo o que se fez na aula, isto não devia tar aqui.
-	include_once('../php/encriptation.php');
+	include_once('php/encriptation.php');
 	class User {
 		public $idUser = "";
 		public $user = "";
