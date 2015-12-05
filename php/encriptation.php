@@ -11,7 +11,7 @@
 
 	function decryptPassword($password, $hashedPass) {
 
-		if(!function_exists('hash_equals')){ 
+		if (!(function_exists('hash_equals'))) { 
 			function hash_equals($str1, $str2) { 
 				if(strlen($str1) != strlen($str2)) {
 					return false;
@@ -27,17 +27,9 @@
 				} 
 		} 
 		
-		if (hash_equals($hashedPass, crypt($password, $hashedPass))) {
+		if (hash_equals($hashedPass, crypt($password, $hashedPass)))
 			return true;
-		}
 		else return false;
 	}
-
-	
-	
-	if(hash_equals($hashed, crypt($password, $hashed))) {
-		return true;
-	}
-	return false;
 
 ?>

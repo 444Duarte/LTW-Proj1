@@ -1,6 +1,6 @@
 <?php
 	//include_once('connect.php');			Retirei porque segundo o que se fez na aula, isto não devia tar aqui.
-	
+	include_once('../php/encriptation.php');
 	class User {
 		public $idUser = "";
 		public $user = "";
@@ -371,15 +371,16 @@
 		global $db;
 
 		$stmt = $db->prepare('SELECT idUser FROM User WHERE user = :user AND password = :pass');
+
+		$passw = encryptPassword($pass, 20);
 		$stmt->bindParam(':user', $user, PDO::PARAM_STR);
-		$stmt->bindParam(':pass', $pass, PDO::PARAM_STR);
-		
-		if (!($stmt->execute()))
+		$stmt->bindParam(':pass', $passw, PDO::PARAM_STR);
+		$stmt->execute();
+		$result = $stmt->fetchAll();
+
+		if (count($result) === 0)
 			return false;
-		else {
-			$result = $stmt->fetchAll();
-			return $result[0];
-		}
+		else return $result[0]['idUser'];
 	}
 
 	function userCanComment($idUser){

@@ -325,7 +325,7 @@
 			if ($stmt->execute()) {
 				return $result[0];
 			}
-			else if () {
+			else if (true) {
 
 				return false; //o utilizador nao foi convidado
 			}
