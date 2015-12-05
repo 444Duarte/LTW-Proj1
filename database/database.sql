@@ -5,14 +5,20 @@ DROP TABLE IF EXISTS Comment;
 DROP TABLE IF EXISTS AdminEvent;
 DROP TABLE IF EXISTS GoToEvent;
 DROP TABLE IF EXISTS InvitedTo;
+DROP TABLE IF EXISTS Profile;
 
 
 CREATE TABLE User(
-idUser INTEGER PRIMARY KEY,
-user VARCHAR NOT NULL,
-password VARCHAR NOT NULL,
-description VARCHAR NOT NULL,
-image VARCHAR NOT NULL
+	idUser INTEGER PRIMARY KEY,
+	user VARCHAR NOT NULL,
+	password VARCHAR NOT NULL
+);
+
+CREATE TABLE Profile(
+	idUser INTEGER REFERENCES User(idUser),
+	description TEXT NOT NULL,
+	image TEXT NOT NULL,
+	PRIMARY KEY (idUser)
 );
 
 CREATE TABLE Event(
@@ -92,15 +98,24 @@ BEGIN
 END;
 
 
+CREATE TRIGGER iniciaProfile
+AFTER INSERT ON User
+FOR EACH ROW
+WHEN NEW.idUser NOT IN(SELECT idUser
+						FROM Profile)
+BEGIN
+	INSERT INTO Profile(idUser, description, image) VALUES (NEW.idUser, "Este utlizador não tem nenhuma descrição!", "images/users/default.jpg");
+END;
+
 INSERT INTO EventType VALUES (0, 'Festa de Aniversário');
 INSERT INTO EventType VALUES (1, 'Corrida');
 INSERT INTO EventType VALUES (2, 'Jantar');
 INSERT INTO EventType VALUES (3, 'Copos');
 INSERT INTO EventType VALUES (4, 'Encontro');
 
-INSERT INTO User VALUES (0,'Utilizador1', '123456','Sou o Pedro','images/users/arcanjo.png');
-INSERT INTO User VALUES (1,'Utilizador2', '123456','Sou o Miguel','images/users/arcanjo.png');
-INSERT INTO User VALUES (2,'Utilizador3', '123456','Sou o Duarte','images/users/arcanjo.png');
+INSERT INTO User VALUES (0,'Utilizador1', '123456');
+INSERT INTO User VALUES (1,'Utilizador2', '123456');
+INSERT INTO User VALUES (2,'Utilizador3', '123456');
 
 INSERT INTO AdminEvent VALUES (0,0);
 INSERT INTO GoToEvent VALUES (1,0);
