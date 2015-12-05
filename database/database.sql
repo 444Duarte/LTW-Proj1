@@ -90,6 +90,25 @@ BEGIN
 END;
 
 
+/*Quando alguém Apaga um evento apaga também todos os InvitedTo, GoToEvent e AdminEvent E COMENTÁRIOS*/
+CREATE TRIGGER deleteEvent
+AFTER DELETE ON Event
+FOR EACH ROW
+BEGIN
+	DELETE FROM InvitedTo
+	WHERE idEvent = OLD.idEvent;
+
+	DELETE FROM AdminEvent
+	WHERE idEvent = OLD.idEvent;
+
+	DELETE FROM GoToEvent
+	WHERE idEvent = OLD.idEvent;
+END;
+
+
+	
+
+
 INSERT INTO EventType VALUES (0, 'Festa de Aniversário');
 INSERT INTO EventType VALUES (1, 'Corrida');
 INSERT INTO EventType VALUES (2, 'Jantar');
