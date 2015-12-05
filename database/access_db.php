@@ -1,6 +1,6 @@
 <?php
 	//include_once('connect.php');			Retirei porque segundo o que se fez na aula, isto não devia tar aqui.
-	include_once('../php/encriptation.php');
+	include_once('php/encriptation.php');
 	class User {
 		public $idUser = "";
 		public $user = "";
@@ -92,21 +92,6 @@
 		}
 
 		echo json_encode($eventsType);	
-	}
-
-	function retrieveAdminEvent() {
-		$result = startDB('SELECT * FROM AdminEvent;');
-
-		$adminEvents = array();
-		foreach( $result as $row) {			
-			$list = array();
-			$list['idUser'] = $row['idUser'];
-			$list['idEvent'] = $row['idEvent'];
-
-			array_push($adminEvents, $list);
-		}
-
-		echo json_encode($adminEvents);	
 	}
 
 	function retrieveGoToEvent() {
