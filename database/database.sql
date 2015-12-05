@@ -98,13 +98,9 @@ INSERT INTO EventType VALUES (2, 'Jantar');
 INSERT INTO EventType VALUES (3, 'Copos');
 INSERT INTO EventType VALUES (4, 'Encontro');
 
-<<<<<<< HEAD
 INSERT INTO User VALUES (0,'Utilizador1', '123456','Sou o Pedro','images/users/arcanjo.png');
-=======
-INSERT INTO User VALUES (1,'Utilizador1', '123456');
-INSERT INTO User VALUES (2,'Utilizador2', '123456');
-INSERT INTO User VALUES (3,'Utilizador3', '123456');
->>>>>>> refs/remotes/origin/master
+INSERT INTO User VALUES (1,'Utilizador2', '123456','Sou o Miguel','images/users/arcanjo.png');
+INSERT INTO User VALUES (2,'Utilizador3', '123456','Sou o Duarte','images/users/arcanjo.png');
 
 INSERT INTO AdminEvent VALUES (1,0);
 INSERT INTO GoToEvent VALUES (2,0);
