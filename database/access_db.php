@@ -306,11 +306,15 @@
 
 	function getUserAdminEvents($idUser){
 		global $db;
-		
-		$stmt = $db->prepare('SELECT idEvent
-								FROM AdminEvent
-								WHERE idUser = :idUser');
+		$currDate = date("Y-m-d", time());
+
+		$stmt = $db->prepare('SELECT Event.idEvent
+								FROM AdminEvent,Event
+								WHERE idUser = :idUser AND
+									AdminEvent.idEvent = Event.idEvent AND
+									eventDate > :currDate ');
 		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->bindParam(':currDate', $currDate, PDO::PARAM_STR);
 		$stmt->execute();
 
 		$result = $stmt->fetchAll();
@@ -320,17 +324,23 @@
 	function getUserRelatedEvents($idUser){
 		global $db;
 
+		$currDate = date("Y-m-d", time());
+
 		$stmt = $db->prepare('SELECT DISTINCT idEvent 
-								FROM (SELECT idEvent 
+								FROM (SELECT idEvent as evento_relacionado 
 										FROM GoToEvent
 										WHERE idUser = :idUser
 										UNION 
 										SELECT idEvent
 										FROM InvitedTo
-										WHERE idUser = :idUser)
-								WHERE idEvent NOT IN (SELECT idEvent FROM AdminEvent WHERE idUser = :idUser);
+										WHERE idUser = :idUser), Event
+								WHERE evento_relacionado NOT IN (SELECT idEvent FROM AdminEvent WHERE idUser = :idUser) AND
+										evento_relacionado = Event.idEvent AND
+										eventDate > :currDate
 										');
+
 		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->bindParam(':currDate', $currDate, PDO::PARAM_STR);
 		$stmt->execute();
 		
 		$result = $stmt->fetchAll();
@@ -413,5 +423,39 @@
 			return false;
 
 		return $result[0]['idUser'];
+	}
+	function userEventsOlderThanDate($idUser, $date){
+		global $db;
+		$stmt = $db->prepare('SELECT DISTINCT idEvent
+								FROM (	SELECT * 
+										FROM Event
+										WHERE idEvent IN (	SELECT idEvent
+															FROM InvitedTo
+															WHERE idUser = :idUser
+															UNION
+															SELECT idEvent
+															FROM GoToEvent
+															WHERE idUser = :idUser
+															UNION
+															SELECT idEvent
+															FROM AdminEvent
+															WHERE idUser = :idUser
+															)
+										AND	eventDate < :givenDate
+										ORDER BY eventDate DESC )
+										');
+		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->bindParam(':givenDate', $date, PDO::PARAM_STR);
+		$stmt->execute();
+		
+		$result = $stmt->fetchAll();
+		return $result;
+	}
+
+	function olderEvents($idUser){
+		global $db;
+
+		$currDate = date("Y-m-d", time());
+		return userEventsOlderThanDate($idUser, $currDate);		
 	}
 ?>  
