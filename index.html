@@ -1,65 +1,52 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>
-	LifeGest</title>
-	<meta charset='UTF-8'>
-	<script src="dist/sweetalert.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
-	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
-	<style>
-      body {
-        font-family: 'Tangerine', serif;
-        font-size: 48px;
-      }
-    </style>
-	<link rel="stylesheet" href="css/style.css">
+	<head>
+		<title>
+		LifeGest</title>
+		<meta charset='UTF-8'>
+		<script src="dist/sweetalert.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
+		<link rel="stylesheet" href="css/style.css">
+	</head>
 
-</head>
+	<body>
+		<header>
+			<div class="text">LifePlan</div>
+			<div class="subtext">We Plan your life</div>
+			<div id="img1">
+				<img src="./images/manager_2.png" alt="manager_pic">
+			</div>
+		</header>
 
-<body>
+		<div id="register">
+		  <form name ="Registo" id="Reg" style="display:none">
+		    <input type="username" name="username" placeholder="Username"/>
+		    <input type="password" name="password" placeholder="Password"/>
+		    <input type="password" name="repPassword" placeholder="Repeat Password"/>
+		    <input type="submit" value="Register"/>
+		  </form>
 
-<header>
-<div class="text">LifePlan</div>
-<div class="subtext">We Plan your life</div>
-
-
-	<div id="img1">
-		<img src="./images/manager_2.png" alt="PENIS">
-	</div>
-
-</header>
-
-
-<div id="register">
-  <form name ="Registo" id="Reg" >
-    <input type="username" name="username" placeholder="Username"/>
-    <input type="password" name="password" placeholder="Password"/>
-    <input type="password" name="repPassword" placeholder="Repeat Password"/>
-    <input type="submit" value="Register"/>
-  </form>
-</div>
+		  <form name="Login" id="LogForm">
+				<input type="username" name="username" placeholder="Username"/>
+				<input type="password" name="password" placeholder="Password"/>
+				<input type="submit" value="Login"/>
+			</form>
+		</div>
 		
-<div class="center" id="log" >
-	<form name="Login" id="LogForm" style="display:none">
-		<input type="username" name="username" placeholder="Username"/>
-		<input type="password" name="password" placeholder="Password"/>
-		<input type="submit" value="Login"/>
-	</form>
-	<button class="loginButton" onclick="showForm(1)" id="Log">Login</button>
-</div>
-<div id="about">
-<img id="pedro" src="./images/cutmypic.png" alt="PENIS">
-<img id="cc" src="./images/cc.png" alt="PENIS">
-<img id="kengas" src="./images/eu_cego.png" alt="PENIS">
+		<button class="loginButton" onclick="showForm(this)" id="Register"><p>Register</p></button>
 
-  <div id="name">Pedro</div>
-  <div id="name2">Duarte</div>
-  <div id="name3">Miguel</div>
-</div>	
-	<script src="./js/bridge.js">
-	</script>
+		<div id="about">
+			<img id="pedro" src="./images/cutmypic.png" alt="pedro_img">
+			<img id="cc" src="./images/cc.png" alt="cc_img">
+			<img id="kengas" src="./images/eu_cego.png" alt="miguel_img">
 
-
-</body>
+			<div id="name">Pedro</div>
+			<div id="name2">Duarte</div>
+			<div id="name3">Miguel</div>
+		</div>
+		
+		<script src="./js/bridge.js"></script>
+	</body>
+</html>
