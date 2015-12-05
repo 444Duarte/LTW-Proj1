@@ -94,21 +94,6 @@
 		echo json_encode($eventsType);	
 	}
 
-	function retrieveAdminEvent() {
-		$result = startDB('SELECT * FROM AdminEvent;');
-
-		$adminEvents = array();
-		foreach( $result as $row) {			
-			$list = array();
-			$list['idUser'] = $row['idUser'];
-			$list['idEvent'] = $row['idEvent'];
-
-			array_push($adminEvents, $list);
-		}
-
-		echo json_encode($adminEvents);	
-	}
-
 	function retrieveGoToEvent() {
 		$result = startDB('SELECT * FROM GoToEvent;');
 
