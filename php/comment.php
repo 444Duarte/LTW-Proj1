@@ -17,7 +17,7 @@
 	exit();
 
 	function makeCommentInEvent($idUser, $idEvent, $comment){
-		$dateComment = date('now');
+		$dateComment = time();
 
 		$result = makeComment($idUser, $idEvent, $comment, $dateComment);
 
