@@ -1,0 +1,44 @@
+@font-face {
+    font-family: WaltDisney;
+    src: url('../fonts/waltograph42.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+#tit{
+  font-family: Lucida;
+  font-size: 5rem;
+  text-align: center;
+  padding-top: 20%;
+}
+
+body {
+  background: url("../images/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.wrapper {
+    display: inline-block;
+    height: 10rem;
+    padding-top: 5%;
+    width: 10rem;
+    text-align: center;
+}
+
+.wrapper div {
+  font-family: WaltDisney;
+  color: grey;
+  font-size: 2rem;
+}
+
+.wrapper img {
+    height: 100%;
+    width: auto;
+}
+
+.images {
+    text-align: center;
+}
