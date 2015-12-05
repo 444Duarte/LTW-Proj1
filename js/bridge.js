@@ -109,3 +109,8 @@ $('#searchForm').submit(function(ev) {
             return false;
         });
 });
+
+$('#criar').submit(function(ev) {
+    ev.preventDefault();
+
+});
