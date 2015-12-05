@@ -12,9 +12,9 @@
 	include_once 'database/connect.php';
 	include_once 'database/access_db.php';
 
-	$idUser = 0;
+	$idUser = 1;
 
-	$olderEvents = array();
+	$olderEvents = olderEvents($idUser);
 ?>
 
 </head>

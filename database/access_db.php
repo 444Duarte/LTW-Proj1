@@ -398,4 +398,39 @@
 
 		return $result;
 	}
+
+	function userEventsOlderThanDate($idUser, $date){
+		global $db;
+		$stmt = $db->prepare('SELECT DISTINCT idEvent
+								FROM (	SELECT * 
+										FROM Event
+										WHERE idEvent IN (	SELECT idEvent
+															FROM InvitedTo
+															WHERE idUser = :idUser
+															UNION
+															SELECT idEvent
+															FROM GoToEvent
+															WHERE idUser = :idUser
+															UNION
+															SELECT idEvent
+															FROM AdminEvent
+															WHERE idUser = :idUser
+															)
+										AND	eventDate < :givenDate
+										ORDER BY eventDate DESC )
+										');
+		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->bindParam(':givenDate', $date, PDO::PARAM_STR);
+		$stmt->execute();
+		
+		$result = $stmt->fetchAll();
+		return $result;
+	}
+
+	function olderEvents($idUser){
+		global $db;
+
+		$currDate = date("Y-m-d", time());
+		return userEventsOlderThanDate($idUser, $currDate);		
+	}
 ?>  
