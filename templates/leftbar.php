@@ -15,7 +15,7 @@
 		<ul>
 			<?php foreach($myEvents as $event){?>
 			
-			 <li><a href="mainpage.php/?event=<?php echo $event['idEvent'];?>"><?php echo getEventByID($event['idEvent'])['title'];?></a></li>
+			 <li><a href="mainpage.php?event=<?php echo $event['idEvent'];?>"><?php echo getEventByID($event['idEvent'])['title'];?></a></li>
 			<?php } ?>
 			</ul>
        </li>
@@ -23,7 +23,7 @@
       <ul>
 			<?php foreach($myInvitedEvents as $event){?>
 			
-			<li><a href="<?php echo $event['idEvent'];?>"><?php echo getEventByID($event['idEvent'])['title'];?></a></li>
+			<li><a href="mainpage.php?event=<?php echo $event['idEvent'];?>"><?php echo getEventByID($event['idEvent'])['title'];?></a></li>
 	
 			<?php } ?>
 			</ul>
