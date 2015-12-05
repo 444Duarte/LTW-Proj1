@@ -1,6 +1,6 @@
 <header>
-	<link rel="stylesheet" href="../css/event.css">
-	<link rel="stylesheet" href="../css/comments_section.css">
+	<link rel="stylesheet" href="css/event.css">
+	<link rel="stylesheet" href="css/comments_section.css">
 </header>
 
 <?php
@@ -12,7 +12,7 @@
  ?>
 
 <div class="display-event">
-	<div id="header" style="background-image:<?php $image_url = "url('../" .$event['image']. "')" ; echo $image_url; ?>" >
+	<div id="header" style="background-image:<?php $image_url = "url('" .$event['image']. "')" ; echo $image_url; ?>" >
 		<div>
 			<h1 id="name"><?php echo $event['title'];?></h1>
 			<br>

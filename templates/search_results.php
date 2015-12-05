@@ -1,5 +1,5 @@
 <head>
-	<link rel="stylesheet" href="../css/search_results.css">
+	<link rel="stylesheet" href="css/search_results.css">
 </head>
 
 

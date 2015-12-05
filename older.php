@@ -5,7 +5,7 @@
 	<meta charset='UTF-8'>
 	<script src="dist/sweetalert.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
-	<link rel="stylesheet" href="../css/mainpage.css">
+	<link rel="stylesheet" href="css/mainpage.css">
 
 <?php
 	session_start();
@@ -25,7 +25,7 @@
 	?>
 
 		<head>
-		<link rel="stylesheet" href="../css/older.css">
+		<link rel="stylesheet" href="css/older.css">
 	</head>
 
 	<div id="older_events">
@@ -39,7 +39,7 @@
 			<h5>No older events.</h5>
 		<?php 
 			}else{
-				include '/templates/multiple_events.php'; 
+				include 'templates/multiple_events.php'; 
 			}
 		?>
 	</div>
