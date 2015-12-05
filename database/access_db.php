@@ -414,4 +414,19 @@
 
 		return $result;
 	}
+
+	function retrieveAdminEvent($idEvent) {
+		global $db;
+
+		$stmt = $db->prepare('SELECT idUser FROM AdminEvent WHERE idEvent = :idEvent');
+		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$result = $stmt->fetchAll();
+
+		if (count($result) === 0)
+			return false;
+
+		return $result[0]['idUser'];
+	}
 ?>  
