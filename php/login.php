@@ -1,5 +1,8 @@
 <?php
+	session_start();
+
 	include_once('../database/connect.php');
+	include_once('../database/access_db.php');
 	include_once('users.php');
 
 	function printResponse($value) {
@@ -14,9 +17,10 @@
 			$params[$param] = $_POST[$param];
 			continue;
 		}
-	}
-	if (!(compareLogin($params['username'], $params['password']))) {
+	}if (!(compareLogin($params['username'], $params['password']))) {
 		printResponse("wrong_login");
+	}else{
+		$_SESSION['user'] = getIdByUserPass($params['username'], $params['password']);
+		printResponse("success");
 	}
-	else printResponse("success");
 ?>

@@ -1,6 +1,6 @@
 <?php
 	//include_once('connect.php');			Retirei porque segundo o que se fez na aula, isto não devia tar aqui.
-	
+
 	class User {
 		public $idUser = "";
 		public $user = "";
@@ -92,21 +92,6 @@
 		}
 
 		echo json_encode($eventsType);	
-	}
-
-	function retrieveAdminEvent() {
-		$result = startDB('SELECT * FROM AdminEvent;');
-
-		$adminEvents = array();
-		foreach( $result as $row) {			
-			$list = array();
-			$list['idUser'] = $row['idUser'];
-			$list['idEvent'] = $row['idEvent'];
-
-			array_push($adminEvents, $list);
-		}
-
-		echo json_encode($adminEvents);	
 	}
 
 	function retrieveGoToEvent() {
@@ -377,6 +362,22 @@
 		return $result;
 	}
 
+	function getIdByUserPass($user, $pass) {
+		global $db;
+
+		$stmt = $db->prepare('SELECT idUser FROM User WHERE user = :user AND password = :pass');
+
+		$passw = encryptPassword($pass, 20);
+		$stmt->bindParam(':user', $user, PDO::PARAM_STR);
+		$stmt->bindParam(':pass', $passw, PDO::PARAM_STR);
+		$stmt->execute();
+		$result = $stmt->fetchAll();
+
+		if (count($result) === 0)
+			return false;
+		else return $result[0]['idUser'];
+	}
+
 	function userCanComment($idUser){
 		global $db;
 
@@ -409,6 +410,20 @@
 		return $result;
 	}
 
+	function retrieveAdminEvent($idEvent) {
+		global $db;
+
+		$stmt = $db->prepare('SELECT idUser FROM AdminEvent WHERE idEvent = :idEvent');
+		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$result = $stmt->fetchAll();
+
+		if (count($result) === 0)
+			return false;
+
+		return $result[0]['idUser'];
+	}
 	function userEventsOlderThanDate($idUser, $date){
 		global $db;
 		$stmt = $db->prepare('SELECT DISTINCT idEvent

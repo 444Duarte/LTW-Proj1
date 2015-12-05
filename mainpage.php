@@ -8,10 +8,11 @@
 	<link rel="stylesheet" href="css/mainpage.css">
 
 <?php
+	session_start();
 	include_once 'database/connect.php';
 	include_once 'database/access_db.php';
 
-	$idUser = $_GET['user'];
+	$idUser = $_SESSION['user'];
 	$idEvent = $_GET['event'];
 
 ?>
