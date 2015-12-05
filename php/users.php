@@ -313,6 +313,7 @@
 	}
 
 	function returnEventOfUser($idUser, $idEvent) {
+		global $db;
 		$result = getEventById($idEvent);
 
 		//e privado
@@ -320,14 +321,13 @@
 			$stmt = $db->prepare('SELECT * FROM InvitedTo WHERE idEvent = :idEvent AND idUser = :idUser');
 			$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
 			$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+			$stmt->execute();
+			$res = $stmt->fetchAll();
 
-			if ($stmt->execute()) {
+			if (count($res) > 0)
 				return $result[0];
-			}
-			else if (true) {
 
-				return false; //o utilizador nao foi convidado
-			}
+			return false;
 		}
 		else return $result[0];
 	}
