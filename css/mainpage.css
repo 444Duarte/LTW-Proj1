@@ -9,3 +9,9 @@ html,body{
 	background-color: #eeeeee;
 }
 
+body > div{
+	margin: 0.5rem;
+	background-color: #dddddd;
+    border: groove 1px #eeeeee;
+    overflow: hidden;
+}

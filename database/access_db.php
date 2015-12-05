@@ -1,6 +1,6 @@
 <?php
 	//include_once('connect.php');			Retirei porque segundo o que se fez na aula, isto não devia tar aqui.
-	
+
 	class User {
 		public $idUser = "";
 		public $user = "";
@@ -92,21 +92,6 @@
 		}
 
 		echo json_encode($eventsType);	
-	}
-
-	function retrieveAdminEvent() {
-		$result = startDB('SELECT * FROM AdminEvent;');
-
-		$adminEvents = array();
-		foreach( $result as $row) {			
-			$list = array();
-			$list['idUser'] = $row['idUser'];
-			$list['idEvent'] = $row['idEvent'];
-
-			array_push($adminEvents, $list);
-		}
-
-		echo json_encode($adminEvents);	
 	}
 
 	function retrieveGoToEvent() {
@@ -321,11 +306,15 @@
 
 	function getUserAdminEvents($idUser){
 		global $db;
-		
-		$stmt = $db->prepare('SELECT idEvent
-								FROM AdminEvent
-								WHERE idUser = :idUser');
+		$currDate = date("Y-m-d", time());
+
+		$stmt = $db->prepare('SELECT Event.idEvent
+								FROM AdminEvent,Event
+								WHERE idUser = :idUser AND
+									AdminEvent.idEvent = Event.idEvent AND
+									eventDate > :currDate ');
 		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->bindParam(':currDate', $currDate, PDO::PARAM_STR);
 		$stmt->execute();
 
 		$result = $stmt->fetchAll();
@@ -335,17 +324,23 @@
 	function getUserRelatedEvents($idUser){
 		global $db;
 
+		$currDate = date("Y-m-d", time());
+
 		$stmt = $db->prepare('SELECT DISTINCT idEvent 
-								FROM (SELECT idEvent 
+								FROM (SELECT idEvent as evento_relacionado 
 										FROM GoToEvent
 										WHERE idUser = :idUser
 										UNION 
 										SELECT idEvent
 										FROM InvitedTo
-										WHERE idUser = :idUser)
-								WHERE idEvent NOT IN (SELECT idEvent FROM AdminEvent WHERE idUser = :idUser);
+										WHERE idUser = :idUser), Event
+								WHERE evento_relacionado NOT IN (SELECT idEvent FROM AdminEvent WHERE idUser = :idUser) AND
+										evento_relacionado = Event.idEvent AND
+										eventDate > :currDate
 										');
+
 		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->bindParam(':currDate', $currDate, PDO::PARAM_STR);
 		$stmt->execute();
 		
 		$result = $stmt->fetchAll();
@@ -365,6 +360,22 @@
 
 		$result = $stmt->fetchAll();
 		return $result;
+	}
+
+	function getIdByUserPass($user, $pass) {
+		global $db;
+
+		$stmt = $db->prepare('SELECT idUser FROM User WHERE user = :user AND password = :pass');
+
+		$passw = encryptPassword($pass, 20);
+		$stmt->bindParam(':user', $user, PDO::PARAM_STR);
+		$stmt->bindParam(':pass', $passw, PDO::PARAM_STR);
+		$stmt->execute();
+		$result = $stmt->fetchAll();
+
+		if (count($result) === 0)
+			return false;
+		else return $result[0]['idUser'];
 	}
 
 	function userCanComment($idUser){
@@ -397,5 +408,54 @@
 		$result = $stmt->fetchAll();
 
 		return $result;
+	}
+
+	function retrieveAdminEvent($idEvent) {
+		global $db;
+
+		$stmt = $db->prepare('SELECT idUser FROM AdminEvent WHERE idEvent = :idEvent');
+		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$result = $stmt->fetchAll();
+
+		if (count($result) === 0)
+			return false;
+
+		return $result[0]['idUser'];
+	}
+	function userEventsOlderThanDate($idUser, $date){
+		global $db;
+		$stmt = $db->prepare('SELECT DISTINCT idEvent
+								FROM (	SELECT * 
+										FROM Event
+										WHERE idEvent IN (	SELECT idEvent
+															FROM InvitedTo
+															WHERE idUser = :idUser
+															UNION
+															SELECT idEvent
+															FROM GoToEvent
+															WHERE idUser = :idUser
+															UNION
+															SELECT idEvent
+															FROM AdminEvent
+															WHERE idUser = :idUser
+															)
+										AND	eventDate < :givenDate
+										ORDER BY eventDate DESC )
+										');
+		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->bindParam(':givenDate', $date, PDO::PARAM_STR);
+		$stmt->execute();
+		
+		$result = $stmt->fetchAll();
+		return $result;
+	}
+
+	function olderEvents($idUser){
+		global $db;
+
+		$currDate = date("Y-m-d", time());
+		return userEventsOlderThanDate($idUser, $currDate);		
 	}
 ?>  
