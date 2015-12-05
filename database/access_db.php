@@ -414,6 +414,7 @@
 		return $result;
 	}
 
+
 	function retrieveAdminEvent($idEvent) {
 		global $db;
 
@@ -461,5 +462,19 @@
 
 		$currDate = date("Y-m-d", time());
 		return userEventsOlderThanDate($idUser, $currDate);		
+	}
+	
+	function getUserProfileByID($idUser){
+		global $db;
+
+		$stmt = $db->prepare('SELECT *
+								FROM Profile
+								WHERE idUser = :idUser
+								');
+		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->execute();
+		$result = $stmt->fetchAll();
+		
+		return $result[0];
 	}
 ?>  

@@ -23,7 +23,6 @@
 	
 		include 'templates/topbar.php';
 		include 'templates/leftbar.php';
-		
 		include 'templates/event.php';  
 	?>
 </body>
