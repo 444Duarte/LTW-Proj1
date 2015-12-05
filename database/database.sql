@@ -10,7 +10,9 @@ DROP TABLE IF EXISTS InvitedTo;
 CREATE TABLE User(
 idUser INTEGER PRIMARY KEY,
 user VARCHAR NOT NULL,
-password VARCHAR NOT NULL
+password VARCHAR NOT NULL,
+description VARCHAR NOT NULL,
+image VARCHAR NOT NULL
 );
 
 CREATE TABLE Event(
@@ -60,9 +62,7 @@ INSERT INTO EventType VALUES (2, 'Jantar');
 INSERT INTO EventType VALUES (3, 'Copos');
 INSERT INTO EventType VALUES (4, 'Encontro');
 
-INSERT INTO User VALUES (0,'Utilizador1', '123456');
-INSERT INTO User VALUES (1,'Utilizador2', '123456');
-INSERT INTO User VALUES (2,'Utilizador3', '123456');
+INSERT INTO User VALUES (0,'Utilizador1', '123456','Sou o Pedro','images/users/arcanjo.png');
 
 INSERT INTO AdminEvent VALUES (0,0);
 INSERT INTO GoToEvent VALUES (0,0);

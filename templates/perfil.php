@@ -14,11 +14,11 @@
   <div id="tela">
   <h1>User Profile</h1>
     <div id="conteudo">
-      <div id="userphoto"><img src="../images/avatar.png" alt="default avatar"></div>
+      <div id="userphoto"> <img src ="<?php $image_url = "../" .$user['image']. "" ; echo $image_url; ?>"/> </div>
       <h2><?php echo $user['user']; ?></h2>
       
       <section id="bio">
-        <p>Ola sou o Pedro venho do Porto tenho 20 anos sou estudante da FEUP viva viva viva</p>
+        <p><?php echo $user['description']; ?></p>
     </section>
       
     </div>

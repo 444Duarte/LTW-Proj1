@@ -5,6 +5,8 @@
 		public $idUser = "";
 		public $user = "";
 		public $password = "";
+		public $description= "";
+		public $imagem = "";
 	}
 
 	class Event {
@@ -53,6 +55,8 @@
 			$list[' '] = $row['idUser'];
 			$list['user'] = $row['user'];
 			$list['password'] = $row['password'];
+			$list['description'] = $row['description'];
+			$list['imagem'] = $row['imagem'];
 
 			array_push($users, $list);
 		}
