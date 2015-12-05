@@ -107,17 +107,36 @@ BEGIN
 	INSERT INTO Profile(idUser, description, image) VALUES (NEW.idUser, "Este utlizador não tem nenhuma descrição!", "images/users/default.jpg");
 END;
 
+/*Quando alguém Apaga um evento apaga também todos os InvitedTo, GoToEvent e AdminEvent E COMENTÁRIOS*/
+CREATE TRIGGER deleteEvent
+AFTER DELETE ON Event
+FOR EACH ROW
+BEGIN
+	DELETE FROM InvitedTo
+	WHERE idEvent = OLD.idEvent;
+
+	DELETE FROM AdminEvent
+	WHERE idEvent = OLD.idEvent;
+
+	DELETE FROM GoToEvent
+	WHERE idEvent = OLD.idEvent;
+END;
+
+
+	
+
+
 INSERT INTO EventType VALUES (0, 'Festa de Aniversário');
 INSERT INTO EventType VALUES (1, 'Corrida');
 INSERT INTO EventType VALUES (2, 'Jantar');
 INSERT INTO EventType VALUES (3, 'Copos');
 INSERT INTO EventType VALUES (4, 'Encontro');
 
-INSERT INTO User VALUES (0,'Utilizador1', '123456');
-INSERT INTO User VALUES (1,'Utilizador2', '123456');
-INSERT INTO User VALUES (2,'Utilizador3', '123456');
+INSERT INTO User VALUES (1,'Utilizador1', '123456');
+INSERT INTO User VALUES (2,'Utilizador2', '123456');
+INSERT INTO User VALUES (3,'Utilizador3', '123456');
 
-INSERT INTO AdminEvent VALUES (0,0);
-INSERT INTO GoToEvent VALUES (1,0);
-INSERT INTO InvitedTo VALUES (2,0);
+INSERT INTO AdminEvent VALUES (1,0);
+INSERT INTO GoToEvent VALUES (2,0);
+INSERT INTO InvitedTo VALUES (3,0);
 INSERT INTO Event VALUES (0,'Evento Teste', '2015-12-03', 'Este evento é apenas para teste. Isto é a descrição do evento', 'images/events/1.jpg', 0, "FALSE");

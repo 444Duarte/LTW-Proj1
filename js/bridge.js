@@ -25,10 +25,10 @@ $('#Reg').submit(function(ev) {
                 var response = data['register'];
                 switch(response) {
                     case 'user_exists':
-                        swal("Register failed.", "That username already exists.")
+                        swal("Register failed.", "That username already exists.");
                         break;
                     case 'success':
-                        swal("Register successfull.", "Success.")
+                        swal("Register successfull.", "Success.");
                         break;
                     default:
                         //displayError("Error while processing the login...");
@@ -42,6 +42,7 @@ $('#Reg').submit(function(ev) {
 function showForm(value) {
     if (value == 1) {
         document.getElementById("LogForm").style.display="block";
+        document.getElementById("Log").style.display="none";
     }
     else document.getElementById("LogForm").style.display="none";
 }
@@ -70,7 +71,8 @@ $("#LogForm").submit(function(ev){
                     swal("Login failed, the username doesn't exist.", "Try again.");
                     break;
                 case 'success':
-                    swal("Login successfull.", "Success.")
+                    swal("Login successfull.", "Success.");
+                    window.location.href="mainpage.php?event=0";
                     break;
                 default:
                     //displayError("Error while processing the login...");

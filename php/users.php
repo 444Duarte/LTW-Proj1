@@ -1,6 +1,7 @@
 <?php
 
 	include_once('../database/connect.php');
+	include_once('../database/access_db.php');
 	include_once('encriptation.php');
 
 	function compareLogin($user_given, $pass_given) {
@@ -41,15 +42,14 @@
 		return true;
 	}
 
-	function editPassword($user_given, $pass_given, $new_pass) {
+	function editPassword($idUser, $pass_given, $new_pass) {
 		if ($pass_given === $new_pass) {
-			echo 'The passwords are equal.\n';
 			return false;
 		}
 
 		global $db;
-		$stmt = $db->prepare('SELECT password FROM User WHERE user = :user_given');
-		$stmt->bindParam(':user_given', $user_given, PDO::PARAM_STR);
+		$stmt = $db->prepare('SELECT password FROM User WHERE idUser = :idUser');
+		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_STR);
 		$stmt->execute();
 
 		$result = $stmt->fetchAll();
@@ -64,8 +64,8 @@
 
 		$passEnc = encryptPassword($new_pass, 20);
 
-		$stmt = $db->prepare('UPDATE User SET password = :new_pass WHERE user = :user_given');
-		$stmt->bindParam(':user_given', $user_given, PDO::PARAM_STR);
+		$stmt = $db->prepare('UPDATE User SET password = :new_pass WHERE idUser = :idUser');
+		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_STR);
 		$stmt->bindParam(':new_pass', $passEnc, PDO::PARAM_STR);
 		$stmt->execute();
 
@@ -310,6 +310,26 @@
 		}
 
 		return true;
+	}
+
+	function returnEventOfUser($idUser, $idEvent) {
+		global $db;
+		$result = getEventById($idEvent);
+
+		//e privado
+		if ($result[0]['private']) {
+			$stmt = $db->prepare('SELECT * FROM InvitedTo WHERE idEvent = :idEvent AND idUser = :idUser');
+			$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+			$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+			$stmt->execute();
+			$res = $stmt->fetchAll();
+
+			if (count($res) > 0)
+				return $result[0];
+
+			return false;
+		}
+		else return $result[0];
 	}
 	
 ?>
