@@ -102,7 +102,7 @@ INSERT INTO User VALUES (0,'Utilizador1', '123456','Sou o Pedro','images/users/a
 INSERT INTO User VALUES (1,'Utilizador2', '123456','Sou o Miguel','images/users/arcanjo.png');
 INSERT INTO User VALUES (2,'Utilizador3', '123456','Sou o Duarte','images/users/arcanjo.png');
 
-INSERT INTO AdminEvent VALUES (1,0);
-INSERT INTO GoToEvent VALUES (2,0);
-INSERT INTO InvitedTo VALUES (3,0);
+INSERT INTO AdminEvent VALUES (0,0);
+INSERT INTO GoToEvent VALUES (1,0);
+INSERT INTO InvitedTo VALUES (2,0);
 INSERT INTO Event VALUES (0,'Evento Teste', '2015-12-03', 'Este evento é apenas para teste. Isto é a descrição do evento', 'images/events/1.jpg', 0, "FALSE");
