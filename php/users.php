@@ -74,7 +74,7 @@
 
 	function createEvent($idUser, $titleEvent, $date, $description, $img, $type, $private) {
 
-		$idEventType = getidEventType($type)[0]['idEventType'];
+		$idEventType = $type;
 
 		insertIntoEvent($titleEvent, $date, $description, $img, $type, $private, $idEventType);
 
@@ -130,6 +130,8 @@
 		$stmt->bindParam(':private', $private, PDO::PARAM_BOOL);
 		$stmt->bindParam(':idEventType', $idEventType, PDO::PARAM_INT);
 		$stmt->execute();
+
+		$result= $stmt->fetchAll();
 
 		return true;
 	}

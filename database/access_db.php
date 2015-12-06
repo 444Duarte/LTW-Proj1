@@ -438,5 +438,13 @@
 		return false;
 	}
 
-
+	function getLastEvent(){
+		global $db;
+		$stmt = $db->prepare('SELECT MAX(idEvent)
+								FROM Event
+								');
+		$stmt->execute();
+		$result = $stmt->fetchAll();
+		return $result[0][0];
+	}
 ?>  
