@@ -313,14 +313,16 @@
 		return false;
 	}
 
-	function userCanComment($idUser){
+	function userCanComment($idUser, $idEvent){
 		global $db;
 
 		$stmt = $db->prepare('	SELECT idUser
 								FROM GoToEvent
-								WHERE idUser=:idUser
+								WHERE idUser=:idUser AND
+									idEvent = :idEvent
 								');
 		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
 		$stmt->execute();
 
 		$result = $stmt->fetchAll();
