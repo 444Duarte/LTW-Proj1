@@ -3,6 +3,7 @@
 	background-color: #0066CC;
 	padding: 0.1rem 0.25rem;
 	vertical-align: middle;
+	border: 0;
 	border-bottom: groove 1px #eeeeee;
 	margin: 0;
 }
@@ -84,7 +85,7 @@
 
 #home_button, #create_event_button{
 	background-color: transparent;
-	margin: 0.4rem 0.2rem;
+	margin: 0.4rem 0.4rem;
 	outline: none;
 	border: none;
 }
