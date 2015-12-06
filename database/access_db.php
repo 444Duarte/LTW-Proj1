@@ -202,22 +202,35 @@
 		$stmt->execute();
 	};
 
+	function inviteToEvent($idUser, $idEvent){
+		global $db;
+		$stmt = $db->prepare('INSERT INTO InvitedTo(idUser,idEvent) VALUES (:idUser, :idEvent)');
+		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->execute();
+	}
+
 	function setUserGoesToEvent($idUser, $idEvent, $state){
 		global $db;
 		if(getUserByID($idUser)==FALSE)
 			return FALSE;
-		if(retrieveEventByID($idEvent) == FALSE)
+		if(getEventByID($idEvent) == FALSE)
 			return FALSE;
-
+		
 		if($state){
 			if(getUserGoesToEvent($idUser, $idEvent)){
 				return FALSE;
 			}
-			
+			if(!userIsInvited($idUser, $idEvent))
+				inviteToEvent($idUser, $idEvent);
+
 			createUserToEvent($idUser, $idEvent);
 		}else{
-			if(!getUserGoesToEvent($idUser, $idEvent))
+			if(!getUserGoesToEvent($idUser, $idEvent) && !userIsInvited($idUser, $idEvent))
 				return FALSE;
+			if(!userIsInvited($idUser, $idEvent))
+				inviteToEvent($idUser, $idEvent);
+			
 			deleteUserToEvent($idUser, $idEvent);			
 		}
 
@@ -405,7 +418,7 @@
 
 	function userIsInvited($idUser, $idEvent){
 		global $db;
-		
+
 		$stmt = $db->prepare('SELECT *
 								FROM InvitedTo
 								WHERE idUser = :idUser AND

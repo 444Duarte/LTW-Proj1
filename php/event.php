@@ -11,7 +11,7 @@
 	$request = $_POST['request'];
 
 	switch ($request) {
-		case 'request':
+		case 'get':
 			if(getUserGoesToEvent($idUser, $idEvent)){
 				printResponse("going", 'event');
 			}elseif (userIsInvited($idUser, $idEvent)) {
@@ -23,8 +23,20 @@
 
 		case 'attend':
 			$state = $_POST['state'];
-
-			//TODO FAZER O UTILIZADOR IR PARA O EVENTO
+			switch($state){
+				case 'true':
+					$state = true;
+					break;
+				case 'false':
+					$state = false;
+					break;
+				default:
+					printResponse(false, 'event');
+					break;
+			}
+			$result = setUserGoesToEvent($idUser, $idEvent, $state);
+			printResponse($result, "attend");
+			break;
 		default:
 			printResponse(false, 'event');
 			break;

@@ -14,7 +14,6 @@ function getUrlParameter(sParam) {
 };
 	
 function goingStatus(){
-
 	/*var url = 'php/event.php';
 	var form = $('<form action="' + url + '" method="post">' +
 	  '<input type="text" name="event" value="' + getUrlParameter('event') + '" />' +
@@ -22,12 +21,11 @@ function goingStatus(){
 	  '</form>');
 	$('body').append(form);
 	form.submit();*/
-
 	$.post(
             'php/event.php',
             {
                 'event' : getUrlParameter('event'),
-                'request' : 'request'
+                'request' : 'get'
             },
             function(data) {
                 var response = data['event'];
@@ -51,7 +49,39 @@ function goingStatus(){
             });
 }
 
+$('#option select').change(function(){
+    opt=this.value;
+    switch(opt){
+        case 'going':
+            opt = true;
+            break;
+        case 'not':
+            opt = false;
+            break;
+        default:
+            swal("Error 1 changing option!", "Please reload and try again.", "error");
+            break;
+    }
+    $.post(
+            'php/event.php',
+            {
+                'event' : getUrlParameter('event'),
+                'request' : 'attend',
+                'state' : opt
+            },
+            function(data) {
+                var response = data['attend'];
+                if(!response)
+                    swal("Error 2 changing option!", "Please reload and try again.", "error");
+                else
+                    swal("Participation changed!");
 
+        }).fail(function(error) {
+                $('body').append(error.responseText);
+                swal("Error 3 changing option!", "Please reload and try again.", "error");
+                return false;
+            });
+})
 
 $(document).ready(function(){
 	goingStatus();
