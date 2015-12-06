@@ -39,6 +39,6 @@
 
   
   createEvent($idUser, $title, $date, $description, $img, $type, $privacy);
-  var_dump(getLastEvent());
+  getLastEvent();
   header('Location: ../mainpage.php?event=' . getLastEvent());
 ?>

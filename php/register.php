@@ -10,7 +10,7 @@
 			continue;
 		}
 	}
-	if (!(register($params['username'], $params['password']))) {
+	if (!(register(htmlentities($params['username']), $params['password']))) {
 		printResponse("user_exists", "register");
 	}
 	else printResponse("success", "register");

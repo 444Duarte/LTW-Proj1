@@ -190,7 +190,7 @@
 		$stmt = $db->prepare('INSERT INTO GoToEvent(idUser,idEvent) VALUES (:idUser, :idEvent)');
 		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
 		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
-		$stmt->execute();
+		return $stmt->execute();
 	};
 
 	function deleteUserToEvent($idUser, $idEvent){
@@ -199,7 +199,7 @@
 								WHERE  idUser = :idUser AND idEvent = :idEvent');
 		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
 		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
-		$stmt->execute();
+		return $stmt->execute();
 	};
 
 	function inviteToEvent($idUser, $idEvent){
@@ -224,17 +224,17 @@
 			if(!userIsInvited($idUser, $idEvent))
 				inviteToEvent($idUser, $idEvent);
 
-			createUserToEvent($idUser, $idEvent);
+			$result = createUserToEvent($idUser, $idEvent);
 		}else{
 			if(!getUserGoesToEvent($idUser, $idEvent) && userIsInvited($idUser, $idEvent))
 				return FALSE;
 			if(!userIsInvited($idUser, $idEvent))
 				inviteToEvent($idUser, $idEvent);
 			
-			deleteUserToEvent($idUser, $idEvent);			
+			$result = deleteUserToEvent($idUser, $idEvent);			
 		}
-
-		return TRUE;
+		
+		return $result;
 	}
 
 	function getUserAdminEvents($idUser){
