@@ -10,16 +10,13 @@
 
   if ( ($_FILES["image"]["type"] == "image/gif") || ($_FILES["image"]["type"] == "image/jpeg") || ($_FILES["image"]["type"] == "image/png")  || ($_FILES["image"]["type"] == "image/pjpeg")) {
     if (file_exists($_FILES["image"]["name"])) {
-      echo 'File name exists';
+      echo json_encode('File name exists');
       return false;
     }
-    else {
-      move_uploaded_file($_FILES["image"]["tmp_name"],"../images/events/".$filename);
-      //echo 'Upload successfull';
-    }
+    else move_uploaded_file($_FILES["image"]["tmp_name"],"../images/events/".$filename);
   }
   else {
-    echo 'Invalid file';
+    echo json_encode('Invalid file');
     return false;
   }
 
