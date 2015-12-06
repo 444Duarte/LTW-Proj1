@@ -402,4 +402,25 @@
 
 		return $result;
 	}
+
+	function userIsInvited($idUser, $idEvent){
+		global $db;
+		
+		$stmt = $db->prepare('SELECT *
+								FROM InvitedTo
+								WHERE idUser = :idUser AND
+										idEvent = :idEvent
+								');
+		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+		$stmt->execute();
+		$result = $stmt->fetchAll();
+
+		if(count($result) > 0)
+			return true;
+
+		return false;
+	}
+
+
 ?>  

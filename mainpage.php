@@ -4,6 +4,7 @@
 	<title>Event Manager</title>
 	<meta charset='UTF-8'>
 	<script src="dist/sweetalert.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
 	<link rel="stylesheet" href="css/mainpage.css">
 
@@ -30,5 +31,6 @@
 		include 'templates/leftbar.php';
 		include 'templates/event.php';  
 	?>
+	<script src="js/event.js"></script>
 </body>
 </html>

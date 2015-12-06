@@ -1,12 +1,7 @@
 <?php
 	include_once('../database/connect.php');
 	include_once('users.php');
-
-	function printResponse($value) {
-	    $data = ['register' => $value];
-	    header('Content-Type: application/json');
-	    echo json_encode($data);
-	}
+	include_once 'json_response.php';
 
 	$params = [ 'username', 'password' ];
 	foreach ($params as $param) {
@@ -16,7 +11,7 @@
 		}
 	}
 	if (!(register($params['username'], $params['password']))) {
-		printResponse("user_exists");
+		printResponse("user_exists", "register");
 	}
-	else printResponse("success");
+	else printResponse("success", "register");
 ?>

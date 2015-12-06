@@ -24,7 +24,6 @@
 				<option disabled selected> -- select an option -- </option>
 				<option value="going">Going</option>
 				<option value="not">Not Going</option>
-				<option value="maybe">Maybe</option>
 			</select>
 		</form>
 	</div>
