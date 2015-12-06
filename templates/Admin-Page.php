@@ -63,7 +63,9 @@
 				</select>
 				<br>
 
+				<input type="hidden" id="event" name="event" value="<?php echo $_GET['event']; ?>"></hidden>
 				<button id="criar" type="submit">Editar Evento</button>
+
 			</form>
 		</div>
 	</body>
