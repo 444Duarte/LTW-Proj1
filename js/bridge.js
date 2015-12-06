@@ -40,11 +40,18 @@ $('#Reg').submit(function(ev) {
 });
 
 function showForm(value) {
-    if (value == 1) {
+    if (value.value == 1) {
         document.getElementById("LogForm").style.display="block";
-        document.getElementById("Log").style.display="none";
+        document.getElementById("Reg").style.display="none";
+        value.value=0;
+        $('#'+value.id).html("Register");
     }
-    else document.getElementById("LogForm").style.display="none";
+    else {
+        document.getElementById("LogForm").style.display="none";
+        document.getElementById("Reg").style.display="block";
+        $('#'+value.id).html("Login");
+        value.value=1;
+    }
 }
 
 $("#LogForm").submit(function(ev){
@@ -72,7 +79,7 @@ $("#LogForm").submit(function(ev){
                     break;
                 case 'success':
                     swal("Login successfull.", "Success.");
-                    window.location.href="mainpage.php?event=0";
+                    window.location.href="profile.php";
                     break;
                 default:
                     //displayError("Error while processing the login...");
@@ -114,10 +121,12 @@ $('#searchForm').submit(function(ev) {
         ev.preventDefault();
 
         formData = new FormData(this);
+
+
         
         $.ajax({
             type: "POST",
-            url: "../php/createEvent.php",
+            url: "php/uploadImage.php",
             data: formData,
             processData: false,
             contentType: false,
@@ -135,11 +144,12 @@ $('#searchForm').submit(function(ev) {
                 }
             },
             error: function(errResponse) {
+                $('body').append.responseText;
                 console.log(errResponse);
             },
-            complete: function() 
-            {
-                location.reload();
+            complete: function() {   
+                console.log();
+                //location.reload();
             }
     });
 });

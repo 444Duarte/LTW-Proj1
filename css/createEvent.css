@@ -5,12 +5,7 @@
     font-style: normal;
 }
 
-html, body {
-	margin: 0 auto;
-	height: 100%;
-}
-
-header {
+#header_create {
 	font-family: Lucida;
 	font-size: 3rem;
 }
@@ -40,4 +35,27 @@ body {
 	padding: 1%;
 	border: solid 2px #000000;
 	border-radius: 10px;
+	z-index: 1;
+	display: none;
+}
+
+#create_form:focus{
+	display: block;
+}
+
+#close_create_event{
+	float: right;
+	background-color: transparent;
+	outline: none;
+	border: none;
+}
+#close_create_event img{
+	width: 16px;
+}
+
+#close_create_event:hover{
+	background-color: #000000;
+	opacity: 0.2;
+    color: #ffffff;
+    filter: alpha(opacity=20); /* For IE8 and earlier */
 }

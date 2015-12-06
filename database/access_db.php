@@ -190,7 +190,7 @@
 		$stmt = $db->prepare('INSERT INTO GoToEvent(idUser,idEvent) VALUES (:idUser, :idEvent)');
 		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
 		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
-		$stmt->execute();
+		return $stmt->execute();
 	};
 
 	function deleteUserToEvent($idUser, $idEvent){
@@ -199,29 +199,42 @@
 								WHERE  idUser = :idUser AND idEvent = :idEvent');
 		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
 		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
-		$stmt->execute();
+		return $stmt->execute();
 	};
+
+	function inviteToEvent($idUser, $idEvent){
+		global $db;
+		$stmt = $db->prepare('INSERT INTO InvitedTo(idUser,idEvent) VALUES (:idUser, :idEvent)');
+		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->execute();
+	}
 
 	function setUserGoesToEvent($idUser, $idEvent, $state){
 		global $db;
 		if(getUserByID($idUser)==FALSE)
 			return FALSE;
-		if(retrieveEventByID($idEvent) == FALSE)
+		if(getEventByID($idEvent) == FALSE)
 			return FALSE;
-
+		
 		if($state){
 			if(getUserGoesToEvent($idUser, $idEvent)){
 				return FALSE;
 			}
-			
-			createUserToEvent($idUser, $idEvent);
-		}else{
-			if(!getUserGoesToEvent($idUser, $idEvent))
-				return FALSE;
-			deleteUserToEvent($idUser, $idEvent);			
-		}
+			if(!userIsInvited($idUser, $idEvent))
+				inviteToEvent($idUser, $idEvent);
 
-		return TRUE;
+			$result = createUserToEvent($idUser, $idEvent);
+		}else{
+			if(!getUserGoesToEvent($idUser, $idEvent) && userIsInvited($idUser, $idEvent))
+				return FALSE;
+			if(!userIsInvited($idUser, $idEvent))
+				inviteToEvent($idUser, $idEvent);
+			
+			$result = deleteUserToEvent($idUser, $idEvent);			
+		}
+		
+		return $result;
 	}
 
 	function getUserAdminEvents($idUser){
@@ -300,14 +313,16 @@
 		return false;
 	}
 
-	function userCanComment($idUser){
+	function userCanComment($idUser, $idEvent){
 		global $db;
 
 		$stmt = $db->prepare('	SELECT idUser
 								FROM GoToEvent
-								WHERE idUser=:idUser
+								WHERE idUser=:idUser AND
+									idEvent = :idEvent
 								');
 		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
 		$stmt->execute();
 
 		$result = $stmt->fetchAll();
@@ -401,5 +416,53 @@
 		$stmt->execute();
 		$result = $stmt->fetchAll();
 		return $result;
+	}
+
+	function userIsInvited($idUser, $idEvent){
+		global $db;
+
+		$stmt = $db->prepare('SELECT *
+								FROM InvitedTo
+								WHERE idUser = :idUser AND
+										idEvent = :idEvent
+								');
+		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+		$stmt->execute();
+		$result = $stmt->fetchAll();
+
+		if(count($result) > 0)
+			return true;
+
+		return false;
+	}
+
+	function getLastEvent(){
+		global $db;
+		$stmt = $db->prepare('SELECT MAX(idEvent)
+								FROM Event
+								');
+		$stmt->execute();
+		$result = $stmt->fetchAll();
+		return $result[0][0];
+	}
+
+	function isAdminEvent($idUser, $idEvent){
+		global $db;
+
+		$stmt = $db->prepare('SELECT *
+								FROM AdminEvent
+								WHERE idUser = :idUser AND
+										idEvent = :idEvent
+								');
+		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+		$stmt->execute();
+		$result = $stmt->fetchAll();
+
+		if(count($result) > 0)
+			return true;
+
+		return false;
 	}
 ?>  

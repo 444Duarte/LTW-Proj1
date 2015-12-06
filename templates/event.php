@@ -10,9 +10,22 @@
 	$usersGoing = getUsersGoingEventByID($idEvent);
 	$invitedUsers = getInvitedNotGoing($idEvent);	
  ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script src="js/editEvent.js"></script>
+<script src="js/bridge.js"></script>
+
+<?php if(isAdminEvent($idUser, $idEvent)){
+	include_once 'templates/admin_event.php';
+}?>
 
 <div class="display-event">
 	<div id="header" style="background-image:<?php $image_url = "url('" .$event['image']. "')" ; echo $image_url; ?>" >
+		
+		<?php if(isAdminEvent($idUser, $idEvent)){?>
+			<button id="edit_event_button" onClick="openEditEvent()" type="button">
+				<img src="images/template/pencil_64.png">
+			</button>
+		<?php }?>
 		<div>
 			<h1 id="name"><?php echo $event['title'];?></h1>
 			<br>
@@ -24,7 +37,6 @@
 				<option disabled selected> -- select an option -- </option>
 				<option value="going">Going</option>
 				<option value="not">Not Going</option>
-				<option value="maybe">Maybe</option>
 			</select>
 		</form>
 	</div>

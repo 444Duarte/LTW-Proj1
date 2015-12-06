@@ -39,7 +39,7 @@ cusor:default;
 
 #header *{
   -webkit-margin-before: 0rem;
-    -webkit-margin-after: 0rem;
+  -webkit-margin-after: 0rem;
 }
 
 #date{
@@ -186,4 +186,14 @@ cusor:default;
   color: #676767;
   font-size: 12px;
   font-weight: normal;
+}
+
+#edit_event_button img{
+  width: 24px;
+}
+
+#edit_event_button{
+  position: absolute;
+  top: 0;
+  right: 0;
 }

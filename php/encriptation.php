@@ -2,34 +2,14 @@
 	
 	function encryptPassword($password, $cost) {
 
-		$options = [ 'cost' => $cost ];
-
-		$hash = password_hash($password, PASSWORD_BCRYPT);
-
-		return $hash;
+		if (defined("CRYPT_BLOWFISH") && CRYPT_BLOWFISH) {
+	        $salt = '$2y$11$' . substr(md5(uniqid(rand(), true)), 0, 22);
+	        return crypt($password, $salt);
+    	}
 	}
 
 	function decryptPassword($password, $hashedPass) {
-
-		if (!(function_exists('hash_equals'))) { 
-			function hash_equals($str1, $str2) { 
-				if(strlen($str1) != strlen($str2)) {
-					return false;
-				} else {
-					$res = $str1 ^ $str2;
-					$ret = 0;
-					
-					for($i = strlen($res) - 1; $i >= 0; $i--) {
-						$ret |= ord($res[$i]);
-					}
-					return !$ret;
-					} 
-				} 
-		} 
-		
-		if (hash_equals($hashedPass, crypt($password, $hashedPass)))
-			return true;
-		else return false;
+		return crypt($password, $hashedPass) == $hashedPass;
 	}
 
 ?>

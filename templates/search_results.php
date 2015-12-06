@@ -20,7 +20,7 @@
 		<h5>No search results.</h5>
 	<?php 
 		}else{
-			include '/templates/multiple_events.php'; 
+			include 'templates/multiple_events.php'; 
 		}
 	?>
 </div>

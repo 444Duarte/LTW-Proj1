@@ -21,9 +21,9 @@
     return false;
   }
 
-  $title = $_POST['title'];
+  $title = htmlentities($_POST['title']);
   $date = $_POST['date'];
-  $description = $_POST['description'];
+  $description = htmlentities($_POST['description']);
   $privacy = true;
 
   if ($_POST['Privacy'] == "Public") {
@@ -37,8 +37,8 @@
 
   $idUser = $_SESSION['user'];
 
-  if (createEvent($idUser, $title, $date, $description, $img, $type, $privacy))
-    echo json_encode('Success');
-  else echo json_encode('Failure');
-
+  
+  createEvent($idUser, $title, $date, $description, $img, $type, $privacy);
+  getLastEvent();
+  header('Location: ../mainpage.php?event=' . getLastEvent());
 ?>

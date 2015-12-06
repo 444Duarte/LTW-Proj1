@@ -74,11 +74,11 @@
 
 	function createEvent($idUser, $titleEvent, $date, $description, $img, $type, $private) {
 
-		$idEventType = getidEventType($type)[0]['idEventType'];
+		$idEventType = $type;
 
 		insertIntoEvent($titleEvent, $date, $description, $img, $type, $private, $idEventType);
 
-		$idEvent = getidEvent($titleEvent)[0]['idEvent'];
+		$idEvent = getLastEvent();
 
 		insertIntoAdminEvent($idUser, $idEvent);
 
@@ -135,7 +135,8 @@
 		$stmt = $db->prepare('INSERT INTO AdminEvent(idUser, idEvent) VALUES(:idUser, :idEvent)');
 		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
 		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
-		$stmt->execute();
+		$result = $stmt->execute();
+		var_dump($result);
 		return true;
 	}
 
@@ -149,6 +150,8 @@
 		$stmt->bindParam(':private', $private, PDO::PARAM_BOOL);
 		$stmt->bindParam(':idEventType', $idEventType, PDO::PARAM_INT);
 		$stmt->execute();
+
+		$result= $stmt->fetchAll();
 
 		return true;
 	}

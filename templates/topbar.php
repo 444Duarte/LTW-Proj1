@@ -2,6 +2,10 @@
 	<link rel="stylesheet" href="css/topbar.css">
 </head>
 
+<?php
+	include_once 'createEvent.php';
+?>
+
 <div class="top-bar">
 		<button id="preferences_button" type="button"> <img src="images/template/gear-16.png"></button>
 		<div id="pref_menu">
@@ -9,7 +13,7 @@
 			<a href="older.php">Older Events</a>
 			<a href="#">About</a>
 		</div>
-		<button id="create_event_button" href="" type="button">
+		<button id="create_event_button" onClick="openCreateEvent()" type="button">
 			<img src="images/template/plus_16.png">
 			<p>Create Event</p>
 		</button>
@@ -19,3 +23,4 @@
 			<input id="searchButton" type="submit" value="Search"/>
 		</form>
 </div>	
+
