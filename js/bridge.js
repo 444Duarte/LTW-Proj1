@@ -72,7 +72,7 @@ $("#LogForm").submit(function(ev){
                     break;
                 case 'success':
                     swal("Login successfull.", "Success.");
-                    window.location.href="mainpage.php?event=0";
+                    window.location.href="profile.php";
                     break;
                 default:
                     //displayError("Error while processing the login...");
