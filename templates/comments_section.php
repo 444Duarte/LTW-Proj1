@@ -6,7 +6,7 @@
 
 
 <div id="comments_section">
-	<form id="user_make_comment" action="../php/comment.php" method="post" >
+	<form id="user_make_comment" action="php/comment.php" method="post" >
 			<input type="text" name="event" value="<?php echo $idEvent; ?>" hidden="true" >
 			<?php if(userCanComment($idUser)) {?>
 				<textarea id="user_comment" name="comment" rows="4" cols="25" maxlength="200" placeHolder="Place your comment here!"></textarea>
