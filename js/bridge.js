@@ -110,7 +110,7 @@ $('#searchForm').submit(function(ev) {
         });
 });
 
-$('#create').submit(function(ev) {
+ $('#create').submit(function(ev) {
         ev.preventDefault();
 
         formData = new FormData(this);
