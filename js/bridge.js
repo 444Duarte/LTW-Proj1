@@ -40,11 +40,18 @@ $('#Reg').submit(function(ev) {
 });
 
 function showForm(value) {
-    if (value == 1) {
-        document.getElementById("LogForm").style.display="block";
-        document.getElementById("Log").style.display="none";
+    if (value.className == "loginButton") {
+        value.className = "loginButton1";
+        $(".loginButton1").html("<p>Login</p>");
+        document.getElementById("LogForm").style.display="none";
+        document.getElementById("Reg").style.display="block";
     }
-    else document.getElementById("LogForm").style.display="none";
+    else {
+        value.className = "loginButton";
+        $(".loginButton").html("<p>Register</p>");
+        document.getElementById("LogForm").style.display="block";
+        document.getElementById("Reg").style.display="none";
+    }
 }
 
 $("#LogForm").submit(function(ev){
