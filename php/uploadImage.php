@@ -40,10 +40,5 @@
 
   $idUser = $_SESSION['user'];
 
-  if (createEvent($idUser, $title, $date, $description, $img, $type, $privacy))
-      //printResponse();
-  else {
-    //printResponse();
-  }
-    
+  createEvent($idUser, $title, $date, $description, $img, $type, $privacy);    
 ?>
