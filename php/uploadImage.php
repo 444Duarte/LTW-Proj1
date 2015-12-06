@@ -19,7 +19,7 @@
       echo "File name exists";
     else {
       move_uploaded_file($_FILES["image"]["tmp_name"],"../images/events/".$filename);
-      echo "Upload successfull";
+      //echo "Upload successfull";
     }
   }
   else echo "Invalid file";
@@ -40,5 +40,7 @@
 
   $idUser = $_SESSION['user'];
 
-  createEvent($idUser, $title, $date, $description, $img, $type, $privacy);    
+  createEvent($idUser, $title, $date, $description, $img, $type, $privacy);
+
+  echo 'Result';
 ?>

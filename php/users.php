@@ -73,12 +73,12 @@
 	}
 
 	function createEvent($idUser, $titleEvent, $date, $description, $img, $type, $private) {
-		
+
 		$idEventType = getidEventType($type)[0]['idEventType'];
 
 		insertIntoEvent($titleEvent, $date, $description, $img, $type, $private, $idEventType);
 
-		$idEvent = $getidEvent($titleEvent)[0]['idEvent'];
+		$idEvent = getidEvent($titleEvent)[0]['idEvent'];
 
 		insertIntoAdminEvent($idUser, $idEvent);
 
@@ -96,19 +96,23 @@
 	}
 
 	function getidEvent($titleEvent) {
-		$stmt = $db->prepare('SELECT idEvent FROM Event WHERE titleEvent = :titleEvent');
-		$stmt->bindParam(':titleEvent', $titleEvent, PDO::PARAM_STR);
-		$stmt->execute();
+		global $db;
+		if ($stmt = $db->prepare('SELECT idEvent FROM Event WHERE titleEvent = :titleEvent')) {
+			$stmt->bindParam(':titleEvent', $titleEvent, PDO::PARAM_STR);
+			$stmt->execute();
 
-		$result = $stmt->fetchAll();
+			$result = $stmt->fetchAll();
 
-		if (count($result) === 0) {
-			return false;
+			if (count($result) === 0) {
+				return false;
+			}
+			return $result;
 		}
-		return $result;
+		return false;
 	}
 
 	function insertIntoAdminEvent($idUser, $idEvent) {
+		global $db;
 		$stmt = $db->prepare('INSERT INTO AdminEvent(idUser, idEvent) VALUES(:idUser, :idEvent)');
 		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
 		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
@@ -117,6 +121,7 @@
 	}
 
 	function insertIntoEvent($titleEvent, $date, $description, $img, $type, $private, $idEventType) {
+		global $db;
 		$stmt = $db->prepare('INSERT INTO Event(title, eventDate, description, image, private, idEventType) VALUES(:titleEvent, :date, :description, :img, :private, :idEventType)');
 		$stmt->bindParam(':titleEvent', $titleEvent, PDO::PARAM_STR);
 		$stmt->bindParam(':date', $date, PDO::PARAM_STR);
