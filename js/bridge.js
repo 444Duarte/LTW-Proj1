@@ -151,5 +151,39 @@ $('#searchForm').submit(function(ev) {
                 console.log();
                 //location.reload();
             }
-        });
     });
+});
+
+$('#edit').submit(function(ev) {
+    ev.preventDefault();
+
+    formData = new FormData(this);
+
+    $.ajax({
+            type: "POST",
+            url: "../php/editEvent.php",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                var data=JSON.parse(response);
+                switch (data) {
+                    case 'Success':
+                        swal("Event created with success.", "Success.");
+                        break;
+                    case 'Failure':
+                        swal("Event creation failed.", "Insuccess.");
+                        break;
+                    default:
+                        break;
+                }
+            },
+            error: function(errResponse) {
+                console.log(errResponse);
+            },
+            complete: function() 
+            {
+                location.reload();
+            }
+    });
+});

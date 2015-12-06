@@ -187,3 +187,13 @@ cusor:default;
   font-size: 12px;
   font-weight: normal;
 }
+
+#edit_event_button img{
+  width: 24px;
+}
+
+#edit_event_button{
+  position: absolute;
+  top: 0;
+  right: 0;
+}

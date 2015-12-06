@@ -85,6 +85,25 @@
 		return true;
 	}
 
+	function editEvent($idUser, $idEvent, $titleEvent, $date, $description, $img, $type, $private) {
+
+		global $db;
+
+		$idEventType = getidEventType($type)[0]['idEventType'];
+
+		$stmt = $db->prepare('UPDATE Event SET title = :titleEvent, eventDate = :date, description = :description, image = :img, private = :private, idEventType = :idEventType  WHERE idEvent = :idEvent');
+		$stmt->bindParam(':titleEvent', $titleEvent, PDO::PARAM_STR);
+		$stmt->bindParam(':date', $date, PDO::PARAM_STR);
+		$stmt->bindParam(':description', $description, PDO::PARAM_STR);
+		$stmt->bindParam(':img', $img, PDO::PARAM_STR);
+		$stmt->bindParam(':private', $private, PDO::PARAM_BOOL);
+		$stmt->bindParam(':idEventType', $idEventType, PDO::PARAM_INT);
+		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+		$stmt->execute();				
+
+		return true;
+	}
+
 	function getidEventType($type) {
 		global $db;
 		$stmt = $db->prepare('SELECT * FROM EventType WHERE type = :type');
@@ -299,20 +318,7 @@
 
 		return true;
 	}
-
-	function editEvent($titleEvent, $date, $description, $img, $type, $user_given) {
-
-		if (!(deleteEvent($user_given, $titleEvent))) {
-			return false;
-		}
-
-		if (!(createEvent($user_given, $titleEvent, $date, $description, $img, $type))) {
-			return false;
-		}
-
-		return true;
-	}
-
+	
 	function search($titleEvent) {
 		global $db;
 		$stmt = $db->prepare('SELECT * FROM Event where title = :title');
@@ -345,6 +351,21 @@
 			return false;
 		}
 		else return $result[0];
+	}
+
+	function checkAdminByID($idUser) {
+		global $db;
+
+		$stmt = $db->prepare('SELECT * FROM AdminEvent WHERE idUser = :idUser');
+		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$result = $stmt->fetchAll();
+
+		if (count($result) === 0) {
+			return false;
+		}
+		return true;
 	}
 	
 ?>

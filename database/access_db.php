@@ -415,7 +415,6 @@
 		$stmt = $db->prepare('SELECT * FROM EventType');
 		$stmt->execute();
 		$result = $stmt->fetchAll();
-
 		return $result;
 	}
 
@@ -446,5 +445,24 @@
 		$stmt->execute();
 		$result = $stmt->fetchAll();
 		return $result[0][0];
+	}
+
+	function isAdminEvent($idUser, $idEvent){
+		global $db;
+
+		$stmt = $db->prepare('SELECT *
+								FROM AdminEvent
+								WHERE idUser = :idUser AND
+										idEvent = :idEvent
+								');
+		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+		$stmt->execute();
+		$result = $stmt->fetchAll();
+
+		if(count($result) > 0)
+			return true;
+
+		return false;
 	}
 ?>  
