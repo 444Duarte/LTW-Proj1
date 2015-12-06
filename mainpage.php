@@ -10,15 +10,10 @@
 <?php
 	session_start();
 
-	$url = "http://$_SERVER[SERVER_NAME]$_SERVER[REQUEST_URI]";
+	include_once('php/verify.php');
 
-	$file = dirname($url) . '/errorpage.html';
-
-
-	if (count($_SESSION) === 0) {
-		header('Location: ' . $file);
-	}
-
+	redirectErrorPageBackwards();
+	
 	include_once 'database/connect.php';
 	include_once 'database/access_db.php';
 
