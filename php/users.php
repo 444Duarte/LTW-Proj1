@@ -284,20 +284,7 @@
 
 		return true;
 	}
-
-	function editEvent($titleEvent, $date, $description, $img, $type, $user_given) {
-
-		if (!(deleteEvent($user_given, $titleEvent))) {
-			return false;
-		}
-
-		if (!(createEvent($user_given, $titleEvent, $date, $description, $img, $type))) {
-			return false;
-		}
-
-		return true;
-	}
-
+	
 	function search($titleEvent) {
 		global $db;
 		$stmt = $db->prepare('SELECT * FROM Event where title = :title');
@@ -330,6 +317,21 @@
 			return false;
 		}
 		else return $result[0];
+	}
+
+	function checkAdminByID($idUser) {
+		global $db;
+
+		$stmt = $db->prepare('SELECT * FROM AdminEvent WHERE idUser = :idUser');
+		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->execute();
+
+		$result = $stmt->fetchAll();
+
+		if (count($result) === 0) {
+			return false;
+		}
+		return true;
 	}
 	
 ?>
