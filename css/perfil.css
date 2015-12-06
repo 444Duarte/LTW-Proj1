@@ -1,20 +1,59 @@
-html{
-	overflow: scroll;
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700);
+
+#profile h1{
+    font-family: Ubuntu, "times new roman", times, roman, serif;
+    font-size: 2em;
+    margin: 0.5rem;
+}
+#profile h2 {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 1.5em;
+    color: #444;
+}
+#bio{
+    display: block;
+    line-height: 1.3em;
+    color: #555;
+    text-align: left;
 }
 
-html,body{
-	width: 100%;
-	margin: 0;
-	height: 100%;
-	background-color: #eeeeee;
+#bio h3{
+    margin: 0;
 }
 
 #profile {
-	width: 75%;
-	padding-left: 13%;
+    background: transparent;
+    margin: 0.5rem;
+    border: 0;
+    text-align: center;
+    width: 80%;
 }
 
-#profile h4{
+#conteudo {
+    background: #fff;
+    padding: 1.3rem 1rem;
+    word-wrap: normal;
+    border-radius:10px;
+    border-width: 2px 2px 2px 2px;
+    border-style: solid;
+    border-color: #47639E;
+    background-color: #F1F1F1;
+}
 
-	color: red;
+#conteudo h2{
+    text-align: left;
+} 
+
+#profile_header{
+    overflow: hidden;
+}
+
+#profile_header > *{
+    display: inline-block;
+}
+
+#userphoto{
+    width:30%;
+    min-width: 128px;
+    float: right;
 }

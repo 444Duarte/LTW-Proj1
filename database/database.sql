@@ -5,12 +5,20 @@ DROP TABLE IF EXISTS Comment;
 DROP TABLE IF EXISTS AdminEvent;
 DROP TABLE IF EXISTS GoToEvent;
 DROP TABLE IF EXISTS InvitedTo;
+DROP TABLE IF EXISTS Profile;
 
 
 CREATE TABLE User(
-idUser INTEGER PRIMARY KEY,
-user VARCHAR NOT NULL,
-password VARCHAR NOT NULL
+	idUser INTEGER PRIMARY KEY,
+	user VARCHAR NOT NULL,
+	password VARCHAR NOT NULL
+);
+
+CREATE TABLE Profile(
+	idUser INTEGER REFERENCES User(idUser),
+	description TEXT NOT NULL,
+	image TEXT NOT NULL,
+	PRIMARY KEY (idUser)
 );
 
 CREATE TABLE Event(
@@ -89,6 +97,15 @@ BEGIN
 	SELECT RAISE(ABORT, "Um utilizador que não vai ao evento não pode fazer comentários");
 END;
 
+
+CREATE TRIGGER iniciaProfile
+AFTER INSERT ON User
+FOR EACH ROW
+WHEN NEW.idUser NOT IN(SELECT idUser
+						FROM Profile)
+BEGIN
+	INSERT INTO Profile(idUser, description, image) VALUES (NEW.idUser, "Este utlizador não tem nenhuma descrição!", "images/users/default.jpg");
+END;
 
 /*Quando alguém Apaga um evento apaga também todos os InvitedTo, GoToEvent e AdminEvent E COMENTÁRIOS*/
 CREATE TRIGGER deleteEvent

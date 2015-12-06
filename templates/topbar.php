@@ -13,7 +13,7 @@
 			<img src="images/template/plus_16.png">
 			<p>Create Event</p>
 		</button>
-		<button id="home_button" type="button"><img src="images/template/logo-small.png"></button>
+		<a id="home_button" href="profile.php"><img src="images/template/logo-small.png"></a>
 		<form id="searchForm" action="search.php">
 			<input id="search-bar" type="text" name="query" required="optional" placeholder="Search"/>
 			<input id="searchButton" type="submit" value="Search"/>
