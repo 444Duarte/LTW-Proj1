@@ -1,5 +1,6 @@
 html{
 	overflow: scroll;
+	min-width: 700px;
 }
 
 html,body{

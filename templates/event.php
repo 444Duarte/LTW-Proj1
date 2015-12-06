@@ -48,7 +48,7 @@
 						{
 					?>
 					<li>
-						<a href="<?php echo "?user=".$user['idUser'] ;?>">
+						<a href="<?php echo "profile.php?id=".$user['idUser'] ;?>">
 						<?php 
 							$username = getUserByID($user['idUser'])['user'];
 							echo $username; 
@@ -64,7 +64,7 @@
 						foreach($invitedUsers as $user){
 					?>
 					<li>
-						<a href="<?php echo "?user=".$user['idUser'] ; ?>">
+						<a href="<?php echo "profile.php?id=".$user['idUser'] ; ?>">
 							<?php 
 								$username = getUserByID($user['idUser'])['user'];
 								echo $username; 
