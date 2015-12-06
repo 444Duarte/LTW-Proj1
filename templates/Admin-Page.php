@@ -5,8 +5,9 @@
 	include_once '../database/access_db.php';
 	include_once '../database/connect.php';
 	$types = retrieveAllEventTypes();
-?>
 
+	$event = getEventByID($_GET['event']);
+?>
 
 	<head>
 	    <meta charset='UTF-8'>
@@ -21,18 +22,18 @@
 				<h1>Edit Event</h1>
 			</header>
 
-			<form id="create" type="submit" method="post" action="" enctype="multipart/form-data">	
+			<form id="edit" type="submit" method="post" action="" enctype="multipart/form-data">	
 				<label for="title">Title:</label>
-				<input type="text" id="title" name="title">
+				<input type="text" id="title" name="title" placeholder="<?php echo $event['title'];?>">
 				<br>
 
 				<label for="date">Date:</label>
-				<input type="date" id="date" name="date">
+				<input type="date" id="date" name="date" placeholder="<?php echo $event['eventDate'];?>">
 				<br>
 				
 				<label for="description">Description: </label>
 				<br>
-				<textarea rows="3" cols="30" id="description" name="description"></textarea>
+				<textarea rows="3" cols="30" id="description" name="description" placeholder="<?php echo $event['description'];?>"></textarea>
 				<br>
 
 				<label for="image">Image: </label>

@@ -41,7 +41,7 @@
   	return false;
   }
 
-  if (editEvent($idUser, $title, $date, $description, $img, $type, $privacy))
+  if (editEvent($idUser, $_GET['event'], $title, $date, $description, $img, $type, $privacy))
     echo json_encode('Success');
   else echo json_encode('Failure');
 

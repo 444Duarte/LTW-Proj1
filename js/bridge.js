@@ -147,9 +147,7 @@ $('#searchForm').submit(function(ev) {
 $('#edit').submit(function(ev) {
     ev.preventDefault();
 
-    formData = new FormData(this);
-
-    formData.append('idEvent', 0); //mudar para ir buscar ao url
+    formData = new FormData(this); //mudar para ir buscar ao url
 
     $.ajax({
             type: "POST",
