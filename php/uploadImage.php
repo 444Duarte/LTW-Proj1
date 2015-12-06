@@ -6,23 +6,20 @@
   include_once('../database/access_db.php');
   include_once('users.php');
 
-  function printResponse($value) {
-    $data = ['login' => $value];
-    header('Content-Type: application/json');
-    echo json_encode($data);
-  }
-
   $filename=  $_FILES["image"]["name"];
 
   if ( ($_FILES["image"]["type"] == "image/gif") || ($_FILES["image"]["type"] == "image/jpeg") || ($_FILES["image"]["type"] == "image/png")  || ($_FILES["image"]["type"] == "image/pjpeg")) {
     if (file_exists($_FILES["image"]["name"]))
-      echo "File name exists";
+      echo 'File name exists';
     else {
       move_uploaded_file($_FILES["image"]["tmp_name"],"../images/events/".$filename);
-      //echo "Upload successfull";
+      //echo 'Upload successfull';
     }
   }
-  else echo "Invalid file";
+  else {
+    echo 'Invalid file';
+    return false;
+  }
 
   $title = $_POST['title'];
   $date = $_POST['date'];
@@ -40,7 +37,8 @@
 
   $idUser = $_SESSION['user'];
 
-  createEvent($idUser, $title, $date, $description, $img, $type, $privacy);
+  if (createEvent($idUser, $title, $date, $description, $img, $type, $privacy))
+    echo json_encode('Success');
+  else echo json_encode('Failure');
 
-  echo 'Result';
 ?>

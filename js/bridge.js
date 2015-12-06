@@ -112,27 +112,8 @@ $('#searchForm').submit(function(ev) {
 
  $('#create').submit(function(ev) {
         ev.preventDefault();
-    
-        /*var title = $("#title").val();
-        var date = $("#date").val();
-        var description = $("#description").val();
-
-        var e = document.getElementById("Privacy");
-        var privacy = e.options[e.selectedIndex].text;
-
-        var f = document.getElementById("Type");
-        var type = e.options[e.selectedIndex].text;
-
-        var filedata = $("form#create #image")[0];*/
 
         formData = new FormData(this);
-        
-        /*var i = 0, len = filedata.files.length;
-        
-        for (var i = 0; i < len; i++) {
-            var file = filedata.files[i];
-            formData.append("file" + i, file);
-        }*/
         
         $.ajax({
             type: "POST",
@@ -143,14 +124,14 @@ $('#searchForm').submit(function(ev) {
             success: function(response) {
                 var data=JSON.parse(response);
                 switch (data) {
-                    case "Upload successfull":
-                    break;
-                    case "Invalid file":
-                    break;
-                    case "File name exists":
-                    break;
+                    case 'Success':
+                        swal("Event created with success.", "Success.");
+                        break;
+                    case 'Failure':
+                        swal("Event creation failed.", "Insuccess.");
+                        break;
                     default:
-                    break;
+                        break;
                 }
             },
             error: function(errResponse) {

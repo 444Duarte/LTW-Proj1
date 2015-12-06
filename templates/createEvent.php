@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html>
+
+<?php
+	include_once '../database/access_db.php';
+	include_once '../database/connect.php';
+
+	$types = retrieveAllEventTypes();
+?>
+
+
 	<head>
 	    <meta charset='UTF-8'>
 		<link rel="stylesheet" href="../css/createEvent.css">
@@ -40,9 +49,17 @@
 
 				<label for="Type">Type: </label>
 				<select id="Type" name="Type">
-					<option value="Tipo1" selected="selected">Tipo1</option>
-					<option value="Tipo2">Tipo2</option>
-					<option value="Tipo3">Tipo3</option>
+					<?php
+						foreach($types as $row) {
+					?>
+						<option value="<?php echo $row['type'];?>" >
+							<?php
+								echo $row['type'];
+							?>
+						</option>
+					<?php
+						}
+					?>
 				</select>
 				<br>
 
