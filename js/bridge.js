@@ -121,10 +121,12 @@ $('#searchForm').submit(function(ev) {
         ev.preventDefault();
 
         formData = new FormData(this);
+
+
         
         $.ajax({
             type: "POST",
-            url: "../php/uploadImage.php",
+            url: "php/uploadImage.php",
             data: formData,
             processData: false,
             contentType: false,
@@ -142,11 +144,12 @@ $('#searchForm').submit(function(ev) {
                 }
             },
             error: function(errResponse) {
+                $('body').append.responseText;
                 console.log(errResponse);
             },
-            complete: function() 
-            {
-                location.reload();
+            complete: function() {   
+                console.log();
+                //location.reload();
             }
         });
     });

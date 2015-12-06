@@ -18,11 +18,11 @@
 			<img src="images/template/x_button.png">
 	</button>
 
-	<header id="header" class="info">
+	<header id="create_header" class="info">
 		<h1>Create Event</h1>
 	</header>
 
-	<form id="create" type="submit" method="post" action="" enctype="multipart/form-data">	
+	<form id="create" type="submit" method="post" action="php/uploadImage.php" enctype="multipart/form-data">	
 		<label for="title">Title:</label>
 		<input type="text" id="title" name="title">
 		<br>
@@ -52,7 +52,7 @@
 			<?php
 				foreach($types as $row) {
 			?>
-				<option value="<?php echo $row['type'];?>" >
+				<option value="<?php echo $row['idEventType'];?>" >
 					<?php
 						echo $row['type'];
 					?>
