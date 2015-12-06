@@ -40,17 +40,17 @@ $('#Reg').submit(function(ev) {
 });
 
 function showForm(value) {
-    if (value.className == "loginButton") {
-        value.className = "loginButton1";
-        $(".loginButton1").html("<p>Login</p>");
-        document.getElementById("LogForm").style.display="none";
-        document.getElementById("Reg").style.display="block";
-    }
-    else {
-        value.className = "loginButton";
-        $(".loginButton").html("<p>Register</p>");
+    if (value.value == 1) {
         document.getElementById("LogForm").style.display="block";
         document.getElementById("Reg").style.display="none";
+        value.value=0;
+        $('#'+value.id).html("Register");
+    }
+    else {
+        document.getElementById("LogForm").style.display="none";
+        document.getElementById("Reg").style.display="block";
+        $('#'+value.id).html("Login");
+        value.value=1;
     }
 }
 
@@ -79,7 +79,7 @@ $("#LogForm").submit(function(ev){
                     break;
                 case 'success':
                     swal("Login successfull.", "Success.");
-                    window.location.href="mainpage.php?event=0";
+                    window.location.href="profile.php";
                     break;
                 default:
                     //displayError("Error while processing the login...");
@@ -116,3 +116,37 @@ $('#searchForm').submit(function(ev) {
             return false;
         });
 });
+
+ $('#create').submit(function(ev) {
+        ev.preventDefault();
+
+        formData = new FormData(this);
+        
+        $.ajax({
+            type: "POST",
+            url: "../php/uploadImage.php",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                var data=JSON.parse(response);
+                switch (data) {
+                    case 'Success':
+                        swal("Event created with success.", "Success.");
+                        break;
+                    case 'Failure':
+                        swal("Event creation failed.", "Insuccess.");
+                        break;
+                    default:
+                        break;
+                }
+            },
+            error: function(errResponse) {
+                console.log(errResponse);
+            },
+            complete: function() 
+            {
+                location.reload();
+            }
+        });
+    });

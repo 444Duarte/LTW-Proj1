@@ -410,8 +410,9 @@
 
 	function retrieveAllEventTypes() {
 		global $db;
-		$stmt = $db->prepare('SELECT type FROM EventType');
+		$stmt = $db->prepare('SELECT * FROM EventType');
 		$stmt->execute();
+		$result = $stmt->fetchAll();
 
 		return $result;
 	}
