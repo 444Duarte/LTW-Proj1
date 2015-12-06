@@ -40,18 +40,11 @@ $('#Reg').submit(function(ev) {
 });
 
 function showForm(value) {
-    if (value.className == "loginButton") {
-        value.className = "loginButton1";
-        $(".loginButton1").html("<p>Login</p>");
-        document.getElementById("LogForm").style.display="none";
-        document.getElementById("Reg").style.display="block";
-    }
-    else {
-        value.className = "loginButton";
-        $(".loginButton").html("<p>Register</p>");
+    if (value == 1) {
         document.getElementById("LogForm").style.display="block";
-        document.getElementById("Reg").style.display="none";
+        document.getElementById("Log").style.display="none";
     }
+    else document.getElementById("LogForm").style.display="none";
 }
 
 $("#LogForm").submit(function(ev){
@@ -149,8 +142,15 @@ $('#searchForm').submit(function(ev) {
             contentType: false,
             success: function(response) {
                 var data=JSON.parse(response);
-                if(data["fileupload"]!="success"){
-                  console.log(data["fileupload"]); 
+                switch (data) {
+                    case "Upload successfull":
+                    break;
+                    case "Invalid file":
+                    break;
+                    case "File name exists":
+                    break;
+                    default:
+                    break;
                 }
             },
             error: function(errResponse) {

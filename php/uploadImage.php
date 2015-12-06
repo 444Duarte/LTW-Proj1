@@ -13,16 +13,16 @@
   }
 
   $filename=  $_FILES["image"]["name"];
-  if ((($_FILES["image"]["type"] == "image/gif")|| ($_FILES["image"]["type"] == "image/jpeg") || ($_FILES["image"]["type"] == "image/png")  || ($_FILES["image"]["type"] == "image/pjpeg"))) {
-    if(file_exists($_FILES["image"]["name"]))
-      echo "File name exists.";
+
+  if ( ($_FILES["image"]["type"] == "image/gif") || ($_FILES["image"]["type"] == "image/jpeg") || ($_FILES["image"]["type"] == "image/png")  || ($_FILES["image"]["type"] == "image/pjpeg")) {
+    if (file_exists($_FILES["image"]["name"]))
+      echo "File name exists";
     else {
       move_uploaded_file($_FILES["image"]["tmp_name"],"../images/events/".$filename);
-      echo "Upload Successful . <a href='uploads/$filename'>Click here</a> to view the uploaded image";
+      echo "Upload successfull";
     }
   }
-  else echo "invalid file.";
-
+  else echo "Invalid file";
 
   $title = $_POST['title'];
   $date = $_POST['date'];
