@@ -41,8 +41,7 @@
   	return false;
   }
 
-  if (editEvent($idUser, $_POST['event'], $title, $date, $description, $img, $type, $privacy))
-    echo json_encode('Success');
-  else echo json_encode('Failure');
-
+  editEvent($idUser, $_POST['event'], $title, $date, $description, $img, $type, $privacy);
+  
+  header("Location: ../mainpage.php?event=" . $_POST['event']);
 ?>

@@ -25,7 +25,7 @@
 		<h1>Edit Event</h1>
 	</header>
 
-	<form id="edit" type="submit" method="post" action="" enctype="multipart/form-data">
+	<form id="edit" type="submit" method="post" action="php/editEvent.php" enctype="multipart/form-data">
 		
 		<label for="title">Title:</label>
 		<input type="text" id="title" name="title" placeholder="<?php echo $event['title'];?>">
