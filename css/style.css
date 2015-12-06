@@ -7,8 +7,14 @@ html, body
 	background-color: #333333;
 }
 
+body {
+  font-family: 'Tangerine', serif;
+  font-size: 48px;
+}
+
 header {
   padding-right: 40rem;
+  font-family: Times;
 }
 
 .text{
@@ -26,12 +32,6 @@ header {
 	left: 35px;
   top: 15px;
 }
-body{
-
-	background-image: url("./z.jpg");
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-}
 
 #intro {
 	text-align: center;
@@ -40,7 +40,7 @@ body{
 
 #img1 img{
   position: absolute;
-  padding-right: 40rem;
+  padding-right: 30rem;
   top:9.7%; bottom:81.9%; left:35%; right:0%;
   margin: auto;
 	width: 3.5%; /* you can use % */
@@ -107,10 +107,12 @@ position: absolute;
   height: auto;
 }
 
-#loginButton{
-	margin: auto;
-  width: 30%;
-  padding: 10px;	
+.loginButton p {
+  margin: 0;
+}
+
+.loginButton1 p {
+  margin: 0;
 }
 
 
@@ -128,14 +130,45 @@ position: absolute;
   color: #ffe8de;
   font-size: 30px;
   position: absolute;
-  bottom:40%; 
-  left:43%;
+  bottom:60%; 
+  left:55%;
   width: 7em;  height: 2em;
   text-decoration: none;
   border: solid #000000 2px;
 }
 
 .loginButton:hover {
+  background: #fa3c98;
+  background-image: -webkit-linear-gradient(top, #fa3c98, #fa0519);
+  background-image: -moz-linear-gradient(top, #fa3c98, #fa0519);
+  background-image: -ms-linear-gradient(top, #fa3c98, #fa0519);
+  background-image: -o-linear-gradient(top, #fa3c98, #fa0519);
+  background-image: linear-gradient(to bottom, #fa3c98, #fa0519);
+  text-decoration: none;
+}
+
+.loginButton1 {
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Montserrat;
+  color: #ffe8de;
+  font-size: 30px;
+  position: absolute;
+  bottom:60%; 
+  left:55%;
+  width: 7em;  height: 2em;
+  text-decoration: none;
+  border: solid #000000 2px;
+}
+
+.loginButton1:hover {
   background: #fa3c98;
   background-image: -webkit-linear-gradient(top, #fa3c98, #fa0519);
   background-image: -moz-linear-gradient(top, #fa3c98, #fa0519);
@@ -184,22 +217,25 @@ position: absolute;
 
 
 #register #Reg{
+  display: inline-block;
+  /*
   padding:6% 4%;
   background:#fff;
   position: relative;
   left:130%;
   resize:both;
+  */
+  padding-top: 2rem;
   width:60%;
   height:60%;
 }
 
-#log #LogForm{
-  position: relative;
-  left:43.5%;
-  bottom: 12rem;
-  resize:both;
-  width:10%;
-  height:10%;
+#register #LogForm{
+  display: inline-block;
+  text-align: center;
+  padding-top: 2rem;
+  width:60%;
+  height:60%;
 }
 
 input[type="username"],input[type="password"]{
@@ -228,4 +264,3 @@ input[type="submit"]{
 input[type="submit"]:hover{
   background:#2288bb;
 }
-

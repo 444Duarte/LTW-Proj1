@@ -46,90 +46,6 @@
 		return $result;
 	}
 
-	function retrieveUser() {
-		$result = startDB('SELECT * FROM User;');
-
-		$users = array();
-		foreach( $result as $row) {			
-			$list = array();
-			$list[' '] = $row['idUser'];
-			$list['user'] = $row['user'];
-			$list['password'] = $row['password'];
-			$list['description'] = $row['description'];
-			$list['imagem'] = $row['imagem'];
-
-			array_push($users, $list);
-		}
-
-		echo json_encode($users);
-	}
-
-	function retrieveEvent() {
-		$result = startDB('SELECT * FROM Event;');
-
-		$events = array();
-		foreach( $result as $row) {			
-			$list = array();
-			$list['idEvent'] = $row['idEvent'];
-			$list['datadoEvento'] = $row['datadoEvento'];
-			$list['descricao'] = $row['descricao'];
-			$list['imagem'] = $row['imagem'];
-
-			array_push($events, $list);
-		}
-
-		echo json_encode($events);	
-	}
-
-	function retrieveEventType() {
-		$result = startDB('SELECT * FROM EventType;');
-
-		$eventsType = array();
-		foreach( $result as $row) {			
-			$list = array();
-			$list['idEventType'] = $row['idEventType'];
-			$list['datadoEvento'] = $row['datadoEvento'];
-			$list['descricao'] = $row['descricao'];
-			$list['imagem'] = $row['imagem'];
-
-			array_push($eventsType, $list);
-		}
-
-		echo json_encode($eventsType);	
-	}
-
-	function retrieveGoToEvent() {
-		$result = startDB('SELECT * FROM GoToEvent;');
-
-		$goToEvents = array();
-		foreach( $result as $row) {			
-			$list = array();
-			$list['idUser'] = $row['idUser'];
-			$list['idEvent'] = $row['idEvent'];
-
-			array_push($goToEvents, $list);
-		}
-
-		echo json_encode($goToEvents);	
-	}
-
-	function retrieveComment() {
-		$result = startDB('SELECT * FROM Comment;');
-
-		$comments = array();
-		foreach( $result as $row) {			
-			$list = array();
-			$list['idComment'] = $row['idComment'];
-			$list['idUser'] = $row['idUser'];
-			$list['idEvent'] = $row['idEvent'];
-			$list['comment'] = $row['comment'];
-
-			array_push($comments, $list);
-		}
-
-		echo json_encode($comments);		
-	}
-
 	function retrieveEventsOfAnUser($user_given) {
 		global $db;
 
@@ -477,5 +393,13 @@
 		$stmt->execute();
 		$result = $stmt->fetchAll();
 		return $result[0];
+	}
+
+	function retrieveAllEventTypes() {
+		global $db;
+		$stmt = $db->prepare('SELECT type FROM EventType');
+		$stmt->execute();
+
+		return $result;
 	}
 ?>  

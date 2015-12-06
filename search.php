@@ -10,6 +10,11 @@
 
 <?php
 	session_start();
+
+	include_once('php/verify.php');
+	if (!(isset($_GET['query'])))
+		redirectErrorPage();
+
 	include_once 'database/connect.php';
 	include_once 'database/access_db.php';
 
