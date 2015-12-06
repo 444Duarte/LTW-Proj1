@@ -368,18 +368,20 @@
 
 	function getIdByUserPass($user, $pass) {
 		global $db;
+		$stmt = $db->prepare('SELECT * 
+								FROM User WHERE user = :user');
 
-		$stmt = $db->prepare('SELECT idUser FROM User WHERE user = :user AND password = :pass');
-
-		$passw = encryptPassword($pass, 20);
 		$stmt->bindParam(':user', $user, PDO::PARAM_STR);
-		$stmt->bindParam(':pass', $passw, PDO::PARAM_STR);
 		$stmt->execute();
 		$result = $stmt->fetchAll();
-
-		if (count($result) === 0)
+		
+		if (count($result) == 0)
 			return false;
-		else return $result[0]['idUser'];
+
+		if (decryptPassword($pass, $result[0]['password']))
+			return $result[0]['idUser'];
+
+		return false;
 	}
 
 	function userCanComment($idUser){
@@ -474,7 +476,6 @@
 		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
 		$stmt->execute();
 		$result = $stmt->fetchAll();
-		
 		return $result[0];
 	}
 ?>  

@@ -7,12 +7,23 @@
 </head>
 
 <?php
+    session_start();
     include_once 'database/connect.php';
     include_once 'database/access_db.php';
-    $idUser = $_GET['user'];
+    
+    if(!isset($_SESSION['user'])){
+        header("Location: index.html");
+    }
+        
+    $idUser = $_SESSION;
+    if(!isset($_GET['id'])){
+        $profileUserID = $_SESSION['user'];
+    }else{
+        $profileUserID = $_GET['id'];
+    }
 
-    $user = getUserByID($idUser);
-    $profile = getUserProfileByID($idUser);
+    $user = getUserByID($profileUserID);
+    $profile = getUserProfileByID($profileUserID);
 ?>
 
 <body> 
