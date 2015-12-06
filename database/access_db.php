@@ -226,7 +226,7 @@
 
 			createUserToEvent($idUser, $idEvent);
 		}else{
-			if(!getUserGoesToEvent($idUser, $idEvent) && !userIsInvited($idUser, $idEvent))
+			if(!getUserGoesToEvent($idUser, $idEvent) && userIsInvited($idUser, $idEvent))
 				return FALSE;
 			if(!userIsInvited($idUser, $idEvent))
 				inviteToEvent($idUser, $idEvent);
