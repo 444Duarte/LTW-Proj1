@@ -1,3 +1,13 @@
+<?php
+	session_start();
+	include_once 'database/connect.php';
+	include_once 'database/access_db.php';
+
+	$idUser = $_SESSION['user'];
+	$idEvent = $_GET['event'];
+
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -7,15 +17,13 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 	</head>
 
-	
-
 	<body>
 		<div id="create_form">
 			<header id="header" class="info">
 				<h1>Create Event</h1>
 			</header>
 
-			<form id="create" type="submit" method="post" action="">	
+			<form id="create" type="submit" method="post" action="" enctype="multipart/form-data">	
 				<label for="title">Title:</label>
 				<input type="text" id="title" name="title">
 				<br>

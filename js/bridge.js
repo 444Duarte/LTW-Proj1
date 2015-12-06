@@ -112,10 +112,8 @@ $('#searchForm').submit(function(ev) {
 
  $('#create').submit(function(ev) {
         ev.preventDefault();
-        
-        var filedata = $("form#create #image")[0];
-
-        var title = $("#title").val();
+    
+        /*var title = $("#title").val();
         var date = $("#date").val();
         var description = $("#description").val();
 
@@ -125,28 +123,26 @@ $('#searchForm').submit(function(ev) {
         var f = document.getElementById("Type");
         var type = e.options[e.selectedIndex].text;
 
-        
+        var filedata = $("form#create #image")[0];*/
 
         formData = new FormData(this);
         
-        var i = 0, len = filedata.files.length;
+        /*var i = 0, len = filedata.files.length;
         
         for (var i = 0; i < len; i++) {
             var file = filedata.files[i];
             formData.append("file" + i, file);
-        }
-        formData.append('nrfiles', filedata.files.length);
-        formData.append('eventId', parseInt(getUrlParameter("id")));
+        }*/
         
         $.ajax({
             type: "POST",
-            url: "processNewPhoto.php",
+            url: "../php/uploadImage.php",
             data: formData,
             processData: false,
             contentType: false,
             success: function(response) {
                 var data=JSON.parse(response);
-                if(data["fileuload"]!="success"){
+                if(data["fileupload"]!="success"){
                   console.log(data["fileupload"]); 
                 }
             },
