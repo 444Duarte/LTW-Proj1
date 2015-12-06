@@ -12,7 +12,7 @@
 
 	makeCommentInEvent($idUser, $idEvent, $comment);
 
-	$redirectPage = 'Location: ../mainpage.php/?event=' . $idEvent;
+	$redirectPage = 'Location: ../mainpage.php?event=' . $idEvent;
 	
 	header($redirectPage); /* Redirect browser */
 	exit();
