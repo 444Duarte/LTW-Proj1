@@ -40,11 +40,18 @@ $('#Reg').submit(function(ev) {
 });
 
 function showForm(value) {
-    if (value == 1) {
+    if (value.value == 1) {
         document.getElementById("LogForm").style.display="block";
-        document.getElementById("Log").style.display="none";
+        document.getElementById("Reg").style.display="none";
+        value.value=0;
+        $('#'+value.id).html("Register");
     }
-    else document.getElementById("LogForm").style.display="none";
+    else {
+        document.getElementById("LogForm").style.display="none";
+        document.getElementById("Reg").style.display="block";
+        $('#'+value.id).html("Login");
+        value.value=1;
+    }
 }
 
 $("#LogForm").submit(function(ev){
