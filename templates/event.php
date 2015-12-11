@@ -12,7 +12,6 @@
  ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 <script src="js/editEvent.js"></script>
-<script src="js/bridge.js"></script>
 
 <?php if(isAdminEvent($idUser, $idEvent)){
 	include_once 'templates/admin_event.php';
